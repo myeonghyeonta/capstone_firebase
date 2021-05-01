@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "213082421798",
+    "project_id": "homet-hajo-c9baf",
+    "storage_bucket": "homet-hajo-c9baf.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:213082421798:android:3d5c1534d27d539d2ec4e7",
+        "android_client_info": {
+          "package_name": "org.tensorflow.lite.examples.posenet"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "213082421798-mv5lmmdffq1fq0osha0iput3id50io4d.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDJk1OzSigDCCAl4SfHu_Kks9hI0y11CMc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "213082421798-mv5lmmdffq1fq0osha0iput3id50io4d.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
