@@ -5,16 +5,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="org.tensorflow.lite.examples.posenet.LoginActivity"
-    tools:ignore="Autofill, LabelFor">
+    tools:ignore="Autofill, LabelFor"
+    android:background="@drawable/gradation_background">
+
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/sign_in"
+        android:textSize="22dp"
         android:textAlignment="center"
-        android:textColor="@color/black"
-        android:textSize="20sp"
         android:textStyle="bold"
+        android:textColor="@color/whisper"
         app:layout_constraintBottom_toTopOf="@+id/etSignInEmail"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -67,9 +69,9 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginVertical="20dp"
-        android:backgroundTint="@color/black"
         android:text="@string/sign_in"
-        android:textColor="@android:color/white"
+        android:textColor="@android:color/black"
+        android:backgroundTint="@color/whisper"
         app:layout_constraintBottom_toTopOf="@+id/btnCreateAccount2"
         app:layout_constraintEnd_toEndOf="@+id/etSignInPassword"
         app:layout_constraintStart_toStartOf="@+id/etSignInPassword"
@@ -81,6 +83,8 @@
         android:layout_height="wrap_content"
         android:layout_marginVertical="20dp"
         android:text="@string/create_account"
+        android:textColor="@android:color/black"
+        android:backgroundTint="@color/whisper"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/btnSignIn"
         app:layout_constraintStart_toStartOf="@+id/btnSignIn"

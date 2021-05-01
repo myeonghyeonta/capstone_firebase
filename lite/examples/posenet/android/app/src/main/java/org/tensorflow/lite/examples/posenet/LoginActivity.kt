@@ -40,7 +40,7 @@ class LoginActivity : AppCompatActivity() {
             firebaseAuth.signInWithEmailAndPassword(signInEmail, signInPassword)
                 .addOnCompleteListener { login ->
                     if (login.isSuccessful) {
-                        startActivity(Intent(this, LogoutActivity::class.java))
+                        startActivity(Intent(this, MainloginActivity::class.java))
                         toast("로그인 성공")
                         finish()
                     } else {

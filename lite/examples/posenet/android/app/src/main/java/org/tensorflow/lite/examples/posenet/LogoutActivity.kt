@@ -16,7 +16,7 @@ class LogoutActivity : AppCompatActivity() {
 
         btnSignOut.setOnClickListener {
             firebaseAuth.signOut()
-            startActivity(Intent(this, RegisterActivity::class.java))
+            startActivity(Intent(this, LoginActivity::class.java))
             toast("로그아웃")
             finish()
         }
