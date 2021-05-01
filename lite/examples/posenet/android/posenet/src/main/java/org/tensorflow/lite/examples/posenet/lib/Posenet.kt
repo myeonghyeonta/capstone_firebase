@@ -1045,21 +1045,24 @@ class Posenet(
 
         // 바운드 높게 줄수록 점수 높음
 
-        if (Math.abs(LEFT_KneeUp_angle - Json_LEFT_KneeUp_angle) <= 10 || Math.abs(
-                RIGHT_KneeUp_angle - Json_RIGHT_KneeUp_angle
+        if (Math.abs(LEFT_SIDE_Arm_angle - JSON_LEFT_SIDE_Arm_angle) <= 10 || Math.abs(
+                RIGHT_SIDE_Arm_angle - JSON_RIGHT_SIDE_Arm_angle
             ) <= 10
         ) {
             ActionScore += 100;
-        } else if (Math.abs(LEFT_KneeUp_angle - Json_LEFT_KneeUp_angle) <= 20 || Math.abs(
-                RIGHT_KneeUp_angle - Json_RIGHT_KneeUp_angle) <= 20
+        } else if (Math.abs(LEFT_SIDE_Arm_angle - JSON_LEFT_SIDE_Arm_angle) <= 15 || Math.abs(
+                RIGHT_SIDE_Arm_angle - JSON_RIGHT_SIDE_Arm_angle
+            ) <= 15
         ) {
             ActionScore += 90;
-        } else if (Math.abs(LEFT_KneeUp_angle - Json_LEFT_KneeUp_angle) <= 25 || Math.abs(
-                RIGHT_KneeUp_angle - Json_RIGHT_KneeUp_angle) <= 25
+        } else if (Math.abs(LEFT_SIDE_Arm_angle - JSON_LEFT_SIDE_Arm_angle) <= 20 || Math.abs(
+                RIGHT_SIDE_Arm_angle - JSON_RIGHT_SIDE_Arm_angle
+            ) <= 20
         ) {
             ActionScore += 80;
-        } else if (Math.abs(LEFT_KneeUp_angle - Json_LEFT_KneeUp_angle) <= 30 || Math.abs(
-                RIGHT_KneeUp_angle - Json_RIGHT_KneeUp_angle) <= 30
+        } else if (Math.abs(LEFT_SIDE_Arm_angle - JSON_LEFT_SIDE_Arm_angle) <= 25 || Math.abs(
+                RIGHT_SIDE_Arm_angle - JSON_RIGHT_SIDE_Arm_angle
+            ) <= 25
         ) {
             ActionScore += 70;
         } else {
