@@ -17,9 +17,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.Posenet">
-        <activity android:name=".MainloginActivity"></activity>
-        <activity android:name=".LowerbodyActivity" />
-        <activity android:name=".LogoutActivity" />
+
         <activity android:name=".LoginActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -39,6 +37,11 @@
             android:name=".CameraActivity"
             android:exported="true" />
         <activity android:name=".MainActivity" />
+        <activity android:name=".MainloginActivity"/>
+        <activity android:name=".AbdominalActivity"/>
+        <activity android:name=".LowerbodyActivity" />
+        <activity android:name=".LogoutActivity" />
+
     </application>
 
 </manifest>

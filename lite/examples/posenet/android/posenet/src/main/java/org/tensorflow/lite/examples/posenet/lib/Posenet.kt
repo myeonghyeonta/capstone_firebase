@@ -1081,13 +1081,13 @@ class Posenet(
             Result_ActionScore = ActionScore / 15
 //            Log.d("Result_ActionScore : ", Result_ActionScore.toString())
 
-            if ((Result_ActionScore) >= 90) {
+            if ((Result_ActionScore) >= 80) {
                 Log.d("평가중 굳 ActionScore : ", (Result_ActionScore).toString())
                 ActionFeedback = "Good"
                 Log.d("ActionFeedback : ", ActionFeedback)
                 ActionScore = 0
                 Result_ActionScore = 0
-            } else if ((Result_ActionScore) >= 80) {
+            } else if ((Result_ActionScore) >= 70) {
                 Log.d("평가중 노말 ActionScore : ", (Result_ActionScore).toString())
                 ActionFeedback = "Normal"
                 Log.d("ActionFeedback : ", ActionFeedback)
