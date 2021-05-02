@@ -1,3 +1,4 @@
+/*
 package org.tensorflow.lite.examples.posenet
 
 import android.content.Intent
@@ -42,3 +43,4 @@ class MainActivity : AppCompatActivity() {
 
     }
 }
+*/
