@@ -5,18 +5,29 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
+
 import android.widget.LinearLayout
+import kotlinx.android.synthetic.main.activity_logout.*
+import org.tensorflow.lite.examples.posenet.Extensions.toast
 
 var ClickState = ""
+
 
 class LowerbodyActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+
+        setContentView(R.layout.activity_lowerbody)
+
+        btnSignOut.setOnClickListener {
+            FirebaseUtils.firebaseAuth.signOut()
+            startActivity(Intent(this, LoginActivity::class.java))
+            toast("로그아웃")
+            finish()
+        }
 
         val tutorial = findViewById<Button>(R.id.tutorial)
         val sidejack = findViewById<Button>(R.id.sidejack)
-        val widesquat = findViewById<Button>(R.id.widesquat)
 
         tutorial.setOnClickListener({
             val intent = Intent(this, CameraActivity::class.java)
@@ -32,12 +43,8 @@ class LowerbodyActivity : AppCompatActivity() {
             startActivity(intent)
         })
 
-        widesquat.setOnClickListener({
-            val intent = Intent(this, CameraActivity::class.java)
-            ClickState = "widesquat";
-            Log.d("widesquat", ClickState)
-            startActivity(intent)
-        })
+
+
 
 
     }

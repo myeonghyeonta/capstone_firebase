@@ -21,6 +21,22 @@ tools:context=".AbdominalActivity">
         android:scaleType="center"
         android:src="@drawable/ic_baseline_navigate_before_24"/>
 
+    <View
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_weight="1"></View>
+
+    <Button
+        android:id="@+id/btnSignOut"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/sign_out"
+        android:textColor="@color/black"
+        android:background="#00ff0000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </LinearLayout>
 
@@ -68,10 +84,10 @@ tools:context=".AbdominalActivity">
 
             </LinearLayout>
 
-            <view
+            <View
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:layout_weight="1"></view>
+                android:layout_weight="1"></View>
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -81,7 +97,7 @@ tools:context=".AbdominalActivity">
                 android:paddingRight="16dp">
 
                 <Button
-                    android:id="@+id/learning"
+                    android:id="@+id/tutorial"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="3dp"
@@ -146,10 +162,10 @@ tools:context=".AbdominalActivity">
 
             </LinearLayout>
 
-            <view
+            <View
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:layout_weight="1"></view>
+                android:layout_weight="1"></View>
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -159,7 +175,7 @@ tools:context=".AbdominalActivity">
                 android:paddingRight="16dp">
 
                 <Button
-                    android:id="@+id/learning"
+                    android:id="@+id/tutorial"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="3dp"
