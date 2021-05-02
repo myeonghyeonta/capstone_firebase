@@ -102,7 +102,7 @@
                     android:paddingRight="16dp">
 
                     <Button
-                        android:id="@+id/learning"
+                        android:id="@+id/tutorial"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="3dp"
@@ -112,13 +112,14 @@
                         android:textSize="14dp"/>
 
                     <Button
-                        android:id="@+id/squat"
+                        android:id="@+id/sidejack"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@drawable/button_background"
                         android:fontFamily="@font/wemakeprice_regular"
                         android:text="운동"
-                        android:textSize="14dp" />
+                        android:textSize="14dp"
+                        tools:ignore="InvalidId" />
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>

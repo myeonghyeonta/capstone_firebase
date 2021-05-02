@@ -5,15 +5,18 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
-import android.widget.ImageButton
+
+import android.widget.LinearLayout
 import kotlinx.android.synthetic.main.activity_logout.*
-import kotlinx.android.synthetic.main.activity_logout.btnSignOut
-import kotlinx.android.synthetic.main.activity_mainlogin.*
 import org.tensorflow.lite.examples.posenet.Extensions.toast
+
+var ClickState = ""
+
 
 class LowerbodyActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         setContentView(R.layout.activity_lowerbody)
 
         btnSignOut.setOnClickListener {
@@ -23,30 +26,26 @@ class LowerbodyActivity : AppCompatActivity() {
             finish()
         }
 
+        val tutorial = findViewById<Button>(R.id.tutorial)
+        val sidejack = findViewById<Button>(R.id.sidejack)
 
-
-
-        val btn_back =findViewById<ImageButton>(R.id.back)
-        val learning = findViewById<Button>(R.id.learning)
-        val squat = findViewById<Button>(R.id.squat)
-
-        btn_back.setOnClickListener{
-            val intent = Intent(this,MainloginActivity::class.java)
-            startActivity(intent)
-        }
-
-        learning.setOnClickListener{
+        tutorial.setOnClickListener({
             val intent = Intent(this, CameraActivity::class.java)
-            ClickState = "squat 학습";
-            Log.d("squat 학습", ClickState)
+            ClickState = "sidejack 학습";
+            Log.d("sidejack 학습", ClickState)
             startActivity(intent)
-        }
+        })
 
-        squat.setOnClickListener{
+        sidejack.setOnClickListener({
             val intent = Intent(this, CameraActivity::class.java)
-            ClickState = "squat 운동";
-            Log.d("squat 운동", ClickState)
+            ClickState = "sidejack 운동";
+            Log.d("sidejack 운동", ClickState)
             startActivity(intent)
-        }
+        })
+
+
+
+
+
     }
 }

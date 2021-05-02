@@ -97,7 +97,7 @@ tools:context=".AbdominalActivity">
                 android:paddingRight="16dp">
 
                 <Button
-                    android:id="@+id/learning"
+                    android:id="@+id/tutorial"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="3dp"
@@ -175,7 +175,7 @@ tools:context=".AbdominalActivity">
                 android:paddingRight="16dp">
 
                 <Button
-                    android:id="@+id/learning"
+                    android:id="@+id/tutorial"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="3dp"
