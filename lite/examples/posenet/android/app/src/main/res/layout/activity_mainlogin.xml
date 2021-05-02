@@ -16,21 +16,29 @@
         android:gravity="center_vertical"
         android:background="@drawable/gradation_background">
 
-
-
-
         <ImageView
             android:layout_width="50dp"
             android:layout_height="match_parent"
             android:scaleType="center"
             android:src="@drawable/ic_baseline_menu_24"/>
 
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"></View>
 
+        <Button
+            android:id="@+id/btnSignOut"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/sign_out"
+            android:textColor="@color/black"
+            android:background="#00ff0000"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:layout_width="50dp"
-            android:layout_height="match_parent"
-            />
 
     </LinearLayout>
 
@@ -92,7 +100,7 @@
                         android:fontFamily="@font/wemakeprice_semibold"
                         android:gravity="center"
                         android:paddingTop="10dp"
-                        android:text="복근\n(Upper body)"
+                        android:text="복근"
                         android:textColor="@color/black"
                         android:textSize="20dp" />
 
@@ -117,7 +125,7 @@
                     android:layout_width="138dp"
                     android:layout_height="127dp"
                     android:layout_marginTop="-8dp"
-                    android:src="@drawable/sidejack" />
+                    android:src="@drawable/abd" />
             </LinearLayout>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
@@ -155,7 +163,7 @@
                         android:fontFamily="@font/wemakeprice_semibold"
                         android:gravity="center"
                         android:paddingTop="10dp"
-                        android:text="하체\n(Lower body)"
+                        android:text="상체"
                         android:textColor="@color/black"
                         android:textSize="20dp" />
 
@@ -181,21 +189,11 @@
                     android:layout_width="168dp"
                     android:layout_height="127dp"
                     android:layout_marginTop="-8dp"
-                    android:src="@drawable/squats" />
+                    android:src="@drawable/sidejack" />
             </LinearLayout>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
 
-    <Button
-        android:id="@+id/btnSignOut"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/sign_out"
-        android:textColor="@color/black"
-        android:background="@color/whisper"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+
 </LinearLayout>
