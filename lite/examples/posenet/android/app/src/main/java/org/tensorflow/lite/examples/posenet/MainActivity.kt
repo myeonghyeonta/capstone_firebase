@@ -1,4 +1,3 @@
-/*
 package org.tensorflow.lite.examples.posenet
 
 import android.content.Intent
@@ -8,7 +7,9 @@ import android.util.Log
 import android.widget.Button
 import android.widget.LinearLayout
 
+/*
 var ClickState = ""
+*/
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -19,7 +20,7 @@ class MainActivity : AppCompatActivity() {
         val sidejack = findViewById<Button>(R.id.sidejack)
         val widesquat = findViewById<Button>(R.id.widesquat)
 
-        tutorial.setOnClickListener({
+       /* tutorial.setOnClickListener({
             val intent = Intent(this, CameraActivity::class.java)
             ClickState = "sidejack 학습";
             Log.d("sidejack 학습", ClickState)
@@ -39,8 +40,7 @@ class MainActivity : AppCompatActivity() {
             Log.d("widesquat", ClickState)
             startActivity(intent)
         })
-
+*/
 
     }
 }
-*/

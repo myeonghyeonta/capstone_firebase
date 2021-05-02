@@ -15,8 +15,8 @@ class MainloginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_mainlogin)
 
-        val btn_click1 = findViewById<Button>(R.id.btn_click_1)
-        val btn_click2 = findViewById<Button>(R.id.btn_click_2)
+        val btn_click_1 = findViewById<Button>(R.id.btn_click_1)
+        val btn_click_2 = findViewById<Button>(R.id.btn_click_2)
 
         btn_click_1.setOnClickListener{
             val intent = Intent(this,AbdominalActivity::class.java)

@@ -19,12 +19,13 @@ class LowerbodyActivity : AppCompatActivity() {
 
         setContentView(R.layout.activity_lowerbody)
 
-        btnSignOut.setOnClickListener {
+        btnSignOut.setOnClickListener ({
             FirebaseUtils.firebaseAuth.signOut()
-            startActivity(Intent(this, LoginActivity::class.java))
+            val intent = Intent(this, LoginActivity::class.java)
             toast("로그아웃")
+            startActivity(intent)
             finish()
-        }
+        })
 
         val tutorial = findViewById<Button>(R.id.tutorial)
         val sidejack = findViewById<Button>(R.id.sidejack)
