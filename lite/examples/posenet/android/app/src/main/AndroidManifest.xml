@@ -19,7 +19,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.Posenet">
         <activity android:name=".Test_database"></activity>
-        <activity android:name=".test_database" />
         <activity android:name=".LowerbodyActivity" />
         <activity android:name=".LoginActivity">
             <intent-filter>

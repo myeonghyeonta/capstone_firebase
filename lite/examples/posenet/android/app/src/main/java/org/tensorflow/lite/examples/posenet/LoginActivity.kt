@@ -39,10 +39,16 @@ class LoginActivity : AppCompatActivity() {
         if (notEmpty()) {
             firebaseAuth.signInWithEmailAndPassword(signInEmail, signInPassword)
                 .addOnCompleteListener { login ->
-                    if (login.isSuccessful && firebaseAuth.currentUser.isEmailVerified) {
-                        startActivity(Intent(this, MainloginActivity::class.java))
-                        toast("로그인 성공")
-                        finish()
+                    if (login.isSuccessful) {
+                        if( firebaseAuth.currentUser.isEmailVerified) {
+                            startActivity(Intent(this, MainloginActivity::class.java))
+                            toast("로그인 성공")
+                            finish()
+                        }
+                        else{
+                            toast("메일 인증을 해주세요.")
+                        }
+
                     } else {
                         toast("로그인 실패")
                     }
