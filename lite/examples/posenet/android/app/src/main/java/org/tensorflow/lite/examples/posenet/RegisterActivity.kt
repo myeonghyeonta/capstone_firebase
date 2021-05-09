@@ -27,19 +27,8 @@ class RegisterActivity : AppCompatActivity() {
 
         btnSignIn2.setOnClickListener {
             startActivity(Intent(this, LoginActivity::class.java))
-            toast("계정을 입력하세요")
+            toast("계정을 입력하세요.")
             finish()
-        }
-    }
-
-    /* check if there's a signed-in user*/
-
-    override fun onStart() {
-        super.onStart()
-        val user: FirebaseUser? = firebaseAuth.currentUser
-        user?.let {
-            startActivity(Intent(this, LogoutActivity::class.java))
-            toast("환영합니다.")
         }
     }
 
@@ -56,7 +45,7 @@ class RegisterActivity : AppCompatActivity() {
         } else if (!notEmpty()) {
             createAccountInputsArray.forEach { input ->
                 if (input.text.toString().trim().isEmpty()) {
-                    input.error = "${input.hint} 이(가) 필요합니다"
+                    input.error = "${input.hint} 이(가) 필요합니다."
                 }
             }
         } else {
@@ -75,28 +64,17 @@ class RegisterActivity : AppCompatActivity() {
             firebaseAuth.createUserWithEmailAndPassword(userEmail, userPassword)
                 .addOnCompleteListener { task ->
                     if (task.isSuccessful) {
-                        toast("회원가입이 완료 되었습니다.")
-                        sendEmailVerification()
-                        startActivity(Intent(this, LogoutActivity::class.java))
-                        finish()
+                        firebaseAuth.currentUser
+                            ?.sendEmailVerification()
+                            ?.addOnCompleteListener{ task->
+                                if (task.isSuccessful) {
+                                    toast("회원가입이 성공 하였습니다. 메일 인증을 해주세요. : $userEmail")
+                                }
+                            }
                     } else {
                         toast("회원가입이 실패 하였습니다.")
                     }
                 }
-        }
-    }
-
-    /* send verification email to the new user. This will only
-    *  work if the firebase user is not null.
-    */
-
-    private fun sendEmailVerification() {
-        firebaseUser?.let {
-            it.sendEmailVerification().addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    toast("메일보내기: $userEmail")
-                }
-            }
         }
     }
 }

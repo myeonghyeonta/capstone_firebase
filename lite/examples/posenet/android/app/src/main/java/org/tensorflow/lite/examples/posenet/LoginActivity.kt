@@ -39,7 +39,7 @@ class LoginActivity : AppCompatActivity() {
         if (notEmpty()) {
             firebaseAuth.signInWithEmailAndPassword(signInEmail, signInPassword)
                 .addOnCompleteListener { login ->
-                    if (login.isSuccessful) {
+                    if (login.isSuccessful && firebaseAuth.currentUser.isEmailVerified) {
                         startActivity(Intent(this, MainloginActivity::class.java))
                         toast("로그인 성공")
                         finish()
@@ -54,5 +54,15 @@ class LoginActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    private fun resetPassword(){
+        signInEmail = etSignInEmail.text.toString().trim()
+        firebaseAuth?.sendPasswordResetEmail(signInEmail)
+            ?.addOnCompleteListener{ task->
+                if(task.isSuccessful){
+                    toast("비밀번호를 재설정합니다. 메일을 확인 해주세요. : $signInEmail\"")
+                }
+            }
     }
 }
