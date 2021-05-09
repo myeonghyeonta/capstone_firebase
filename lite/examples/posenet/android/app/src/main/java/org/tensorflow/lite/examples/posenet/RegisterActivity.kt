@@ -68,6 +68,7 @@ class RegisterActivity : AppCompatActivity() {
                             ?.sendEmailVerification()
                             ?.addOnCompleteListener{ task->
                                 if (task.isSuccessful) {
+                                    startActivity(Intent(this, LoginActivity::class.java))
                                     toast("회원가입이 성공 하였습니다. 메일 인증을 해주세요. : $userEmail")
                                 }
                             }
