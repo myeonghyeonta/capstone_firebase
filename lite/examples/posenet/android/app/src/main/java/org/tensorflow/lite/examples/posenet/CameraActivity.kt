@@ -23,9 +23,19 @@ class CameraActivity : AppCompatActivity() {
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-    setContentView(R.layout.tfe_pn_activity_camera)
-    savedInstanceState ?: supportFragmentManager.beginTransaction()
-      .replace(R.id.container, PosenetActivity())
-      .commit()
+    if (ClickState=="sidejack 학습"){
+      setContentView(R.layout.tfe_pn_activity_camera)
+      savedInstanceState ?: supportFragmentManager.beginTransaction()
+              .replace(R.id.container, PracticeActivity())
+              .commit()
+
+    }
+    else if (ClickState == "sidejack 운동"){
+      setContentView(R.layout.tfe_pn_activity_camera)
+      savedInstanceState ?: supportFragmentManager.beginTransaction()
+              .replace(R.id.container, PosenetActivity())
+              .commit()
+    }
+
   }
 }
