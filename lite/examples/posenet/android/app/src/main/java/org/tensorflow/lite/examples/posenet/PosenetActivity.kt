@@ -21,6 +21,7 @@ import android.Manifest
 import android.app.AlertDialog
 import android.app.Dialog
 import android.content.Context
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.*
 import android.hardware.camera2.*
@@ -47,7 +48,7 @@ import org.tensorflow.lite.examples.posenet.lib.*
 import java.util.concurrent.Semaphore
 import java.util.concurrent.TimeUnit
 import kotlin.math.abs
-
+import android.os.SystemClock
 
 class    PosenetActivity :
     Fragment(),
@@ -81,6 +82,9 @@ class    PosenetActivity :
     /** A shape for extracting frame data.   */
     private val PREVIEW_WIDTH = 640
     private val PREVIEW_HEIGHT = 480
+
+    /** 운동 횟수에 해당하는 변수  이값을 나중에 사용자가 입력하는 변수로 바꿔줄것*/
+    private val i=2
 
     /** An object for the Posenet library.    */
     private lateinit var posenet: Posenet
@@ -182,9 +186,6 @@ class    PosenetActivity :
         }
     }
 
-    /**
-     * A [CameraCaptureSession.CaptureCallback] that handles events related to JPEG capture.
-     */
     private val captureCallback = object : CameraCaptureSession.CaptureCallback() {
         override fun onCaptureProgressed(
             session: CameraCaptureSession,
@@ -226,6 +227,9 @@ class    PosenetActivity :
         // [210122] / [210129]
         videoView = view.findViewById(R.id.videoView)
 
+
+
+
         Log.d("if ClickState ", ClickState)
         if (ClickState == "sidejack 학습") {
             videoView?.isInvisible
@@ -236,6 +240,10 @@ class    PosenetActivity :
             var videoUri =
                 Uri.parse("android.resource://" + context!!.packageName + "/" + R.raw.sidejack14)
             videoView!!.setVideoURI(videoUri) //영상을 띄우는 느낌
+            //영상을 띄우고 부터 사용자가 정해준 시간뒤에 화면이 넘어가는 부분
+            //LowerbodyActivity를 가려는 activity이름으로 바꿔주면 됨
+            Handler().postDelayed( { startActivity(Intent(context , LowerbodyActivity::class.java)) },9900L *i )
+
         }
         else if(ClickState == "widesquat"){
             // 운동에 따라 종류 변경
@@ -448,6 +456,7 @@ class    PosenetActivity :
 
     /** A [OnImageAvailableListener] to receive frames as they are available.  */
     private var imageAvailableListener = object : OnImageAvailableListener {
+
         override fun onImageAvailable(imageReader: ImageReader) {
             var stratTimeOverall = SystemClock.elapsedRealtimeNanos()
 
@@ -486,10 +495,13 @@ class    PosenetActivity :
                 imageBitmap, 0, 0, previewWidth, previewHeight,
                 rotateMatrix, true
             )
+
             image.close()
+
 
                 // [210122]
                 videoView!!.start()
+
 
 
             processImage(rotatedBitmap)
