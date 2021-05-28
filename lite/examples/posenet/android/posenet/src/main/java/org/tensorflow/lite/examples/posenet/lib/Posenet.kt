@@ -668,7 +668,7 @@ class Posenet(
             // 실제
             sidejackfileJsonPath = sidejackfilePath + ActiveCounter + sidejackfilePathFinal
             ActionJsonPath = sidejackfileJsonPath
-            ActionFramecount = 150
+            ActionFramecount = 46
         }
         else if(kindAction == "widesquat"){
             widesquatfilePath = "squat/"
