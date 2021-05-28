@@ -29,6 +29,7 @@ import android.media.Image
 import android.media.ImageReader
 import android.media.ImageReader.OnImageAvailableListener
 import android.media.MediaPlayer
+import android.media.MediaPlayer.OnCompletionListener
 import android.net.Uri
 import android.os.*
 import android.text.TextPaint
@@ -44,11 +45,12 @@ import androidx.core.app.ActivityCompat
 import androidx.core.view.isInvisible
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
+import org.tensorflow.lite.examples.posenet.Extensions.toast
 import org.tensorflow.lite.examples.posenet.lib.*
 import java.util.concurrent.Semaphore
 import java.util.concurrent.TimeUnit
 import kotlin.math.abs
-import android.os.SystemClock
+
 
 class    PosenetActivity :
     Fragment(),
@@ -83,8 +85,6 @@ class    PosenetActivity :
     private val PREVIEW_WIDTH = 640
     private val PREVIEW_HEIGHT = 480
 
-    /** 운동 횟수에 해당하는 변수  이값을 나중에 사용자가 입력하는 변수로 바꿔줄것*/
-    private val i=2
 
     /** An object for the Posenet library.    */
     private lateinit var posenet: Posenet
@@ -164,6 +164,8 @@ class    PosenetActivity :
     private var scoreHolder: SurfaceHolder? = null
 
 
+
+
     /** [CameraDevice.StateCallback] is called when [CameraDevice] changes its state.   */
     private val stateCallback = object : CameraDevice.StateCallback() {
         // openCamera() 메서드에서 CameraManager.openCamera() 를 실행할때 인자로 넘겨주어야하는 콜백메서드
@@ -224,8 +226,19 @@ class    PosenetActivity :
         surfaceView = view.findViewById(R.id.surfaceView)
         surfaceHolder = surfaceView!!.holder
 
-        // [210122] / [210129]
+
+        //재생횟수설정
+
+        var count =0 //운동횟수 카운트
+        var number = 2 //나중에 EditText만들어서 운동전 운동횟수 입력받기
         videoView = view.findViewById(R.id.videoView)
+        videoView!!.setOnCompletionListener {
+            count++
+            showToast("$count 회재생") //재생횟수 확인용 메세지
+            if(count == number) {
+                startActivity(Intent(context, LowerbodyActivity::class.java))
+            }
+        }
 
 
 
@@ -242,8 +255,6 @@ class    PosenetActivity :
             videoView!!.setVideoURI(videoUri) //영상을 띄우는 느낌
             //영상을 띄우고 부터 사용자가 정해준 시간뒤에 화면이 넘어가는 부분
             //LowerbodyActivity를 가려는 activity이름으로 바꿔주면 됨
-            Handler().postDelayed( { startActivity(Intent(context , LowerbodyActivity::class.java)) },9900L *i )
-
         }
         else if(ClickState == "widesquat"){
             // 운동에 따라 종류 변경
@@ -261,7 +272,13 @@ class    PosenetActivity :
         scoreView = view.findViewById(R.id.scoreView) //점수출력
         scoreHolder = scoreView!!.holder
         scoreHolder!!.setFormat(PixelFormat.TRANSPARENT)
+
+
     }
+
+
+
+
 
     override fun onResume() {
         super.onResume()
@@ -454,6 +471,8 @@ class    PosenetActivity :
         }
     }
 
+
+
     /** A [OnImageAvailableListener] to receive frames as they are available.  */
     private var imageAvailableListener = object : OnImageAvailableListener {
 
@@ -500,7 +519,13 @@ class    PosenetActivity :
 
 
                 // [210122]
-                videoView!!.start()
+
+
+            videoView!!.start()
+
+
+
+
 
 
 
@@ -516,6 +541,9 @@ class    PosenetActivity :
             kindAction = ClickState;
         }
     }
+
+
+
 
     /** Crop Bitmap to maintain aspect ratio of model input.   */
     private fun cropBitmap(bitmap: Bitmap): Bitmap {
@@ -840,4 +868,6 @@ class    PosenetActivity :
          */
         private const val TAG = "PosenetActivity"
     }
+
+
 }

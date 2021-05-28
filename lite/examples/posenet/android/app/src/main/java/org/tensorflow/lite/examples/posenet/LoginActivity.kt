@@ -44,7 +44,7 @@ class LoginActivity : AppCompatActivity() {
                             startActivity(Intent(this, MainloginActivity::class.java))
                             toast("로그인 성공")
                             finish()
-                        }
+                        } 
                         else{
                             toast("메일 인증을 해주세요.")
                         }
