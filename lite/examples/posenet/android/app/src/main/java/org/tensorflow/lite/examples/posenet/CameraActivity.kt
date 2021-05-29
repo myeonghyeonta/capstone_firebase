@@ -26,15 +26,15 @@ class CameraActivity : AppCompatActivity() {
     if (ClickState=="sidejack 학습"){
       setContentView(R.layout.tfe_pn_activity_camera)
       savedInstanceState ?: supportFragmentManager.beginTransaction()
-        .replace(R.id.container, PracticeActivity())
-        .commit()
+          .replace(R.id.container, PracticeActivity())
+          .commit()
 
     }
-    else if (ClickState == "start 시작하기"){
+    else if (ClickState == "sidejack 운동"){
       setContentView(R.layout.tfe_pn_activity_camera)
       savedInstanceState ?: supportFragmentManager.beginTransaction()
-        .replace(R.id.container, PosenetActivity())
-        .commit()
+          .replace(R.id.container, PosenetActivity())
+          .commit()
     }
 
   }

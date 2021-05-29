@@ -13,10 +13,13 @@ class CountActivity : AppCompatActivity() {
     var data1 = arrayOf("10회", "20회", "30회")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         setContentView(R.layout.activity_count)
 
         var adapter1 = ArrayAdapter(this, android.R.layout.simple_spinner_item, data1)
+/*
         val sidejack = findViewById<Button>(R.id.sidejack)
+*/
 
         adapter1.setDropDownViewResource(android.R.layout.simple_spinner_item)
 
@@ -24,8 +27,8 @@ class CountActivity : AppCompatActivity() {
 
         start.setOnClickListener({
             val intent = Intent(this, CameraActivity::class.java)
-            ClickState = "start 시작하기";
-            Log.d("start 시작하기", ClickState)
+            ClickState = "sidejack 운동";
+            Log.d("sidejack 운동", ClickState)
             startActivity(intent)
         })
     }
