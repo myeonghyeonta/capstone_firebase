@@ -52,7 +52,7 @@ import java.util.concurrent.TimeUnit
 import kotlin.math.abs
 
 
-class    PosenetActivity :
+class PosenetActivity :
     Fragment(),
     ActivityCompat.OnRequestPermissionsResultCallback {
 
@@ -248,7 +248,7 @@ class    PosenetActivity :
             videoView?.isInvisible
 
 
-        } else if (ClickState == "start 시작하기") {
+        } else if (ClickState == "sidejack 운동") {
             // 운동에 따라 종류 변경
             var videoUri =
                 Uri.parse("android.resource://" + context!!.packageName + "/" + R.raw.sidejack14)
