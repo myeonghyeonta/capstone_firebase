@@ -230,7 +230,7 @@ class PosenetActivity :
         //재생횟수설정
 
         var count =0 //운동횟수 카운트
-        var number = 25 //나중에 EditText만들어서 운동전 운동횟수 입력받기
+        //var number = 25 //나중에 EditText만들어서 운동전 운동횟수 입력받기
         videoView = view.findViewById(R.id.videoView)
         videoView!!.setOnCompletionListener {
             count++
