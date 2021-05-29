@@ -251,7 +251,7 @@ class PosenetActivity :
         } else if (ClickState == "sidejack 운동") {
             // 운동에 따라 종류 변경
             var videoUri =
-                Uri.parse("android.resource://" + context!!.packageName + "/" + R.raw.sidejack14)
+                Uri.parse("android.resource://" + context!!.packageName + "/" + R.raw.lateral)
             videoView!!.setVideoURI(videoUri) //영상을 띄우는 느낌
             //영상을 띄우고 부터 사용자가 정해준 시간뒤에 화면이 넘어가는 부분
             //LowerbodyActivity를 가려는 activity이름으로 바꿔주면 됨
@@ -518,7 +518,7 @@ class PosenetActivity :
             image.close()
 
 
-                // [210122]
+            // [210122]
 
 
             videoView!!.start()
@@ -705,18 +705,18 @@ class PosenetActivity :
 
         var text = "$ActionFeedback"
         val numOfChars: Int = textPaint.breakText(
-                text,
-                true,
-                canvas.width / 4f * 2 - margin,
-                null
+            text,
+            true,
+            canvas.width / 4f * 2 - margin,
+            null
         )
         if (text.length > numOfChars){
             text = text.substring(0, numOfChars) + ".."
         }
         canvas.drawText(
-                text,
-                canvas.width / 2f,canvas.height / 2f + textOffset,
-                textPaint
+            text,
+            canvas.width / 2f,canvas.height / 2f + textOffset,
+            textPaint
         )
         scoreHolder!!.unlockCanvasAndPost(canvas)
     }

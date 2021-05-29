@@ -40,8 +40,6 @@ class CountActivity : AppCompatActivity() {
             }
         }
 
-
-
         start.setOnClickListener({
             number=(a.replace("회","")).toInt()
             val intent = Intent(this, CameraActivity::class.java)
