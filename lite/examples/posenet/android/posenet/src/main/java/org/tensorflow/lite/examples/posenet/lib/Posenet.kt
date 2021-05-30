@@ -1081,7 +1081,7 @@ class Posenet(
             Result_ActionScore = ActionScore / 15
 //            Log.d("Result_ActionScore : ", Result_ActionScore.toString())
 
-            if ((Result_ActionScore) >= 80) {
+            if ((Result_ActionScore) >= 85) {
                 Log.d("평가중 굳 ActionScore : ", (Result_ActionScore).toString())
                 ActionFeedback = "Good"
                 Log.d("ActionFeedback : ", ActionFeedback)
