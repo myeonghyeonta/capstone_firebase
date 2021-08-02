@@ -112,6 +112,7 @@ var ActionCount: Int = 0
 var estimate_LEFT_Arm = ""
 var estimate_RIGHT_Arm = ""
 
+
 var kindAction = ""
 
 var ActionFeedback = ""
@@ -601,9 +602,10 @@ class Posenet(
 //        tts.shutdown()
 //        // tts 중지
 
-        if(kindAction == "sidejack 학습"){
+        if(kindAction == "sidejack 학습"){   //sidejack 학습
             // 학습
-            poseEstimate(person)
+            poseEstimate(person);
+            realtime_dataCal(); //0730 추가한 부분
         }
 
         else if(kindAction == "sidejack 운동"){
@@ -1183,7 +1185,6 @@ class Posenet(
 
         Log.d("Estimate_Arm_Bound : ", Estimate_Arm_Bound.toString());
 
-        // 값 초기화
         estimate_LEFT_Arm = ""
         estimate_RIGHT_Arm = ""
 
@@ -1215,26 +1216,26 @@ class Posenet(
                     ActionFlag = 3;
                 }
 
-
+                //0730 수정
             } else if (ActionFlag == 1) {
                 // 팔
                 if (LEFT_SIDE_Arm_angle <= 10 && LEFT_SIDE_Arm_angle >= -10) {
                     estimate_LEFT_Arm = "Good"
                     Log.d("쭉 핀 왼팔 : ", estimate_LEFT_Arm);
-                } else if (LEFT_SIDE_Arm_angle <= 60 && LEFT_SIDE_Arm_angle >= 30) {
+                } else if (LEFT_SIDE_Arm_angle > 10) {
                     estimate_LEFT_Arm = "왼팔을 높게"
                     Log.d("낮게 올린 왼팔 : ", estimate_LEFT_Arm);
-                } else if (LEFT_SIDE_Arm_angle < 30 && LEFT_SIDE_Arm_angle >= -45) {
+                } else if (LEFT_SIDE_Arm_angle < -10) {
                     estimate_LEFT_Arm = "왼팔을 낮게"
                     Log.d("많이 올린 왼팔 : ", estimate_LEFT_Arm);
                 }
                 if (RIGHT_SIDE_Arm_angle <= 10 && RIGHT_SIDE_Arm_angle >= -10) {
                     estimate_RIGHT_Arm = "Good"
                     Log.d("쭉 핀 오른팔 : ", estimate_RIGHT_Arm);
-                } else if (RIGHT_SIDE_Arm_angle <= 60 && RIGHT_SIDE_Arm_angle >= 30) {
+                } else if (RIGHT_SIDE_Arm_angle <-10) {
                     estimate_RIGHT_Arm = "오른팔을 높게"
                     Log.d("낮게 올린 오른팔 : ", estimate_RIGHT_Arm);
-                } else if (RIGHT_SIDE_Arm_angle < 30 && RIGHT_SIDE_Arm_angle >= -45) {
+                } else if (RIGHT_SIDE_Arm_angle > 10) {
                     estimate_RIGHT_Arm = "오른팔을 낮게"
                     Log.d("많이 올린 오른팔 : ", estimate_RIGHT_Arm);
                 }
@@ -1248,20 +1249,20 @@ class Posenet(
                 if (LEFT_SIDE_Arm_angle <= 10 && LEFT_SIDE_Arm_angle >= -10) {
                     estimate_LEFT_Arm = "Good"
                     Log.d("쭉 핀 왼팔 : ", estimate_LEFT_Arm);
-                } else if (LEFT_SIDE_Arm_angle <= 60 && LEFT_SIDE_Arm_angle >= 30) {
+                } else if (LEFT_SIDE_Arm_angle > 10) {
                     estimate_LEFT_Arm = "왼팔을 높게"
                     Log.d("낮게 올린 왼팔 : ", estimate_LEFT_Arm);
-                } else if (LEFT_SIDE_Arm_angle < 30 && LEFT_SIDE_Arm_angle >= -45) {
+                } else if (LEFT_SIDE_Arm_angle < -10) {
                     estimate_LEFT_Arm = "왼팔을 낮게"
                     Log.d("많이 올린 왼팔 : ", estimate_LEFT_Arm);
                 }
                 if (RIGHT_SIDE_Arm_angle <= 10 && RIGHT_SIDE_Arm_angle >= -10) {
                     estimate_RIGHT_Arm = "Good"
                     Log.d("쭉 핀 오른팔 : ", estimate_RIGHT_Arm);
-                } else if (RIGHT_SIDE_Arm_angle <= 60 && RIGHT_SIDE_Arm_angle >= 30) {
+                } else if (RIGHT_SIDE_Arm_angle <-10) {
                     estimate_RIGHT_Arm = "오른팔을 높게"
                     Log.d("낮게 올린 오른팔 : ", estimate_RIGHT_Arm);
-                } else if (RIGHT_SIDE_Arm_angle < 30 && RIGHT_SIDE_Arm_angle >= -45) {
+                } else if (RIGHT_SIDE_Arm_angle > 10) {
                     estimate_RIGHT_Arm = "오른팔을 낮게"
                     Log.d("많이 올린 오른팔 : ", estimate_RIGHT_Arm);
                 }
@@ -1271,6 +1272,7 @@ class Posenet(
                     ActionCount++
                 }
             }
+
         } else {
             Log.d("사용자 데이터가 옳바르지 않아 평가 X", Estimate_Arm_Bound.toString());
 //            estimate_LEFT_Arm = "BAD"
