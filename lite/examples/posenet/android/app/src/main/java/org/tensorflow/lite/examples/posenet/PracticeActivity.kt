@@ -57,16 +57,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
-import org.tensorflow.lite.examples.posenet.lib.ActionFlag
-import org.tensorflow.lite.examples.posenet.lib.ActionCount
-import org.tensorflow.lite.examples.posenet.lib.estimate_RIGHT_Arm
-import org.tensorflow.lite.examples.posenet.lib.estimate_LEFT_Arm
+import org.tensorflow.lite.examples.posenet.lib.*
 import java.util.concurrent.Semaphore
 import java.util.concurrent.TimeUnit
 import kotlin.math.abs
-import org.tensorflow.lite.examples.posenet.lib.BodyPart
-import org.tensorflow.lite.examples.posenet.lib.Person
-import org.tensorflow.lite.examples.posenet.lib.Posenet
 
 
 class PracticeActivity :
@@ -453,6 +447,8 @@ class PracticeActivity :
             image.close()
 
             processImage(rotatedBitmap)
+
+            kindAction= ClickState; //0730 수정
         }
     }
 
@@ -602,7 +598,7 @@ class PracticeActivity :
         // Toast 메세지 띄우기 & 핸드폰 TalkBack 기능 키기
         // Toast.makeText(this.context,"$Teststring",Toast.LENGTH_LONG).show()
         canvas.drawText(
-            "수행 동작 : $Teststring      수행 횟수 : $ActionCount",
+            "수행 동작 : $Teststring    수행 횟수 : $ActionCount",
             (15.0f * widthRatio),
             (50.0f * heightRatio + bottom),
             paint

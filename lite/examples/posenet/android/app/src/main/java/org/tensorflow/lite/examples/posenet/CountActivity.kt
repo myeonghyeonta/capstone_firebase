@@ -14,7 +14,7 @@ var number=0
 var a=""
 class CountActivity : AppCompatActivity() {
 
-    var data1 = arrayOf("1회", "2회", "3회")
+    var data1 = arrayOf("3회", "2회", "1회")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
