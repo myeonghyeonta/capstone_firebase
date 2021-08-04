@@ -122,7 +122,7 @@ var ActionScore = 0
 
 var Result_ActionScore = 0
 
-var tts: TextToSpeech? = null
+
 
 //var start = SystemClock.currentThreadTimeMillis();
 
@@ -580,27 +580,6 @@ class Posenet(
             //        Log.d("CENTER_Shoulder", CENTER_Shoulder_angle.toString());
         }
 
-
-//        //tts 생성
-
-//        val tts = TextToSpeech(this.context) {
-//            if (it == TextToSpeech.SUCCESS) {
-//                val result = tts?.setLanguage(Locale.KOREAN)
-//                // 언어 설정
-//            }
-//        }
-//
-//        tts.setSpeechRate(0.9f)
-//        // 말하는 속도 설정
-//
-//        tts.speak("말할 텍스트를 입력!", TextToSpeech.QUEUE_FLUSH, null, null)
-//        // 말해!
-//
-//        tts.stop()
-//        // tts speaking 중지
-//
-//        tts.shutdown()
-//        // tts 중지
 
         if(kindAction == "sidejack 학습"){   //sidejack 학습
             // 학습
@@ -1282,9 +1261,9 @@ class Posenet(
 
         // 다리 평가 X
         // 부위별 score가 0.8 ~ 0.9
-        if (Estimate_Leg_Bound > 5) {
+     /*   if (Estimate_Leg_Bound > 5) {
 
-        }
+        }*/
 
     }
 
