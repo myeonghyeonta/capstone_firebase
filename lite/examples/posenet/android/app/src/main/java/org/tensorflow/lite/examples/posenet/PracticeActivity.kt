@@ -756,6 +756,6 @@ class PracticeActivity :
         /**
          * Tag for the [Log].
          */
-        private const val TAG = "PosenetActivity"
+        private const val TAG = "PracticeActivity"
     }
 }

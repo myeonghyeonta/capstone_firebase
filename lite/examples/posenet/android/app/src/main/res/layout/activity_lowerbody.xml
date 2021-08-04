@@ -102,7 +102,7 @@
                     android:paddingRight="16dp">
 
                     <Button
-                        android:id="@+id/tutorial"
+                        android:id="@+id/sidejack_tutorial"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="3dp"

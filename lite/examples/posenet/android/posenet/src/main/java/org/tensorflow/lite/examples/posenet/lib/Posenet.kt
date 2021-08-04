@@ -1218,7 +1218,7 @@ class Posenet(
 
             } else if (ActionFlag == 1) {
                 // 팔
-                if (LEFT_SIDE_Arm_angle <= 10 && LEFT_SIDE_Arm_angle >= -10) {
+                if (LEFT_SIDE_Arm_angle <= 50 && LEFT_SIDE_Arm_angle >= -50) {
                     estimate_LEFT_Arm = "Good"
                     Log.d("쭉 핀 왼팔 : ", estimate_LEFT_Arm);
                 } else if (LEFT_SIDE_Arm_angle <= 60 && LEFT_SIDE_Arm_angle >= 30) {
@@ -1228,7 +1228,7 @@ class Posenet(
                     estimate_LEFT_Arm = "왼팔을 낮게"
                     Log.d("많이 올린 왼팔 : ", estimate_LEFT_Arm);
                 }
-                if (RIGHT_SIDE_Arm_angle <= 10 && RIGHT_SIDE_Arm_angle >= -10) {
+                if (RIGHT_SIDE_Arm_angle <= 50 && RIGHT_SIDE_Arm_angle >= -50) {
                     estimate_RIGHT_Arm = "Good"
                     Log.d("쭉 핀 오른팔 : ", estimate_RIGHT_Arm);
                 } else if (RIGHT_SIDE_Arm_angle <= 60 && RIGHT_SIDE_Arm_angle >= 30) {
@@ -1245,7 +1245,7 @@ class Posenet(
 
             } else if (ActionFlag == 3) {
                 // 팔
-                if (LEFT_SIDE_Arm_angle <= 10 && LEFT_SIDE_Arm_angle >= -10) {
+                if (LEFT_SIDE_Arm_angle <= 50 && LEFT_SIDE_Arm_angle >= -50) {
                     estimate_LEFT_Arm = "Good"
                     Log.d("쭉 핀 왼팔 : ", estimate_LEFT_Arm);
                 } else if (LEFT_SIDE_Arm_angle <= 60 && LEFT_SIDE_Arm_angle >= 30) {
@@ -1255,7 +1255,7 @@ class Posenet(
                     estimate_LEFT_Arm = "왼팔을 낮게"
                     Log.d("많이 올린 왼팔 : ", estimate_LEFT_Arm);
                 }
-                if (RIGHT_SIDE_Arm_angle <= 10 && RIGHT_SIDE_Arm_angle >= -10) {
+                if (RIGHT_SIDE_Arm_angle <= 50 && RIGHT_SIDE_Arm_angle >= -50) {
                     estimate_RIGHT_Arm = "Good"
                     Log.d("쭉 핀 오른팔 : ", estimate_RIGHT_Arm);
                 } else if (RIGHT_SIDE_Arm_angle <= 60 && RIGHT_SIDE_Arm_angle >= 30) {
@@ -1280,9 +1280,9 @@ class Posenet(
 
         // 다리 평가 X
         // 부위별 score가 0.8 ~ 0.9
-        if (Estimate_Leg_Bound > 5) {
+     /*   if (Estimate_Leg_Bound > 5) {
 
-        }
+        }*/
 
     }
 
