@@ -18,16 +18,20 @@ package org.tensorflow.lite.examples.posenet.lib
 import org.tensorflow.lite.examples.posenet.*
 import android.annotation.SuppressLint
 import android.content.Context
+/*
 import android.content.Context.VIBRATOR_SERVICE
+*/ /*알림 진동*/
 import android.graphics.Bitmap
 import android.media.AudioAttributes
+/*
 import android.media.AudioManager
+*/
 import android.media.ToneGenerator
 import android.os.Build
 import android.os.SystemClock
-import android.os.VibrationEffect
+/*import android.os.VibrationEffect
 import android.os.Vibrator
-import android.speech.tts.TextToSpeech
+import android.speech.tts.TextToSpeech*/
 import android.util.Log
 
 import org.json.JSONObject
@@ -996,7 +1000,7 @@ class Posenet(
 //            val toneGen1 = ToneGenerator(AudioManager.STREAM_MUSIC, 200)
 //            toneGen1.startTone(ToneGenerator.TONE_CDMA_ABBR_ALERT, 300)
 //        }
-
+/*
         if (ActiveCounter == ActionFramecount) {
             val toneGen1 = ToneGenerator(AudioManager.STREAM_MUSIC, 200)
             toneGen1.startTone(ToneGenerator.TONE_CDMA_ABBR_ALERT, 100)
@@ -1017,7 +1021,7 @@ class Posenet(
 
         } else {
             ActiveCounter++;
-        }
+        }*/
 
     }
 
