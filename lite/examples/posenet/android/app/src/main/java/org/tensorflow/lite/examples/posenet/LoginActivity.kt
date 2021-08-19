@@ -5,6 +5,8 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_login.*
 import org.tensorflow.lite.examples.posenet.Extensions.toast
 import org.tensorflow.lite.examples.posenet.FirebaseUtils.firebaseAuth
@@ -40,7 +42,7 @@ class LoginActivity : AppCompatActivity() {
             firebaseAuth.signInWithEmailAndPassword(signInEmail, signInPassword)
                 .addOnCompleteListener { login ->
                     if (login.isSuccessful) {
-                        if( firebaseAuth.currentUser.isEmailVerified) {
+                        if( firebaseAuth.currentUser!!.isEmailVerified) {
                             startActivity(Intent(this, MainloginActivity::class.java))
                             toast("로그인 성공")
                             finish()

@@ -6,16 +6,22 @@ import android.os.Bundle
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_register.*
-
-import org.tensorflow.lite.examples.posenet.FirebaseUtils.firebaseAuth
 import org.tensorflow.lite.examples.posenet.Extensions.toast
+import org.tensorflow.lite.examples.posenet.FirebaseUtils.firebaseAuth
 import org.tensorflow.lite.examples.posenet.FirebaseUtils.firebaseUser
 
 class RegisterActivity : AppCompatActivity() {
     lateinit var userEmail: String
     lateinit var userPassword: String
     lateinit var createAccountInputsArray: Array<EditText>
+
+    //lateinit var userheight: Int
+    //lateinit var userweight: Int
+    //lateinit var userage: Int
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,6 +65,19 @@ class RegisterActivity : AppCompatActivity() {
             // identicalPassword() returns true only  when inputs are not empty and passwords are identical
             userEmail = etEmail.text.toString().trim()
             userPassword = etPassword.text.toString().trim()
+
+            //userheight = etheight.text.toString().trim()
+            //userweight =etweight.text.toString().trim()
+            //userage=etage.text.toString().trim()
+
+            val database = Firebase.database
+            val myRef = database.getReference("")
+
+            myRef.setValue("Hello, World!")
+
+
+
+
 
             /*create a user*/
             firebaseAuth.createUserWithEmailAndPassword(userEmail, userPassword)

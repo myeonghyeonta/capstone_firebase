@@ -18,16 +18,20 @@ package org.tensorflow.lite.examples.posenet.lib
 import org.tensorflow.lite.examples.posenet.*
 import android.annotation.SuppressLint
 import android.content.Context
+/*
 import android.content.Context.VIBRATOR_SERVICE
+*/ /*알림 진동*/
 import android.graphics.Bitmap
 import android.media.AudioAttributes
+/*
 import android.media.AudioManager
+*/
 import android.media.ToneGenerator
 import android.os.Build
 import android.os.SystemClock
-import android.os.VibrationEffect
+/*import android.os.VibrationEffect
 import android.os.Vibrator
-import android.speech.tts.TextToSpeech
+import android.speech.tts.TextToSpeech*/
 import android.util.Log
 
 import org.json.JSONObject
@@ -112,6 +116,7 @@ var ActionCount: Int = 0
 var estimate_LEFT_Arm = ""
 var estimate_RIGHT_Arm = ""
 
+
 var kindAction = ""
 
 var ActionFeedback = ""
@@ -121,7 +126,7 @@ var ActionScore = 0
 
 var Result_ActionScore = 0
 
-var tts: TextToSpeech? = null
+
 
 //var start = SystemClock.currentThreadTimeMillis();
 
@@ -580,30 +585,10 @@ class Posenet(
         }
 
 
-//        //tts 생성
-
-//        val tts = TextToSpeech(this.context) {
-//            if (it == TextToSpeech.SUCCESS) {
-//                val result = tts?.setLanguage(Locale.KOREAN)
-//                // 언어 설정
-//            }
-//        }
-//
-//        tts.setSpeechRate(0.9f)
-//        // 말하는 속도 설정
-//
-//        tts.speak("말할 텍스트를 입력!", TextToSpeech.QUEUE_FLUSH, null, null)
-//        // 말해!
-//
-//        tts.stop()
-//        // tts speaking 중지
-//
-//        tts.shutdown()
-//        // tts 중지
-
-        if(kindAction == "sidejack 학습"){
+        if(kindAction == "sidejack 학습"){   //sidejack 학습
             // 학습
-            poseEstimate(person)
+            poseEstimate(person);
+            realtime_dataCal(); //0730 추가한 부분
         }
 
         else if(kindAction == "sidejack 운동"){
@@ -1015,7 +1000,7 @@ class Posenet(
 //            val toneGen1 = ToneGenerator(AudioManager.STREAM_MUSIC, 200)
 //            toneGen1.startTone(ToneGenerator.TONE_CDMA_ABBR_ALERT, 300)
 //        }
-
+/*
         if (ActiveCounter == ActionFramecount) {
             val toneGen1 = ToneGenerator(AudioManager.STREAM_MUSIC, 200)
             toneGen1.startTone(ToneGenerator.TONE_CDMA_ABBR_ALERT, 100)
@@ -1036,7 +1021,7 @@ class Posenet(
 
         } else {
             ActiveCounter++;
-        }
+        }*/
 
     }
 
@@ -1081,7 +1066,7 @@ class Posenet(
             Result_ActionScore = ActionScore / 15
 //            Log.d("Result_ActionScore : ", Result_ActionScore.toString())
 
-            if ((Result_ActionScore) >= 80) {
+            if ((Result_ActionScore) >= 85) {
                 Log.d("평가중 굳 ActionScore : ", (Result_ActionScore).toString())
                 ActionFeedback = "Good"
                 Log.d("ActionFeedback : ", ActionFeedback)
@@ -1183,7 +1168,6 @@ class Posenet(
 
         Log.d("Estimate_Arm_Bound : ", Estimate_Arm_Bound.toString());
 
-        // 값 초기화
         estimate_LEFT_Arm = ""
         estimate_RIGHT_Arm = ""
 
@@ -1215,26 +1199,26 @@ class Posenet(
                     ActionFlag = 3;
                 }
 
-
+                //0730 수정
             } else if (ActionFlag == 1) {
                 // 팔
                 if (LEFT_SIDE_Arm_angle <= 10 && LEFT_SIDE_Arm_angle >= -10) {
                     estimate_LEFT_Arm = "Good"
                     Log.d("쭉 핀 왼팔 : ", estimate_LEFT_Arm);
-                } else if (LEFT_SIDE_Arm_angle <= 60 && LEFT_SIDE_Arm_angle >= 30) {
+                } else if (LEFT_SIDE_Arm_angle > 10) {
                     estimate_LEFT_Arm = "왼팔을 높게"
                     Log.d("낮게 올린 왼팔 : ", estimate_LEFT_Arm);
-                } else if (LEFT_SIDE_Arm_angle < 30 && LEFT_SIDE_Arm_angle >= -45) {
+                } else if (LEFT_SIDE_Arm_angle < -10) {
                     estimate_LEFT_Arm = "왼팔을 낮게"
                     Log.d("많이 올린 왼팔 : ", estimate_LEFT_Arm);
                 }
                 if (RIGHT_SIDE_Arm_angle <= 10 && RIGHT_SIDE_Arm_angle >= -10) {
                     estimate_RIGHT_Arm = "Good"
                     Log.d("쭉 핀 오른팔 : ", estimate_RIGHT_Arm);
-                } else if (RIGHT_SIDE_Arm_angle <= 60 && RIGHT_SIDE_Arm_angle >= 30) {
+                } else if (RIGHT_SIDE_Arm_angle <-10) {
                     estimate_RIGHT_Arm = "오른팔을 높게"
                     Log.d("낮게 올린 오른팔 : ", estimate_RIGHT_Arm);
-                } else if (RIGHT_SIDE_Arm_angle < 30 && RIGHT_SIDE_Arm_angle >= -45) {
+                } else if (RIGHT_SIDE_Arm_angle > 10) {
                     estimate_RIGHT_Arm = "오른팔을 낮게"
                     Log.d("많이 올린 오른팔 : ", estimate_RIGHT_Arm);
                 }
@@ -1248,20 +1232,20 @@ class Posenet(
                 if (LEFT_SIDE_Arm_angle <= 10 && LEFT_SIDE_Arm_angle >= -10) {
                     estimate_LEFT_Arm = "Good"
                     Log.d("쭉 핀 왼팔 : ", estimate_LEFT_Arm);
-                } else if (LEFT_SIDE_Arm_angle <= 60 && LEFT_SIDE_Arm_angle >= 30) {
+                } else if (LEFT_SIDE_Arm_angle > 10) {
                     estimate_LEFT_Arm = "왼팔을 높게"
                     Log.d("낮게 올린 왼팔 : ", estimate_LEFT_Arm);
-                } else if (LEFT_SIDE_Arm_angle < 30 && LEFT_SIDE_Arm_angle >= -45) {
+                } else if (LEFT_SIDE_Arm_angle < -10) {
                     estimate_LEFT_Arm = "왼팔을 낮게"
                     Log.d("많이 올린 왼팔 : ", estimate_LEFT_Arm);
                 }
                 if (RIGHT_SIDE_Arm_angle <= 10 && RIGHT_SIDE_Arm_angle >= -10) {
                     estimate_RIGHT_Arm = "Good"
                     Log.d("쭉 핀 오른팔 : ", estimate_RIGHT_Arm);
-                } else if (RIGHT_SIDE_Arm_angle <= 60 && RIGHT_SIDE_Arm_angle >= 30) {
+                } else if (RIGHT_SIDE_Arm_angle <-10) {
                     estimate_RIGHT_Arm = "오른팔을 높게"
                     Log.d("낮게 올린 오른팔 : ", estimate_RIGHT_Arm);
-                } else if (RIGHT_SIDE_Arm_angle < 30 && RIGHT_SIDE_Arm_angle >= -45) {
+                } else if (RIGHT_SIDE_Arm_angle > 10) {
                     estimate_RIGHT_Arm = "오른팔을 낮게"
                     Log.d("많이 올린 오른팔 : ", estimate_RIGHT_Arm);
                 }
@@ -1271,6 +1255,7 @@ class Posenet(
                     ActionCount++
                 }
             }
+
         } else {
             Log.d("사용자 데이터가 옳바르지 않아 평가 X", Estimate_Arm_Bound.toString());
 //            estimate_LEFT_Arm = "BAD"
@@ -1280,9 +1265,9 @@ class Posenet(
 
         // 다리 평가 X
         // 부위별 score가 0.8 ~ 0.9
-        if (Estimate_Leg_Bound > 5) {
+     /*   if (Estimate_Leg_Bound > 5) {
 
-        }
+        }*/
 
     }
 

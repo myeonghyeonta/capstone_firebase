@@ -29,10 +29,10 @@ class LowerbodyActivity : AppCompatActivity() {
 
 
 
-        val tutorial = findViewById<Button>(R.id.tutorial)
+        val sidejack_tutorial = findViewById<Button>(R.id.sidejack_tutorial)
         val sidejack = findViewById<Button>(R.id.sidejack)
 
-        tutorial.setOnClickListener({
+        sidejack_tutorial.setOnClickListener({
             val intent = Intent(this, CameraActivity::class.java)
             ClickState = "sidejack 학습";
             Log.d("sidejack 학습", ClickState)

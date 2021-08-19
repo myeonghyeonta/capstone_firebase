@@ -2,6 +2,6 @@
   package="org.tensorflow.lite.examples.posenet.lib">
 
   <uses-sdk />
-    <uses-permission android:name="android.permission.VIBRATE" />
+    <!--<uses-permission android:name="android.permission.VIBRATE" />--> <!--운동자세 알림진동-->
 
 </manifest>
