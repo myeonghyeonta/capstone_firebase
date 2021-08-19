@@ -7,6 +7,8 @@ import android.util.Log
 import android.widget.Button
 import android.widget.LinearLayout
 
+
+
 /*
 var ClickState = ""
 */
@@ -19,6 +21,7 @@ class MainActivity : AppCompatActivity() {
         val tutorial = findViewById<Button>(R.id.tutorial)
         val sidejack = findViewById<Button>(R.id.sidejack)
         val widesquat = findViewById<Button>(R.id.widesquat)
+
 
        /* tutorial.setOnClickListener({
             val intent = Intent(this, CameraActivity::class.java)

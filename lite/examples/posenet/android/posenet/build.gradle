@@ -30,8 +30,8 @@ android {
     }
 
     aaptOptions {
-    noCompress "tflite"
-  }
+        noCompress "tflite"
+    }
 
     lintOptions {
         checkReleaseBuilds false
@@ -50,8 +50,7 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.core:core-ktx:1.1.0'
-
-    implementation 'com.google.firebase:firebase-auth:20.0.4'
+    implementation 'com.google.firebase:firebase-database-ktx:20.0.1'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
@@ -59,13 +58,6 @@ dependencies {
     implementation 'org.tensorflow:tensorflow-lite-gpu:2.3.0'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
-    //firebase DB
-    // Import the BoM for the Firebase platform
-    implementation platform('com.google.firebase:firebase-bom:27.0.0')
-    // Declare the dependency for the Realtime Database library
-    // When using the BoM, you don't specify versions in Firebase library dependencies
-    implementation 'com.google.firebase:firebase-database-ktx'
-    implementation 'com.google.firebase:firebase-database:19.7.0'
 }
 repositories {
     mavenCentral()
