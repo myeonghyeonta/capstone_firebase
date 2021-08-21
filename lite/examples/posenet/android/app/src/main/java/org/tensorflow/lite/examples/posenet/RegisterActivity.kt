@@ -70,7 +70,7 @@ class RegisterActivity : AppCompatActivity() {
             userheight = etheight.text.toString().trim()
             userweight =etweight.text.toString().trim()
             userage=etage.text.toString().trim()
-            username=etname.text.toString().trim()
+            //username=etname.text.toString().trim()
 
             val database = Firebase.database
             val myRef = database.getReference(userEmail)
