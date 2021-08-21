@@ -18,9 +18,10 @@ class RegisterActivity : AppCompatActivity() {
     lateinit var userPassword: String
     lateinit var createAccountInputsArray: Array<EditText>
 
-    //lateinit var userheight: Int
-    //lateinit var userweight: Int
-    //lateinit var userage: Int
+    lateinit var userheight: Int
+    lateinit var userweight: Int
+    lateinit var userage: Int
+    lateinit var username: String
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -66,17 +67,18 @@ class RegisterActivity : AppCompatActivity() {
             userEmail = etEmail.text.toString().trim()
             userPassword = etPassword.text.toString().trim()
 
-            //userheight = etheight.text.toString().trim()
-            //userweight =etweight.text.toString().trim()
-            //userage=etage.text.toString().trim()
+            userheight = etheight.text.toString().trim()
+            userweight =etweight.text.toString().trim()
+            userage=etage.text.toString().trim()
+            username=etname.text.toString().trim()
 
             val database = Firebase.database
-            val myRef = database.getReference("")
+            val myRef = database.getReference(userEmail)
 
-            myRef.setValue("Hello, World!")
-
-
-
+            myRef.setValue(username)
+            myRef.setValue(userage)
+            myRef.setValue(userheight)
+            myRef.setValue(userweight)
 
 
             /*create a user*/
