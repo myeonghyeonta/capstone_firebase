@@ -60,7 +60,7 @@
         android:inputType="textPassword"
         android:maxLength="8"
         android:padding="10dp"
-        app:layout_constraintBottom_toTopOf="@id/etheight"
+        app:layout_constraintBottom_toTopOf="@id/etname"
         app:layout_constraintEnd_toEndOf="@id/etPassword"
         app:layout_constraintStart_toStartOf="@id/etPassword"
         app:layout_constraintTop_toBottomOf="@id/etPassword" />
