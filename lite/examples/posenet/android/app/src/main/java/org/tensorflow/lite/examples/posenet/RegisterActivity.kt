@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_register.*
@@ -17,6 +18,7 @@ class RegisterActivity : AppCompatActivity() {
     lateinit var userEmail: String
     lateinit var userPassword: String
     lateinit var createAccountInputsArray: Array<EditText>
+    private lateinit var database: DatabaseReference
 
     var userheight: Int = 0
     var userweight: Int = 0
@@ -46,7 +48,7 @@ class RegisterActivity : AppCompatActivity() {
     private fun identicalPassword(): Boolean {
         var identical = false
         if (notEmpty() &&
-            etPassword.text.toString().trim() == etConfirmPassword.text.toString().trim()
+                etPassword.text.toString().trim() == etConfirmPassword.text.toString().trim()
         ) {
             identical = true
         } else if (!notEmpty()) {
@@ -72,31 +74,29 @@ class RegisterActivity : AppCompatActivity() {
             userage=etage.text.toString().trim().toInt()
             username=etname.text.toString().trim()
 
-            val database = Firebase.database
-            val myRef = database.getReference(userEmail)
-
-            myRef.setValue(username)
-            myRef.setValue(userage)
-            myRef.setValue(userheight)
-            myRef.setValue(userweight)
-
 
             /*create a user*/
             firebaseAuth.createUserWithEmailAndPassword(userEmail, userPassword)
-                .addOnCompleteListener { task ->
-                    if (task.isSuccessful) {
-                        firebaseAuth.currentUser
-                            ?.sendEmailVerification()
-                            ?.addOnCompleteListener{ task->
-                                if (task.isSuccessful) {
-                                    startActivity(Intent(this, LoginActivity::class.java))
-                                    toast("회원가입이 성공 하였습니다. 메일 인증을 해주세요. : $userEmail")
-                                }
-                            }
-                    } else {
-                        toast("회원가입이 실패 하였습니다.")
+                    .addOnCompleteListener { task ->
+                        if (task.isSuccessful) {
+                            firebaseAuth.currentUser
+                                    ?.sendEmailVerification()
+                                    ?.addOnCompleteListener{ task->
+                                        if (task.isSuccessful) {
+                                            startActivity(Intent(this, LoginActivity::class.java))
+                                            toast("회원가입이 성공 하였습니다. 메일 인증을 해주세요. : $userEmail")
+                                            database=Firebase.database.getReference("user")
+                                            database.child("email").child("name").setValue(username)
+                                            database.child("email").child("age").setValue(userage)
+                                            database.child("email").child("height").setValue(userheight)
+                                            database.child("email").child("weight").setValue(userweight)
+                                        }
+                                    }
+
+                        } else {
+                            toast("회원가입이 실패 하였습니다.")
+                        }
                     }
-                }
         }
     }
 }
