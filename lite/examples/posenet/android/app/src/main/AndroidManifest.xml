@@ -19,15 +19,14 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.Posenet">
         <activity android:name=".CountActivity"></activity>
-        <activity android:name=".Test_database" />
         <activity android:name=".LowerbodyActivity" />
         <activity android:name=".LoginActivity">
             <!--테스트하는데 불편해서-->
-            <!--<intent-filter>
+            <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>-->
+            </intent-filter>
         </activity>
         <activity android:name=".RegisterActivity" />
         <activity
@@ -40,13 +39,13 @@
             android:exported="true" />
         <activity android:name=".MainActivity" />
         <!--테스트하는 동안만-->
-        <activity android:name=".MainloginActivity" >
-            <intent-filter>
+        <activity android:name=".MainloginActivity" />
+            <!--<intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
+        </activity>-->
 
         <activity android:name=".AbdominalActivity" />
         <activity android:name=".LogoutActivity" />
