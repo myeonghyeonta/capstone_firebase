@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/gradation_background"
     app:chainUseRtl="true"
     tools:context="org.tensorflow.lite.examples.posenet.RegisterActivity"
     tools:ignore="Autofill">
@@ -13,7 +14,7 @@
         android:layout_height="wrap_content"
         android:text="@string/create_account"
         android:textAlignment="center"
-        android:textColor="@color/black"
+        android:textColor="@color/whisper"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/etEmail"
@@ -49,6 +50,7 @@
         app:layout_constraintStart_toStartOf="@id/etEmail"
         app:layout_constraintTop_toBottomOf="@id/etEmail" />
 
+
     <EditText
         android:id="@+id/etConfirmPassword"
         android:layout_width="0dp"
@@ -58,21 +60,79 @@
         android:inputType="textPassword"
         android:maxLength="8"
         android:padding="10dp"
-        app:layout_constraintBottom_toTopOf="@id/btnCreateAccount"
+        app:layout_constraintBottom_toTopOf="@id/etname"
         app:layout_constraintEnd_toEndOf="@id/etPassword"
         app:layout_constraintStart_toStartOf="@id/etPassword"
         app:layout_constraintTop_toBottomOf="@id/etPassword" />
+
+    <EditText
+        android:id="@+id/etname"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:hint="name"
+        android:inputType="textPersonName"
+        android:maxLength="8"
+        android:padding="10dp"
+        app:layout_constraintBottom_toTopOf="@id/etheight"
+        app:layout_constraintEnd_toEndOf="@id/etConfirmPassword"
+        app:layout_constraintStart_toStartOf="@id/etConfirmPassword"
+        app:layout_constraintTop_toBottomOf="@id/etConfirmPassword" />
+
+    <EditText
+        android:id="@+id/etheight"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:hint="height"
+        android:inputType="number"
+        android:maxLength="8"
+        android:padding="10dp"
+        app:layout_constraintBottom_toTopOf="@id/etweight"
+        app:layout_constraintEnd_toEndOf="@id/etname"
+        app:layout_constraintStart_toStartOf="@id/etname"
+        app:layout_constraintTop_toBottomOf="@id/etname" />
+
+    <EditText
+        android:id="@+id/etweight"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:hint="weight"
+        android:inputType="number"
+        android:maxLength="8"
+        android:padding="10dp"
+        app:layout_constraintBottom_toTopOf="@id/etage"
+        app:layout_constraintEnd_toEndOf="@id/etheight"
+        app:layout_constraintStart_toStartOf="@id/etheight"
+        app:layout_constraintTop_toBottomOf="@id/etheight" />
+
+    <EditText
+        android:id="@+id/etage"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:hint="age"
+        android:inputType="number"
+        android:maxLength="8"
+        android:padding="10dp"
+        app:layout_constraintBottom_toTopOf="@id/btnCreateAccount"
+        app:layout_constraintEnd_toEndOf="@id/etweight"
+        app:layout_constraintStart_toStartOf="@id/etweight"
+        app:layout_constraintTop_toBottomOf="@id/etweight" />
 
     <Button
         android:id="@+id/btnCreateAccount"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginVertical="20dp"
+        android:layout_marginVertical="0dp"
         android:text="@string/create_account"
+        android:textColor="@android:color/black"
+        android:backgroundTint="@color/whisper"
         app:layout_constraintBottom_toTopOf="@id/btnSignIn2"
-        app:layout_constraintEnd_toEndOf="@id/etConfirmPassword"
-        app:layout_constraintStart_toStartOf="@id/etConfirmPassword"
-        app:layout_constraintTop_toBottomOf="@id/etConfirmPassword" />
+        app:layout_constraintEnd_toEndOf="@id/etage"
+        app:layout_constraintStart_toStartOf="@id/etage"
+        app:layout_constraintTop_toBottomOf="@id/etage" />
 
     <TextView
         android:id="@+id/textView3"
@@ -92,9 +152,9 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginVertical="20dp"
-        android:backgroundTint="@color/black"
+        android:textColor="@android:color/black"
+        android:backgroundTint="@color/whisper"
         android:text="@string/sign_in"
-        android:textColor="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@id/btnCreateAccount"
         app:layout_constraintStart_toStartOf="@id/btnCreateAccount"
