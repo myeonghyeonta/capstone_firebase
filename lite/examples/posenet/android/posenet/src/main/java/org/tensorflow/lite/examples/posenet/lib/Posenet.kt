@@ -1,4 +1,4 @@
-/*
+ /*
  * Copyright 2019 The TensorFlow Authors. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -587,8 +587,14 @@ class Posenet(
 
         if(kindAction == "sidejack 학습"){   //sidejack 학습
             // 학습
+//<<<<<<< Updated upstream
             poseEstimate(person);
             realtime_dataCal(); //0730 추가한 부분
+//=======
+            poseEstimate(person)
+            realtime_dataCal();
+
+//>>>>>>> Stashed changes
         }
 
         else if(kindAction == "sidejack 운동"){
@@ -1168,12 +1174,18 @@ class Posenet(
 
         Log.d("Estimate_Arm_Bound : ", Estimate_Arm_Bound.toString());
 
+//<<<<<<< Updated upstream
+//=======
+        // 값 초기화--
+//>>>>>>> Stashed changes
         estimate_LEFT_Arm = ""
         estimate_RIGHT_Arm = ""
 
         // 부위별 score가 0.8 ~ 0.9이면 프레임 평가
         if (Estimate_Arm_Bound > 5) {
             // 동작 상태에 따라 다르게
+                Log.d("왼팔 각도 출력", LEFT_SIDE_Arm_angle.toString());
+            Log.d("오른팔 각도 출력", RIGHT_SIDE_Arm_angle.toString());
             if (ActionFlag == 0 || ActionFlag == 2) {
                 // 팔
                 // 차렷(stand)0 / 왼발(left)1 /차렷(stand)2 /  오른발(right)39
@@ -1205,9 +1217,17 @@ class Posenet(
                 if (LEFT_SIDE_Arm_angle <= 10 && LEFT_SIDE_Arm_angle >= -10) {
                     estimate_LEFT_Arm = "Good"
                     Log.d("쭉 핀 왼팔 : ", estimate_LEFT_Arm);
+//<<<<<<< Updated upstream
                 } else if (LEFT_SIDE_Arm_angle > 10) {
                     estimate_LEFT_Arm = "왼팔을 높게"
                     Log.d("낮게 올린 왼팔 : ", estimate_LEFT_Arm);
+//=======
+                //} else if (LEFT_SIDE_Arm_angle <= 60 && LEFT_SIDE_Arm_angle >= 30) {
+                } else if (LEFT_SIDE_Arm_angle > 10 ) {
+                    estimate_LEFT_Arm = "왼팔을 높게"
+                    Log.d("낮게 올린 왼팔 : ", estimate_LEFT_Arm);
+                //} else if (LEFT_SIDE_Arm_angle < 30 && LEFT_SIDE_Arm_angle >= -45) {
+//>>>>>>> Stashed changes
                 } else if (LEFT_SIDE_Arm_angle < -10) {
                     estimate_LEFT_Arm = "왼팔을 낮게"
                     Log.d("많이 올린 왼팔 : ", estimate_LEFT_Arm);
@@ -1215,9 +1235,17 @@ class Posenet(
                 if (RIGHT_SIDE_Arm_angle <= 10 && RIGHT_SIDE_Arm_angle >= -10) {
                     estimate_RIGHT_Arm = "Good"
                     Log.d("쭉 핀 오른팔 : ", estimate_RIGHT_Arm);
+//<<<<<<< Updated upstream
                 } else if (RIGHT_SIDE_Arm_angle <-10) {
                     estimate_RIGHT_Arm = "오른팔을 높게"
                     Log.d("낮게 올린 오른팔 : ", estimate_RIGHT_Arm);
+//=======
+                //} else if (RIGHT_SIDE_Arm_angle <= 60 && RIGHT_SIDE_Arm_angle >= 30) {
+                } else if (RIGHT_SIDE_Arm_angle < -10) {
+                    estimate_RIGHT_Arm = "오른팔을 높게"
+                    Log.d("낮게 올린 오른팔 : ", estimate_RIGHT_Arm);
+                //} else if (RIGHT_SIDE_Arm_angle < 30 && RIGHT_SIDE_Arm_angle >= -45) {
+//>>>>>>> Stashed changes
                 } else if (RIGHT_SIDE_Arm_angle > 10) {
                     estimate_RIGHT_Arm = "오른팔을 낮게"
                     Log.d("많이 올린 오른팔 : ", estimate_RIGHT_Arm);
@@ -1232,9 +1260,17 @@ class Posenet(
                 if (LEFT_SIDE_Arm_angle <= 10 && LEFT_SIDE_Arm_angle >= -10) {
                     estimate_LEFT_Arm = "Good"
                     Log.d("쭉 핀 왼팔 : ", estimate_LEFT_Arm);
+//<<<<<<< Updated upstream
                 } else if (LEFT_SIDE_Arm_angle > 10) {
                     estimate_LEFT_Arm = "왼팔을 높게"
                     Log.d("낮게 올린 왼팔 : ", estimate_LEFT_Arm);
+//=======
+                //} else if (LEFT_SIDE_Arm_angle <= 60 && LEFT_SIDE_Arm_angle >= 30) {
+                } else if (LEFT_SIDE_Arm_angle >10) {
+                    estimate_LEFT_Arm = "왼팔을 높게"
+                    Log.d("낮게 올린 왼팔 : ", estimate_LEFT_Arm);
+                //} else if (LEFT_SIDE_Arm_angle < 30 && LEFT_SIDE_Arm_angle >= -45) {
+//>>>>>>> Stashed changes
                 } else if (LEFT_SIDE_Arm_angle < -10) {
                     estimate_LEFT_Arm = "왼팔을 낮게"
                     Log.d("많이 올린 왼팔 : ", estimate_LEFT_Arm);
@@ -1242,10 +1278,19 @@ class Posenet(
                 if (RIGHT_SIDE_Arm_angle <= 10 && RIGHT_SIDE_Arm_angle >= -10) {
                     estimate_RIGHT_Arm = "Good"
                     Log.d("쭉 핀 오른팔 : ", estimate_RIGHT_Arm);
+//<<<<<<< Updated upstream
                 } else if (RIGHT_SIDE_Arm_angle <-10) {
                     estimate_RIGHT_Arm = "오른팔을 높게"
                     Log.d("낮게 올린 오른팔 : ", estimate_RIGHT_Arm);
                 } else if (RIGHT_SIDE_Arm_angle > 10) {
+//=======
+                //} else if (RIGHT_SIDE_Arm_angle <= 60 && RIGHT_SIDE_Arm_angle >= 30) {
+                } else if (RIGHT_SIDE_Arm_angle < -10 ){
+                    estimate_RIGHT_Arm = "오른팔을 높게"
+                    Log.d("낮게 올린 오른팔 : ", estimate_RIGHT_Arm);
+                //} else if (RIGHT_SIDE_Arm_angle < 30 && RIGHT_SIDE_Arm_angle >= -45) {
+                } else if (RIGHT_SIDE_Arm_angle >10) {
+//>>>>>>> Stashed changes
                     estimate_RIGHT_Arm = "오른팔을 낮게"
                     Log.d("많이 올린 오른팔 : ", estimate_RIGHT_Arm);
                 }

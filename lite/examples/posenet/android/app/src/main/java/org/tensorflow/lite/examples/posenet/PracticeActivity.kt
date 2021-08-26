@@ -64,23 +64,23 @@ import kotlin.math.abs
 
 
 class PracticeActivity :
-    Fragment(),
-    ActivityCompat.OnRequestPermissionsResultCallback {
+        Fragment(),
+        ActivityCompat.OnRequestPermissionsResultCallback {
 
     /** List of body joints that should be connected.    */
     private val bodyJoints = listOf(
-        Pair(BodyPart.LEFT_WRIST, BodyPart.LEFT_ELBOW),
-        Pair(BodyPart.LEFT_ELBOW, BodyPart.LEFT_SHOULDER),
-        Pair(BodyPart.LEFT_SHOULDER, BodyPart.RIGHT_SHOULDER),
-        Pair(BodyPart.RIGHT_SHOULDER, BodyPart.RIGHT_ELBOW),
-        Pair(BodyPart.RIGHT_ELBOW, BodyPart.RIGHT_WRIST),
-        Pair(BodyPart.LEFT_SHOULDER, BodyPart.LEFT_HIP),
-        Pair(BodyPart.LEFT_HIP, BodyPart.RIGHT_HIP),
-        Pair(BodyPart.RIGHT_HIP, BodyPart.RIGHT_SHOULDER),
-        Pair(BodyPart.LEFT_HIP, BodyPart.LEFT_KNEE),
-        Pair(BodyPart.LEFT_KNEE, BodyPart.LEFT_ANKLE),
-        Pair(BodyPart.RIGHT_HIP, BodyPart.RIGHT_KNEE),
-        Pair(BodyPart.RIGHT_KNEE, BodyPart.RIGHT_ANKLE)
+            Pair(BodyPart.LEFT_WRIST, BodyPart.LEFT_ELBOW),
+            Pair(BodyPart.LEFT_ELBOW, BodyPart.LEFT_SHOULDER),
+            Pair(BodyPart.LEFT_SHOULDER, BodyPart.RIGHT_SHOULDER),
+            Pair(BodyPart.RIGHT_SHOULDER, BodyPart.RIGHT_ELBOW),
+            Pair(BodyPart.RIGHT_ELBOW, BodyPart.RIGHT_WRIST),
+            Pair(BodyPart.LEFT_SHOULDER, BodyPart.LEFT_HIP),
+            Pair(BodyPart.LEFT_HIP, BodyPart.RIGHT_HIP),
+            Pair(BodyPart.RIGHT_HIP, BodyPart.RIGHT_SHOULDER),
+            Pair(BodyPart.LEFT_HIP, BodyPart.LEFT_KNEE),
+            Pair(BodyPart.LEFT_KNEE, BodyPart.LEFT_ANKLE),
+            Pair(BodyPart.RIGHT_HIP, BodyPart.RIGHT_KNEE),
+            Pair(BodyPart.RIGHT_KNEE, BodyPart.RIGHT_ANKLE)
     )
 
     /** Threshold for confidence score. */
@@ -185,16 +185,16 @@ class PracticeActivity :
      */
     private val captureCallback = object : CameraCaptureSession.CaptureCallback() {
         override fun onCaptureProgressed(
-            session: CameraCaptureSession,
-            request: CaptureRequest,
-            partialResult: CaptureResult
+                session: CameraCaptureSession,
+                request: CaptureRequest,
+                partialResult: CaptureResult
         ) {
         }
 
         override fun onCaptureCompleted(
-            session: CameraCaptureSession,
-            request: CaptureRequest,
-            result: TotalCaptureResult
+                session: CameraCaptureSession,
+                request: CaptureRequest,
+                result: TotalCaptureResult
         ) {
         }
     }
@@ -210,9 +210,9 @@ class PracticeActivity :
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View? = inflater.inflate(R.layout.tfe_pn_activity_posenet_practice, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -252,14 +252,14 @@ class PracticeActivity :
     }
 
     override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<String>,
-        grantResults: IntArray
+            requestCode: Int,
+            permissions: Array<String>,
+            grantResults: IntArray
     ) {
         if (requestCode == REQUEST_CAMERA_PERMISSION) {
             if (allPermissionsGranted(grantResults)) {
                 ErrorDialog.newInstance(getString(R.string.tfe_pn_request_permission))
-                    .show(childFragmentManager, FRAGMENT_DIALOG)
+                        .show(childFragmentManager, FRAGMENT_DIALOG)
             }
         } else {
             super.onRequestPermissionsResult(requestCode, permissions, grantResults)
@@ -283,7 +283,7 @@ class PracticeActivity :
                 // We don't use a front facing camera in this sample.
                 val cameraDirection = characteristics.get(CameraCharacteristics.LENS_FACING)
                 if (cameraDirection != null &&
-                    cameraDirection == CameraCharacteristics.LENS_FACING_BACK
+                        cameraDirection == CameraCharacteristics.LENS_FACING_BACK
                 ) {
                     continue
                 }
@@ -291,8 +291,8 @@ class PracticeActivity :
                 previewSize = Size(PREVIEW_WIDTH, PREVIEW_HEIGHT)
 
                 imageReader = ImageReader.newInstance(
-                    PREVIEW_WIDTH, PREVIEW_HEIGHT,
-                    ImageFormat.YUV_420_888, /*maxImages*/ 2
+                        PREVIEW_WIDTH, PREVIEW_HEIGHT,
+                        ImageFormat.YUV_420_888, /*maxImages*/ 2
                 )
 
                 sensorOrientation = characteristics.get(CameraCharacteristics.SENSOR_ORIENTATION)!!
@@ -305,7 +305,7 @@ class PracticeActivity :
 
                 // Check if the flash is supported.
                 flashSupported =
-                    characteristics.get(CameraCharacteristics.FLASH_INFO_AVAILABLE) == true
+                        characteristics.get(CameraCharacteristics.FLASH_INFO_AVAILABLE) == true
 
                 this.cameraId = cameraId
 
@@ -319,7 +319,7 @@ class PracticeActivity :
             // Currently an NPE is thrown when the Camera2API is used but not supported on the
             // device this code runs.
             ErrorDialog.newInstance(getString(R.string.tfe_pn_camera_error))
-                .show(childFragmentManager, FRAGMENT_DIALOG)
+                    .show(childFragmentManager, FRAGMENT_DIALOG)
         }
     }
 
@@ -328,7 +328,7 @@ class PracticeActivity :
      */
     private fun openCamera() {
         val permissionCamera = getContext()!!.checkPermission(
-            Manifest.permission.CAMERA, Process.myPid(), Process.myUid()
+                Manifest.permission.CAMERA, Process.myPid(), Process.myUid()
         )
         if (permissionCamera != PackageManager.PERMISSION_GRANTED) {
             requestCameraPermission()
@@ -419,21 +419,21 @@ class PracticeActivity :
             fillBytes(image.planes, yuvBytes)
 
             ImageUtils.convertYUV420ToARGB8888(
-                yuvBytes[0]!!,
-                yuvBytes[1]!!,
-                yuvBytes[2]!!,
-                previewWidth,
-                previewHeight,
-                /*yRowStride=*/ image.planes[0].rowStride,
-                /*uvRowStride=*/ image.planes[1].rowStride,
-                /*uvPixelStride=*/ image.planes[1].pixelStride,
-                rgbBytes
+                    yuvBytes[0]!!,
+                    yuvBytes[1]!!,
+                    yuvBytes[2]!!,
+                    previewWidth,
+                    previewHeight,
+                    /*yRowStride=*/ image.planes[0].rowStride,
+                    /*uvRowStride=*/ image.planes[1].rowStride,
+                    /*uvPixelStride=*/ image.planes[1].pixelStride,
+                    rgbBytes
             )
 
             // Create bitmap from int array
             val imageBitmap = Bitmap.createBitmap(
-                rgbBytes, previewWidth, previewHeight,
-                Bitmap.Config.ARGB_8888
+                    rgbBytes, previewWidth, previewHeight,
+                    Bitmap.Config.ARGB_8888
             )
 
             // Create rotated version for portrait display
@@ -441,14 +441,19 @@ class PracticeActivity :
             rotateMatrix.postScale(-1f, 1f)
             rotateMatrix.postRotate(90.0f)
             val rotatedBitmap = Bitmap.createBitmap(
-                imageBitmap, 0, 0, previewWidth, previewHeight,
-                rotateMatrix, true
+                    imageBitmap, 0, 0, previewWidth, previewHeight,
+                    rotateMatrix, true
             )
             image.close()
 
             processImage(rotatedBitmap)
+//<<<<<<< Updated upstream
 
             kindAction= ClickState; //0730 수정
+//=======
+            //지금 만든것
+            kindAction = ClickState;
+//>>>>>>> Stashed changes
         }
     }
 
@@ -468,21 +473,21 @@ class PracticeActivity :
                 // New image is taller so we are height constrained.
                 val cropHeight = bitmap.height - (bitmap.width.toFloat() / modelInputRatio)
                 croppedBitmap = Bitmap.createBitmap(
-                    bitmap,
-                    0,
-                    (cropHeight / 2).toInt(),
-                    bitmap.width,
-                    (bitmap.height - cropHeight).toInt()
+                        bitmap,
+                        0,
+                        (cropHeight / 2).toInt(),
+                        bitmap.width,
+                        (bitmap.height - cropHeight).toInt()
                 )
             }
             else -> {
                 val cropWidth = bitmap.width - (bitmap.height.toFloat() * modelInputRatio)
                 croppedBitmap = Bitmap.createBitmap(
-                    bitmap,
-                    (cropWidth / 2).toInt(),
-                    0,
-                    (bitmap.width - cropWidth).toInt(),
-                    bitmap.height
+                        bitmap,
+                        (cropWidth / 2).toInt(),
+                        0,
+                        (bitmap.width - cropWidth).toInt(),
+                        bitmap.height
                 )
             }
         }
@@ -524,10 +529,10 @@ class PracticeActivity :
 
         setPaint()
         canvas.drawBitmap(
-            bitmap,
-            Rect(0, 0, bitmap.width, bitmap.height),
-            Rect(left, top, right, bottom),
-            paint
+                bitmap,
+                Rect(0, 0, bitmap.width, bitmap.height),
+                Rect(left, top, right, bottom),
+                paint
         )
 
         val widthRatio = screenWidth.toFloat() / MODEL_WIDTH
@@ -545,15 +550,15 @@ class PracticeActivity :
 
         for (line in bodyJoints) {
             if (
-                (person.keyPoints[line.first.ordinal].score > minConfidence) and
-                (person.keyPoints[line.second.ordinal].score > minConfidence)
+                    (person.keyPoints[line.first.ordinal].score > minConfidence) and
+                    (person.keyPoints[line.second.ordinal].score > minConfidence)
             ) {
                 canvas.drawLine(
-                    person.keyPoints[line.first.ordinal].position.x.toFloat() * widthRatio + left,
-                    person.keyPoints[line.first.ordinal].position.y.toFloat() * heightRatio + top,
-                    person.keyPoints[line.second.ordinal].position.x.toFloat() * widthRatio + left,
-                    person.keyPoints[line.second.ordinal].position.y.toFloat() * heightRatio + top,
-                    paint
+                        person.keyPoints[line.first.ordinal].position.x.toFloat() * widthRatio + left,
+                        person.keyPoints[line.first.ordinal].position.y.toFloat() * heightRatio + top,
+                        person.keyPoints[line.second.ordinal].position.x.toFloat() * widthRatio + left,
+                        person.keyPoints[line.second.ordinal].position.y.toFloat() * heightRatio + top,
+                        paint
                 )
             }
         }
@@ -601,19 +606,23 @@ class PracticeActivity :
             "수행 동작 : $Teststring    수행 횟수 : $ActionCount",
             (15.0f * widthRatio),
             (50.0f * heightRatio + bottom),
-            paint
+            paint)
+//=======
+//>>>>>>> Stashed changes
+
+        canvas.drawText(
+                //"왼팔 : $estimate_LEFT_Arm",
+                "왼팔:$estimate_RIGHT_Arm",
+                (15.0f * widthRatio),
+                (70.0f * heightRatio + bottom),
+                paint
         )
         canvas.drawText(
-            "왼팔 : $estimate_LEFT_Arm",
-            (15.0f * widthRatio),
-            (70.0f * heightRatio + bottom),
-            paint
-        )
-        canvas.drawText(
-            "오른팔 : $estimate_RIGHT_Arm",
-            (15.0f * widthRatio),
-            (90.0f * heightRatio + bottom),
-            paint
+                //"오른팔 : $estimate_RIGHT_Arm",rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr
+                "오른팔:$estimate_LEFT_Arm",
+                (15.0f * widthRatio),
+                (90.0f * heightRatio + bottom),
+                paint
         )
 
         Log.d("Frame : ", frameCounter.toString());
@@ -647,7 +656,7 @@ class PracticeActivity :
         try {
             // We capture images from preview in YUV format.
             imageReader = ImageReader.newInstance(
-                previewSize!!.width, previewSize!!.height, ImageFormat.YUV_420_888, 2
+                    previewSize!!.width, previewSize!!.height, ImageFormat.YUV_420_888, 2
             )
             imageReader!!.setOnImageAvailableListener(imageAvailableListener, backgroundHandler)
 
@@ -656,45 +665,45 @@ class PracticeActivity :
 
             // We set up a CaptureRequest.Builder with the output Surface.
             previewRequestBuilder = cameraDevice!!.createCaptureRequest(
-                CameraDevice.TEMPLATE_PREVIEW
+                    CameraDevice.TEMPLATE_PREVIEW
             )
             previewRequestBuilder!!.addTarget(recordingSurface)
 
             // Here, we create a CameraCaptureSession for camera preview.
             cameraDevice!!.createCaptureSession(
-                listOf(recordingSurface),
-                object : CameraCaptureSession.StateCallback() {
-                    override fun onConfigured(cameraCaptureSession: CameraCaptureSession) {
-                        // The camera is already closed
-                        if (cameraDevice == null) return
+                    listOf(recordingSurface),
+                    object : CameraCaptureSession.StateCallback() {
+                        override fun onConfigured(cameraCaptureSession: CameraCaptureSession) {
+                            // The camera is already closed
+                            if (cameraDevice == null) return
 
-                        // When the session is ready, we start displaying the preview.
-                        captureSession = cameraCaptureSession
-                        try {
-                            // Auto focus should be continuous for camera preview.
-                            previewRequestBuilder!!.set(
-                                CaptureRequest.CONTROL_AF_MODE,
-                                CaptureRequest.CONTROL_AF_MODE_CONTINUOUS_PICTURE
-                            )
-                            // Flash is automatically enabled when necessary.
-                            setAutoFlash(previewRequestBuilder!!)
+                            // When the session is ready, we start displaying the preview.
+                            captureSession = cameraCaptureSession
+                            try {
+                                // Auto focus should be continuous for camera preview.
+                                previewRequestBuilder!!.set(
+                                        CaptureRequest.CONTROL_AF_MODE,
+                                        CaptureRequest.CONTROL_AF_MODE_CONTINUOUS_PICTURE
+                                )
+                                // Flash is automatically enabled when necessary.
+                                setAutoFlash(previewRequestBuilder!!)
 
-                            // Finally, we start displaying the camera preview.
-                            previewRequest = previewRequestBuilder!!.build()
-                            captureSession!!.setRepeatingRequest(
-                                previewRequest!!,
-                                captureCallback, backgroundHandler
-                            )
-                        } catch (e: CameraAccessException) {
-                            Log.e(TAG, e.toString())
+                                // Finally, we start displaying the camera preview.
+                                previewRequest = previewRequestBuilder!!.build()
+                                captureSession!!.setRepeatingRequest(
+                                        previewRequest!!,
+                                        captureCallback, backgroundHandler
+                                )
+                            } catch (e: CameraAccessException) {
+                                Log.e(TAG, e.toString())
+                            }
                         }
-                    }
 
-                    override fun onConfigureFailed(cameraCaptureSession: CameraCaptureSession) {
-                        showToast("Failed")
-                    }
-                },
-                null
+                        override fun onConfigureFailed(cameraCaptureSession: CameraCaptureSession) {
+                            showToast("Failed")
+                        }
+                    },
+                    null
             )
         } catch (e: CameraAccessException) {
             Log.e(TAG, e.toString())
@@ -704,8 +713,8 @@ class PracticeActivity :
     private fun setAutoFlash(requestBuilder: CaptureRequest.Builder) {
         if (flashSupported) {
             requestBuilder.set(
-                CaptureRequest.CONTROL_AE_MODE,
-                CaptureRequest.CONTROL_AE_MODE_ON_AUTO_FLASH
+                    CaptureRequest.CONTROL_AE_MODE,
+                    CaptureRequest.CONTROL_AE_MODE_ON_AUTO_FLASH
             )
         }
     }
@@ -718,10 +727,10 @@ class PracticeActivity :
     class ErrorDialog : DialogFragment() {
 
         override fun onCreateDialog(savedInstanceState: Bundle?): Dialog =
-            AlertDialog.Builder(activity)
-                .setMessage(arguments!!.getString(ARG_MESSAGE))
-                .setPositiveButton(android.R.string.ok) { _, _ -> activity!!.finish() }
-                .create()
+                AlertDialog.Builder(activity)
+                        .setMessage(arguments!!.getString(ARG_MESSAGE))
+                        .setPositiveButton(android.R.string.ok) { _, _ -> activity!!.finish() }
+                        .create()
 
         companion object {
 
