@@ -246,11 +246,11 @@ class PosenetActivity :
         Log.d("if ClickState ", ClickState)
         if (ClickState == "sidejack 학습") {
             videoView?.isInvisible
-
+            Log.d("if ClickState ", ClickState)
         } else if (ClickState == "sidejack 운동") {
             // 운동에 따라 종류 변경
             Log.v("test", "레터럴 영상 실행")
-
+            Log.v("test ", ClickState)
             var videoUri =
                 Uri.parse("android.resource://" + context!!.packageName + "/" + R.raw.lateral)
             videoView!!.setVideoURI(videoUri) //영상을 띄우는 느낌
@@ -269,7 +269,7 @@ class PosenetActivity :
         }
         else if (ClickState == "sidebend left 운동") {
             Log.v("test", "사이드밴드 영상 실행")
-
+            Log.v("test ", ClickState)
             // 운동에 따라 종류 변경
             var videoUri =
                 Uri.parse("android.resource://" + context!!.packageName + "/" + R.raw.sidebend)
