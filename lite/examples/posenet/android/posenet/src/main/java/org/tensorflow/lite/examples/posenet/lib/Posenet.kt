@@ -122,6 +122,7 @@ var kindAction = ""
 var ActionFeedback = ""
 var sidejackCount = 0
 var widesquatCount = 0
+var sidebend_leftCount=0
 var ActionScore = 0
 
 var Result_ActionScore = 0
@@ -628,6 +629,31 @@ class Posenet(
 
         }
 
+        else if(kindAction =="sidebend left 학습"){
+            poseEstimate(person);
+            realtime_dataCal(); //0730 추가한 부분
+        }
+        else if(kindAction == "sidebend left 운동"){
+
+            Log.d("person.score : ", person.score.toString())
+            // 사람 점수가 잘 나오면 평가 시작
+            if (person.score >= 0.7) {
+                // 리얼 타임 데이터 추출
+                realtime_dataCal();
+
+                // 프레임별 실시간데이터 & 선생데이터 비교
+                // 선생데이터 (JSON파일 프레임 데이터 추출)
+                jsonObjectsExample()
+
+
+
+                // 사이드잭운동
+                SidejackFrameComparison();
+            } else {
+                ActionFeedback = "Bad"
+                Result_ActionScore = 0
+            }
+        }
         frameCounter++;
 
         return person
@@ -644,6 +670,10 @@ class Posenet(
         var widesquatfilePath=""
         var widesquatfilePathFinal=""
         var widesquatfileJsonPath = ""
+        var sidebend_leftfilePath = ""
+        var sidebend_leftfilePathFinal=""
+        var sidebend_leftfileJasnPath=""
+
         var ActionFramecount = 0
         var ActionJsonPath = ""
 
@@ -655,7 +685,19 @@ class Posenet(
             ActionJsonPath = sidejackfileJsonPath
             ActionFramecount = 46
         }
-        else if(kindAction == "widesquat"){
+    /*    else if(kindAction == "widesquat"){
+            widesquatfilePath = "squat/"
+            widesquatfilePathFinal = ".json"
+            // 실제
+            widesquatfileJsonPath = widesquatfilePath + ActiveCounter + widesquatfilePathFinal
+            ActionJsonPath = widesquatfileJsonPath
+            ActionFramecount = 297
+        }*/
+        else if(kindAction=="sidebend_left 운동"){
+            /*sidebend_leftfilePath = "sidebend_left/"
+            sidebend_leftfilePathFinal = ".json"*/
+
+            //*********사이드밴드로 수정해야함**********
             widesquatfilePath = "squat/"
             widesquatfilePathFinal = ".json"
             // 실제
@@ -663,8 +705,6 @@ class Posenet(
             ActionJsonPath = widesquatfileJsonPath
             ActionFramecount = 297
         }
-
-
 
 
 //        Log.d("fileJsonPath :",fileJsonPath)

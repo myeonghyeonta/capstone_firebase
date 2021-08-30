@@ -32,7 +32,7 @@ class MainloginActivity : AppCompatActivity() {
             val intent = Intent(this, AbdominalActivity::class.java)
             startActivity(intent)
 
-            val database = Firebase.database
+            /*val database = Firebase.database
             val myRef = database.getReference("message")
 
             myRef.setValue("Hello, World!")
@@ -49,7 +49,7 @@ class MainloginActivity : AppCompatActivity() {
                     // Failed to read value
                     Log.w("TAG2", "Failed to read value.", error.toException())
                 }
-            })
+            })*/
 
         }
 
