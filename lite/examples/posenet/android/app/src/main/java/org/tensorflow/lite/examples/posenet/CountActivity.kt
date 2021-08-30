@@ -43,8 +43,8 @@ class CountActivity : AppCompatActivity() {
         start.setOnClickListener({
             number=(a.replace("회","")).toInt()
             val intent = Intent(this, CameraActivity::class.java)
-            ClickState = "sidejack 운동";
-            Log.d("sidejack 운동", ClickState)
+            ClickState = "sidebend left 운동";
+            Log.d("sidebend left 운동", ClickState)
             startActivity(intent)
         })
 
