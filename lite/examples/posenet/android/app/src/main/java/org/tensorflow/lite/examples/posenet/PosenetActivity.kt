@@ -236,7 +236,7 @@ class PosenetActivity :
             count++
             showToast("$count 회재생") //재생횟수 확인용 메세지
             if(count == number) {
-                startActivity(Intent(context, LowerbodyActivity::class.java))
+                startActivity(Intent(context, MainloginActivity::class.java))
             }
         }
 
@@ -266,6 +266,7 @@ class PosenetActivity :
 
         else if (ClickState == "sidebend left 학습") {
             videoView?.isInvisible
+            Log.v("test","sidebend 학습")
         }
         else if (ClickState == "sidebend left 운동") {
             Log.v("test", "사이드밴드 영상 실행")
