@@ -97,7 +97,7 @@ tools:context=".AbdominalActivity">
                 android:paddingRight="16dp">
 
                 <Button
-                    android:id="@+id/sideband_tutorial"
+                    android:id="@+id/sidebend_tutorial"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="3dp"
@@ -107,6 +107,7 @@ tools:context=".AbdominalActivity">
                     android:textSize="14dp"/>
 
                 <Button
+                    android:id="@+id/sidebend"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="운동"
