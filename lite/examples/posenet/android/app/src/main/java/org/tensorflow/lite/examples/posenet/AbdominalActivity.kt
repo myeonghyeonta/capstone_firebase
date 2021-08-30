@@ -37,8 +37,8 @@ class AbdominalActivity : AppCompatActivity() {
 
         sidebend_left.setOnClickListener({
             val intent = Intent(this, CountActivity::class.java)
-            /*ClickState = "sidebend left 운동";
-            Log.d("sidebend left 운동", ClickState)*/
+            ClickState = "sidebend left 운동";
+            Log.d("sidebend left 운동", ClickState)
             startActivity(intent)
         })
     }

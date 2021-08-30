@@ -39,8 +39,8 @@ class LowerbodyActivity : AppCompatActivity() {
 
         sidejack.setOnClickListener({
             val intent = Intent(this, CountActivity::class.java)
-            /*ClickState = "sidejack 운동";
-            Log.d("sidejack 운동", ClickState)*/
+            ClickState = "sidejack 운동";
+            Log.d("sidejack 운동", ClickState)
             startActivity(intent)
         })
 
