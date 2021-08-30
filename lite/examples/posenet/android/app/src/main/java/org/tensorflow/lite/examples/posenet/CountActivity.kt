@@ -47,6 +47,9 @@ class CountActivity : AppCompatActivity() {
             Log.d("sidejack 운동", ClickState)
             startActivity(intent)
         })
+
+
+
     }
 
 }
