@@ -29,21 +29,25 @@ class RegisterActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
-        createAccountInputsArray = arrayOf(etEmail, etPassword, etConfirmPassword)
+        createAccountInputsArray = arrayOf(etEmail, etPassword, etConfirmPassword,etname,etheight,etweight,etage)
         btnCreateAccount.setOnClickListener {
             login()
         }
 
         btnSignIn2.setOnClickListener {
             startActivity(Intent(this, LoginActivity::class.java))
-            toast("계정을 입력하세요.")
             finish()
         }
     }
 
     private fun notEmpty(): Boolean = etEmail.text.toString().trim().isNotEmpty() &&
             etPassword.text.toString().trim().isNotEmpty() &&
-            etConfirmPassword.text.toString().trim().isNotEmpty()
+            etConfirmPassword.text.toString().trim().isNotEmpty()&&
+            etname.text.toString().trim().isNotEmpty()&&
+            etheight.text.toString().trim().isNotEmpty()&&
+            etweight.text.toString().trim().isNotEmpty()&&
+            etage.text.toString().trim().isNotEmpty()
+
 
     private fun identicalPassword(): Boolean {
         var identical = false
@@ -68,12 +72,20 @@ class RegisterActivity : AppCompatActivity() {
             // identicalPassword() returns true only  when inputs are not empty and passwords are identical
             userEmail = etEmail.text.toString().trim()
             userPassword = etPassword.text.toString().trim()
-
             userheight = etheight.text.toString().trim().toInt()
             userweight =etweight.text.toString().trim().toInt()
             userage=etage.text.toString().trim().toInt()
             username=etname.text.toString().trim()
 
+
+            data class User(var email: String? = null,var username: String? = null,var userheight: Int? = 0,var userweight: Int? = 0,var userage: Int? = 0)
+
+
+            fun writeNewUser(email: String,name: String,height: Int,weight: Int,age: Int) {
+                val user = User(email,name,height,weight,age)
+                database=Firebase.database.reference
+                firebaseAuth.uid?.let { database.child("users").child(it).setValue(user) }
+            }
 
             /*create a user*/
             firebaseAuth.createUserWithEmailAndPassword(userEmail, userPassword)
@@ -85,12 +97,7 @@ class RegisterActivity : AppCompatActivity() {
                                 if (task.isSuccessful) {
                                     startActivity(Intent(this, LoginActivity::class.java))
                                     toast("회원가입이 성공 하였습니다. 메일 인증을 해주세요. : $userEmail")
-                                    database=Firebase.database.getReference("user")
-                                    //email 개인 메일로 수정해야함
-                                    database.child("email").child("name").setValue(username)
-                                    database.child("email").child("age").setValue(userage)
-                                    database.child("email").child("height").setValue(userheight)
-                                    database.child("email").child("weight").setValue(userweight)
+                                    writeNewUser(userEmail,username,userheight,userweight,userage)
                                 }
                             }
 

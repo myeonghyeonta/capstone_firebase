@@ -34,9 +34,7 @@ class MainloginActivity : AppCompatActivity() {
 
             /*val database = Firebase.database
             val myRef = database.getReference("message")
-
             myRef.setValue("Hello, World!")
-
             myRef.addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
                     // This method is called once with the initial value and again
@@ -44,7 +42,6 @@ class MainloginActivity : AppCompatActivity() {
                     val value = dataSnapshot.getValue<String>()
                     Log.d("TAG1", "Value is: $value")
                 }
-
                 override fun onCancelled(error: DatabaseError) {
                     // Failed to read value
                     Log.w("TAG2", "Failed to read value.", error.toException())
@@ -69,6 +66,3 @@ class MainloginActivity : AppCompatActivity() {
 
     }
 }
-
-
-
