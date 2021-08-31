@@ -31,6 +31,23 @@ class MainloginActivity : AppCompatActivity() {
         btn_click_1.setOnClickListener {
             val intent = Intent(this, AbdominalActivity::class.java)
             startActivity(intent)
+
+            /*val database = Firebase.database
+            val myRef = database.getReference("message")
+            myRef.setValue("Hello, World!")
+            myRef.addValueEventListener(object : ValueEventListener {
+                override fun onDataChange(dataSnapshot: DataSnapshot) {
+                    // This method is called once with the initial value and again
+                    // whenever data at this location is updated.
+                    val value = dataSnapshot.getValue<String>()
+                    Log.d("TAG1", "Value is: $value")
+                }
+                override fun onCancelled(error: DatabaseError) {
+                    // Failed to read value
+                    Log.w("TAG2", "Failed to read value.", error.toException())
+                }
+            })*/
+
         }
 
         btn_click_2.setOnClickListener {
@@ -49,6 +66,3 @@ class MainloginActivity : AppCompatActivity() {
 
     }
 }
-
-
-
