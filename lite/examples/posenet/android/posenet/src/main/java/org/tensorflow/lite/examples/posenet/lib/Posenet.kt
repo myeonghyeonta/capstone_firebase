@@ -685,7 +685,7 @@ class Posenet(
             ActionJsonPath = sidejackfileJsonPath
             ActionFramecount = 46
         }
-    /*    else if(kindAction == "widesquat"){
+
             widesquatfilePath = "squat/"
             widesquatfilePathFinal = ".json"
             // 실제
@@ -696,15 +696,6 @@ class Posenet(
         else if(kindAction=="sidebend_left 운동"){
             /*sidebend_leftfilePath = "sidebend_left/"
             sidebend_leftfilePathFinal = ".json"*/
-
-            //*********사이드밴드로 수정해야함**********
-            widesquatfilePath = "squat/"
-            widesquatfilePathFinal = ".json"
-            // 실제
-            widesquatfileJsonPath = widesquatfilePath + ActiveCounter + widesquatfilePathFinal
-            ActionJsonPath = widesquatfileJsonPath
-            ActionFramecount = 297
-        }
 
 
 //        Log.d("fileJsonPath :",fileJsonPath)
@@ -1047,10 +1038,7 @@ class Posenet(
 //            var end = SystemClock.currentThreadTimeMillis();
 //            Log.d("운동 한세트 걸린시간 : ", (end - start).toString());
 //            start = end;
-
             ActiveCounter = 0
-
-
             // 한 세트 출력
 //            if(kindAction == "sidejack 운동"){
 //                sidejackCount++;
@@ -1058,7 +1046,6 @@ class Posenet(
 //            else{
 //                widesquatCount++;
 //            }
-
         } else {
             ActiveCounter++;
         }*/
@@ -1305,9 +1292,8 @@ class Posenet(
 
         // 다리 평가 X
         // 부위별 score가 0.8 ~ 0.9
-     /*   if (Estimate_Leg_Bound > 5) {
-
-        }*/
+        /*   if (Estimate_Leg_Bound > 5) {
+           }*/
 
     }
 
