@@ -5,8 +5,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
-
-import android.widget.LinearLayout
 import kotlinx.android.synthetic.main.activity_logout.*
 import org.tensorflow.lite.examples.posenet.Extensions.toast
 
@@ -41,8 +39,8 @@ class LowerbodyActivity : AppCompatActivity() {
 
         sidejack.setOnClickListener({
             val intent = Intent(this, CountActivity::class.java)
-            /*ClickState = "sidejack 운동";
-            Log.d("sidejack 운동", ClickState)*/
+            ClickState = "sidejack 운동";
+            Log.d("sidejack 운동", ClickState)
             startActivity(intent)
         })
 

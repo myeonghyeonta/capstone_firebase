@@ -236,7 +236,7 @@ class PosenetActivity :
             count++
             showToast("$count 회재생") //재생횟수 확인용 메세지
             if(count == number) {
-                startActivity(Intent(context, LowerbodyActivity::class.java))
+                startActivity(Intent(context, MainloginActivity::class.java))
             }
         }
 
@@ -246,22 +246,40 @@ class PosenetActivity :
         Log.d("if ClickState ", ClickState)
         if (ClickState == "sidejack 학습") {
             videoView?.isInvisible
-
-
+            Log.d("if ClickState ", ClickState)
         } else if (ClickState == "sidejack 운동") {
             // 운동에 따라 종류 변경
+            Log.v("test", "레터럴 영상 실행")
+            Log.v("test ", ClickState)
             var videoUri =
                 Uri.parse("android.resource://" + context!!.packageName + "/" + R.raw.lateral)
             videoView!!.setVideoURI(videoUri) //영상을 띄우는 느낌
             //영상을 띄우고 부터 사용자가 정해준 시간뒤에 화면이 넘어가는 부분
             //LowerbodyActivity를 가려는 activity이름으로 바꿔주면 됨
-        }
-        else if(ClickState == "widesquat"){
+
+        } else if(ClickState == "widesquat"){
             // 운동에 따라 종류 변경
             var videoUri =
                 Uri.parse("android.resource://" + context!!.packageName + "/" + R.raw.wide_squat)
             videoView!!.setVideoURI(videoUri)
         }
+
+        else if (ClickState == "sidebend left 학습") {
+            videoView?.isInvisible
+            Log.v("test","sidebend 학습")
+        }
+        else if (ClickState == "sidebend left 운동") {
+            Log.v("test", "사이드밴드 영상 실행")
+            Log.v("test ", ClickState)
+            // 운동에 따라 종류 변경
+            var videoUri =
+                Uri.parse("android.resource://" + context!!.packageName + "/" + R.raw.sidebend)
+            videoView!!.setVideoURI(videoUri) //영상을 띄우는 느낌
+
+        }
+       /* else if (ClickState == "sidebend right 학습") {
+            videoView?.isInvisible
+        }*/
 
         // [210125]
         jointView = view.findViewById(R.id.jointView) //초기화할때 id가 조인트 뷰인것을 찾아서 넣는다 스켈레톤 출력

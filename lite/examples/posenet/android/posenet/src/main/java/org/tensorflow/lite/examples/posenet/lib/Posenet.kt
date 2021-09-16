@@ -685,26 +685,17 @@ class Posenet(
             ActionJsonPath = sidejackfileJsonPath
             ActionFramecount = 46
         }
-        /*    else if(kindAction == "widesquat"){
-                widesquatfilePath = "squat/"
-                widesquatfilePathFinal = ".json"
-                // 실제
-                widesquatfileJsonPath = widesquatfilePath + ActiveCounter + widesquatfilePathFinal
-                ActionJsonPath = widesquatfileJsonPath
-                ActionFramecount = 297
-            }*/
-        else if(kindAction=="sidebend_left 운동"){
-            /*sidebend_leftfilePath = "sidebend_left/"
-            sidebend_leftfilePathFinal = ".json"*/
 
-            //*********사이드밴드로 수정해야함**********
             widesquatfilePath = "squat/"
             widesquatfilePathFinal = ".json"
             // 실제
             widesquatfileJsonPath = widesquatfilePath + ActiveCounter + widesquatfilePathFinal
             ActionJsonPath = widesquatfileJsonPath
             ActionFramecount = 297
-        }
+        }*/
+        else if(kindAction=="sidebend_left 운동"){
+            /*sidebend_leftfilePath = "sidebend_left/"
+            sidebend_leftfilePathFinal = ".json"*/
 
 
 //        Log.d("fileJsonPath :",fileJsonPath)
