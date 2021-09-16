@@ -85,7 +85,7 @@ class RegisterActivity : AppCompatActivity() {
                 val user = User(email,name,height,weight,age)
                 database=Firebase.database.reference
                 firebaseAuth.uid?.let { database.child("users").child(it).setValue(user) }
-                //user가 꼭대기 , it 이  uid
+
             }
 
             /*create a user*/
