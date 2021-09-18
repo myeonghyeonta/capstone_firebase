@@ -648,7 +648,7 @@ class Posenet(
 
 
                 // 사이드잭운동
-                SidejackFrameComparison();
+                Sidebend_leftFrameComparison();
             } else {
                 ActionFeedback = "Bad"
                 Result_ActionScore = 0
@@ -672,7 +672,7 @@ class Posenet(
         var widesquatfileJsonPath = ""
         var sidebend_leftfilePath = ""
         var sidebend_leftfilePathFinal=""
-        var sidebend_leftfileJasnPath=""
+        var sidebend_leftfileJsonPath=""
 
         var ActionFramecount = 0
         var ActionJsonPath = ""
@@ -698,11 +698,11 @@ class Posenet(
             sidebend_leftfilePathFinal = ".json"*/
 
             //*********사이드밴드로 수정해야함**********
-            widesquatfilePath = "squat/"
-            widesquatfilePathFinal = ".json"
+            sidebend_leftfilePath = "squat/"
+            sidebend_leftfilePathFinal = ".json"
             // 실제
-            widesquatfileJsonPath = widesquatfilePath + ActiveCounter + widesquatfilePathFinal
-            ActionJsonPath = widesquatfileJsonPath
+            sidebend_leftfileJsonPath = sidebend_leftfilePath + ActiveCounter + sidebend_leftfilePathFinal
+            ActionJsonPath = sidebend_leftfileJsonPath
             ActionFramecount = 297
         }
 
@@ -1174,6 +1174,71 @@ class Posenet(
                 ActionScore = 0
                 Result_ActionScore = 0
             } else if ((Result_ActionScore) >= 80) {
+                Log.d("평가중 노말 ActionScore : ", (Result_ActionScore).toString())
+                ActionFeedback = "Normal"
+                Log.d("ActionFeedback : ", ActionFeedback)
+                ActionScore = 0
+                Result_ActionScore = 0
+            } else {
+//                Log.d("평가중 뱃 ActionScore : ", (Result_ActionScore).toString())
+                ActionFeedback = "Bad"
+//                Log.d("ActionFeedback : ",ActionFeedback)
+                ActionScore = 0
+                Result_ActionScore = 0
+            }
+        }
+    }
+
+    //서빈 사이드밴드 수정중... 신체부위와 범위 고치는 중(보라색 글씨 부분)
+    fun Sidebend_leftFrameComparison() {
+
+        // 바운드 높게 줄수록 점수 높음
+
+        if (Math.abs(LEFT_SIDE_Arm_angle - JSON_LEFT_SIDE_Arm_angle) <= 10 || Math.abs(
+                RIGHT_SIDE_Arm_angle - JSON_RIGHT_SIDE_Arm_angle
+            ) <= 10
+        ) {
+            ActionScore += 100;
+        } else if (Math.abs(LEFT_SIDE_Arm_angle - JSON_LEFT_SIDE_Arm_angle) <= 15 || Math.abs(
+                RIGHT_SIDE_Arm_angle - JSON_RIGHT_SIDE_Arm_angle
+            ) <= 15
+        ) {
+            ActionScore += 90;
+        } else if (Math.abs(LEFT_SIDE_Arm_angle - JSON_LEFT_SIDE_Arm_angle) <= 20 || Math.abs(
+                RIGHT_SIDE_Arm_angle - JSON_RIGHT_SIDE_Arm_angle
+            ) <= 20
+        ) {
+            ActionScore += 80;
+        } else if (Math.abs(LEFT_SIDE_Arm_angle - JSON_LEFT_SIDE_Arm_angle) <= 25 || Math.abs(
+                RIGHT_SIDE_Arm_angle - JSON_RIGHT_SIDE_Arm_angle
+            ) <= 25
+        ) {
+            ActionScore += 70;
+        } else {
+            ActionScore += 50;
+        }
+
+
+        Log.d("어깨 데이터 값 비교 : ", (LEFT_SIDE_Arm_angle - JSON_LEFT_SIDE_Arm_angle).toString())
+        Log.d("어깨 데이터 값 비교 : ", (RIGHT_SIDE_Arm_angle - JSON_RIGHT_SIDE_Arm_angle).toString())
+        Log.d("골반 데이터 값 비교 : ", (LEFT_SIDE_Arm_angle - JSON_LEFT_SIDE_Arm_angle).toString())
+        Log.d("골반 데이터 값 비교 : ", (RIGHT_SIDE_Arm_angle - JSON_RIGHT_SIDE_Arm_angle).toString())
+
+
+
+        if ((frameCounter % 15) == 0) {
+
+//            Log.d("ActionScore : ", ActionScore.toString())
+            Result_ActionScore = ActionScore / 15
+//            Log.d("Result_ActionScore : ", Result_ActionScore.toString())
+
+            if ((Result_ActionScore) >= 85) {
+                Log.d("평가중 굳 ActionScore : ", (Result_ActionScore).toString())
+                ActionFeedback = "Good"
+                Log.d("ActionFeedback : ", ActionFeedback)
+                ActionScore = 0
+                Result_ActionScore = 0
+            } else if ((Result_ActionScore) >= 70) {
                 Log.d("평가중 노말 ActionScore : ", (Result_ActionScore).toString())
                 ActionFeedback = "Normal"
                 Log.d("ActionFeedback : ", ActionFeedback)
