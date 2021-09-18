@@ -4,18 +4,9 @@ package org.tensorflow.lite.examples.posenet
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.ValueEventListener
-import com.google.firebase.database.ktx.database
-import com.google.firebase.database.ktx.getValue
-import com.google.firebase.ktx.Firebase
 
-import kotlinx.android.synthetic.main.activity_logout.*
 import kotlinx.android.synthetic.main.activity_logout.btnSignOut
-import kotlinx.android.synthetic.main.activity_mainlogin.*
 import org.tensorflow.lite.examples.posenet.Extensions.toast
 
 class MainloginActivity : AppCompatActivity() {
