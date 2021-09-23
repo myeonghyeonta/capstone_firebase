@@ -29,7 +29,6 @@ import android.media.Image
 import android.media.ImageReader
 import android.media.ImageReader.OnImageAvailableListener
 import android.media.MediaPlayer
-import android.media.MediaPlayer.OnCompletionListener
 import android.net.Uri
 import android.os.*
 import android.text.TextPaint
@@ -45,7 +44,6 @@ import androidx.core.app.ActivityCompat
 import androidx.core.view.isInvisible
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
-import org.tensorflow.lite.examples.posenet.Extensions.toast
 import org.tensorflow.lite.examples.posenet.lib.*
 import java.util.concurrent.Semaphore
 import java.util.concurrent.TimeUnit
@@ -236,7 +234,7 @@ class PosenetActivity :
             count++
             showToast("$count 회재생") //재생횟수 확인용 메세지
             if(count == number) {
-                startActivity(Intent(context, LowerbodyActivity::class.java))
+                startActivity(Intent(context, MainloginActivity::class.java))
             }
         }
 
@@ -266,13 +264,14 @@ class PosenetActivity :
 
         else if (ClickState == "sidebend left 학습") {
             videoView?.isInvisible
+            Log.v("test","sidebend 학습")
         }
         else if (ClickState == "sidebend left 운동") {
             Log.v("test", "사이드밴드 영상 실행")
             Log.v("test ", ClickState)
             // 운동에 따라 종류 변경
             var videoUri =
-                Uri.parse("android.resource://" + context!!.packageName + "/" + R.raw.sidebend)
+                Uri.parse("android.resource://" + context!!.packageName + "/" + R.raw.sidebend_left)
             videoView!!.setVideoURI(videoUri) //영상을 띄우는 느낌
 
         }
@@ -830,7 +829,7 @@ class PosenetActivity :
     private fun setAutoFlash(requestBuilder: CaptureRequest.Builder) {
 
         // 프레임 속도 변경
-        val fpsRange = Range(0, 40)
+        val fpsRange = Range(0, 30)
 
         if (flashSupported) {
             requestBuilder.set(
