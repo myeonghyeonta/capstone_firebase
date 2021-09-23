@@ -115,6 +115,8 @@ var ActionFlag: Int = 0
 var ActionCount: Int = 0
 var estimate_LEFT_Arm = ""
 var estimate_RIGHT_Arm = ""
+ var estimate_LEFT_side=""
+ var estimate_RIGHT_side=""
 
 
 var kindAction = ""
@@ -125,6 +127,7 @@ var widesquatCount = 0
 var sidebend_leftCount=0
 var ActionScore = 0
 
+ var Estimate_sideband: Float = 0.0F
 var Result_ActionScore = 0
 
 
@@ -366,7 +369,7 @@ class Posenet(
 
             totalScore += confidenceScores[idx]
         }
-
+        //     keypoint
         //    0. NOSE
         //    1. LEFT_EYE
         //    2. RIGHT_EYE
@@ -636,7 +639,7 @@ class Posenet(
         }
 
         else if(kindAction =="sidebend left 학습"){
-            poseEstimate(person);
+            poseEstimate_sideband_left(person);
             realtime_dataCal(); //0730 추가한 부분
         }
         else if(kindAction == "sidebend left 운동"){
@@ -1249,6 +1252,74 @@ class Posenet(
         }
     }
 
+    //sideband_left 학습을 위한 poseEstimate 시작
+    fun poseEstimate_sideband_left(person : Person) {
+        Estimate_sideband = person.keyPoints.get(5).score+ person.keyPoints.get(6).score+ person.keyPoints.get(11).score+person.keyPoints.get(12).score ;
+        Log.d("Estimate_sideband : ", Estimate_sideband.toString()) ;
+        estimate_LEFT_side=""
+        estimate_RIGHT_side=""
+        //LEFT_Body_angle
+        //RIGHT_Body_angle
+        if (Estimate_sideband > 3.0) {
+            if (ActionFlag == 0 ) {
+                // 몸
+                // 차렷(stand)0
+                if (LEFT_Body_angle >= -90 && LEFT_Body_angle <= -80) {
+                    estimate_LEFT_side = "Good"
+                    Log.d("차렷 왼쪽 몸통 : ", estimate_LEFT_Arm);
+                } else {
+                    estimate_LEFT_side = "차렷자세 해주세요"
+                    Log.d("왼팔을 몸쪽으로 : ", estimate_LEFT_Arm);
+                }
+                if (RIGHT_Body_angle <= -90 && RIGHT_Body_angle >= -100) {
+                    estimate_RIGHT_side = "Good"
+                    Log.d("차렷 오른 몸통 : ", estimate_RIGHT_Arm);
+                } else {
+                    estimate_RIGHT_side = "차렷자세 해주세요"
+                    Log.d("오른팔을 몸쪽으로 : ", estimate_RIGHT_Arm);
+                }
+
+
+                if (ActionFlag == 0 && (estimate_LEFT_side == "Good" && estimate_RIGHT_side == "Good")) {
+                    ActionFlag = 1;
+                }
+
+
+            } else if (ActionFlag == 1) {
+                // 팔
+                if (LEFT_Body_angle <= -95 && LEFT_Body_angle >= -105) {
+                    estimate_LEFT_side = "Good";
+                    Log.d("차렷 왼쪽 몸통 : ", estimate_LEFT_side);
+                } else {
+                    estimate_LEFT_side = "";
+                    Log.d("왼팔을 몸쪽으로 : ", estimate_LEFT_side);
+                }
+                if (RIGHT_Body_angle <= -105 && RIGHT_Body_angle >= -115) {
+                    estimate_RIGHT_side = "Good"
+                    Log.d("차렷 오른 몸통 : ", estimate_RIGHT_Arm);
+                } else if (RIGHT_Body_angle>-115){
+                    estimate_RIGHT_side = "좀 더 숙여주세요"
+                    Log.d("오른팔을 몸쪽으로 : ", estimate_RIGHT_Arm);
+                }
+                else if(RIGHT_Body_angle<-125){
+                    estimate_RIGHT_side = "너무 숙였습니다"
+                    Log.d("오른팔을 몸쪽으로 : ", estimate_RIGHT_Arm);
+                }
+
+
+                if (ActionFlag == 1 && (estimate_LEFT_side == "Good" && estimate_RIGHT_side == "Good")) {
+                    ActionFlag = 0
+                    ActionCount++
+                }
+
+            }
+
+        }
+
+    }
+    //sideband_left 를 위한 poseEstimate 끝
+
+
     // 튜토리얼로 활용
     fun poseEstimate(person: Person) {
         // 자세 평가
@@ -1284,24 +1355,24 @@ class Posenet(
                 // 팔
                 // 차렷(stand)0 / 왼발(left)1 /차렷(stand)2 /  오른발(right)39
                 if (LEFT_SIDE_Arm_angle <= 110 && LEFT_SIDE_Arm_angle >= 70) {
-                    estimate_LEFT_Arm = "Good"
+                    estimate_LEFT_side = "Good"
                     Log.d("차렷 왼팔 : ", estimate_LEFT_Arm);
                 } else {
-                    estimate_LEFT_Arm = "왼팔을 몸쪽으로"
-                    Log.d("왼팔을 몸쪽으로 : ", estimate_LEFT_Arm);
+                    estimate_LEFT_side = "왼팔을 몸쪽으로"
+                    Log.d("왼팔을 몸쪽으로 : ", estimate_LEFT_side);
                 }
                 if (RIGHT_SIDE_Arm_angle <= -70 && RIGHT_SIDE_Arm_angle >= -110) {
-                    estimate_RIGHT_Arm = "Good"
-                    Log.d("차렷 오른팔 : ", estimate_RIGHT_Arm);
+                    estimate_RIGHT_side = "Good"
+                    Log.d("차렷 오른팔 : ", estimate_RIGHT_side);
                 } else {
-                    estimate_RIGHT_Arm = "오른팔을 몸쪽으로"
-                    Log.d("오른팔을 몸쪽으로 : ", estimate_RIGHT_Arm);
+                    estimate_RIGHT_side = "오른팔을 몸쪽으로"
+                    Log.d("오른팔을 몸쪽으로 : ", estimate_RIGHT_side);
                 }
 
 
-                if (ActionFlag == 0 && (estimate_LEFT_Arm == "Good" && estimate_RIGHT_Arm == "Good")) {
+                if (ActionFlag == 0 && (estimate_LEFT_side == "Good" && estimate_RIGHT_side == "Good")) {
                     ActionFlag = 1;
-                } else if (ActionFlag == 2 && (estimate_LEFT_Arm == "Good" && estimate_RIGHT_Arm == "Good")) {
+                } else if (ActionFlag == 2 && (estimate_LEFT_side == "Good" && estimate_RIGHT_side == "Good")) {
                     ActionFlag = 3;
                 }
 
@@ -1309,87 +1380,87 @@ class Posenet(
             } else if (ActionFlag == 1) {
                 // 팔
                 if (LEFT_SIDE_Arm_angle <= 10 && LEFT_SIDE_Arm_angle >= -10) {
-                    estimate_LEFT_Arm = "Good"
-                    Log.d("쭉 핀 왼팔 : ", estimate_LEFT_Arm);
+                    estimate_LEFT_side = "Good"
+                    Log.d("쭉 핀 왼팔 : ", estimate_LEFT_side);
 //<<<<<<< Updated upstream
                 } else if (LEFT_SIDE_Arm_angle > 10) {
-                    estimate_LEFT_Arm = "왼팔을 높게"
-                    Log.d("낮게 올린 왼팔 : ", estimate_LEFT_Arm);
+                    estimate_LEFT_side = "왼팔을 높게"
+                    Log.d("낮게 올린 왼팔 : ", estimate_LEFT_side);
 //=======
                 //} else if (LEFT_SIDE_Arm_angle <= 60 && LEFT_SIDE_Arm_angle >= 30) {
                 } else if (LEFT_SIDE_Arm_angle > 10 ) {
-                    estimate_LEFT_Arm = "왼팔을 높게"
-                    Log.d("낮게 올린 왼팔 : ", estimate_LEFT_Arm);
+                    estimate_LEFT_side = "왼팔을 높게"
+                    Log.d("낮게 올린 왼팔 : ", estimate_LEFT_side);
                 //} else if (LEFT_SIDE_Arm_angle < 30 && LEFT_SIDE_Arm_angle >= -45) {
 //>>>>>>> Stashed changes
                 } else if (LEFT_SIDE_Arm_angle < -10) {
-                    estimate_LEFT_Arm = "왼팔을 낮게"
-                    Log.d("많이 올린 왼팔 : ", estimate_LEFT_Arm);
+                    estimate_LEFT_side = "왼팔을 낮게"
+                    Log.d("많이 올린 왼팔 : ", estimate_LEFT_side);
                 }
                 if (RIGHT_SIDE_Arm_angle <= 10 && RIGHT_SIDE_Arm_angle >= -10) {
-                    estimate_RIGHT_Arm = "Good"
-                    Log.d("쭉 핀 오른팔 : ", estimate_RIGHT_Arm);
+                    estimate_RIGHT_side = "Good"
+                    Log.d("쭉 핀 오른팔 : ", estimate_RIGHT_side);
 //<<<<<<< Updated upstream
                 } else if (RIGHT_SIDE_Arm_angle <-10) {
-                    estimate_RIGHT_Arm = "오른팔을 높게"
-                    Log.d("낮게 올린 오른팔 : ", estimate_RIGHT_Arm);
+                    estimate_RIGHT_side = "오른팔을 높게"
+                    Log.d("낮게 올린 오른팔 : ", estimate_RIGHT_side);
 //=======
                 //} else if (RIGHT_SIDE_Arm_angle <= 60 && RIGHT_SIDE_Arm_angle >= 30) {
                 } else if (RIGHT_SIDE_Arm_angle < -10) {
-                    estimate_RIGHT_Arm = "오른팔을 높게"
-                    Log.d("낮게 올린 오른팔 : ", estimate_RIGHT_Arm);
+                    estimate_RIGHT_side = "오른팔을 높게"
+                    Log.d("낮게 올린 오른팔 : ", estimate_RIGHT_side);
                 //} else if (RIGHT_SIDE_Arm_angle < 30 && RIGHT_SIDE_Arm_angle >= -45) {
 //>>>>>>> Stashed changes
                 } else if (RIGHT_SIDE_Arm_angle > 10) {
-                    estimate_RIGHT_Arm = "오른팔을 낮게"
-                    Log.d("많이 올린 오른팔 : ", estimate_RIGHT_Arm);
+                    estimate_RIGHT_side = "오른팔을 낮게"
+                    Log.d("많이 올린 오른팔 : ", estimate_RIGHT_side);
                 }
                 // 다리 평가?
-                if (ActionFlag == 1 && (estimate_LEFT_Arm == "Good" && estimate_RIGHT_Arm == "Good")) {
+                if (ActionFlag == 1 && (estimate_LEFT_side == "Good" && estimate_RIGHT_side == "Good")) {
                     ActionFlag = 2
                 }
 
             } else if (ActionFlag == 3) {
                 // 팔
                 if (LEFT_SIDE_Arm_angle <= 10 && LEFT_SIDE_Arm_angle >= -10) {
-                    estimate_LEFT_Arm = "Good"
-                    Log.d("쭉 핀 왼팔 : ", estimate_LEFT_Arm);
+                    estimate_LEFT_side = "Good"
+                    Log.d("쭉 핀 왼팔 : ", estimate_LEFT_side);
 //<<<<<<< Updated upstream
                 } else if (LEFT_SIDE_Arm_angle > 10) {
-                    estimate_LEFT_Arm = "왼팔을 높게"
-                    Log.d("낮게 올린 왼팔 : ", estimate_LEFT_Arm);
+                    estimate_LEFT_side = "왼팔을 높게"
+                    Log.d("낮게 올린 왼팔 : ", estimate_LEFT_side);
 //=======
                 //} else if (LEFT_SIDE_Arm_angle <= 60 && LEFT_SIDE_Arm_angle >= 30) {
                 } else if (LEFT_SIDE_Arm_angle >10) {
-                    estimate_LEFT_Arm = "왼팔을 높게"
-                    Log.d("낮게 올린 왼팔 : ", estimate_LEFT_Arm);
+                    estimate_LEFT_side = "왼팔을 높게"
+                    Log.d("낮게 올린 왼팔 : ", estimate_LEFT_side);
                 //} else if (LEFT_SIDE_Arm_angle < 30 && LEFT_SIDE_Arm_angle >= -45) {
 //>>>>>>> Stashed changes
                 } else if (LEFT_SIDE_Arm_angle < -10) {
-                    estimate_LEFT_Arm = "왼팔을 낮게"
-                    Log.d("많이 올린 왼팔 : ", estimate_LEFT_Arm);
+                    estimate_LEFT_side = "왼팔을 낮게"
+                    Log.d("많이 올린 왼팔 : ", estimate_LEFT_side);
                 }
                 if (RIGHT_SIDE_Arm_angle <= 10 && RIGHT_SIDE_Arm_angle >= -10) {
-                    estimate_RIGHT_Arm = "Good"
-                    Log.d("쭉 핀 오른팔 : ", estimate_RIGHT_Arm);
+                    estimate_RIGHT_side = "Good"
+                    Log.d("쭉 핀 오른팔 : ", estimate_RIGHT_side);
 //<<<<<<< Updated upstream
                 } else if (RIGHT_SIDE_Arm_angle <-10) {
-                    estimate_RIGHT_Arm = "오른팔을 높게"
-                    Log.d("낮게 올린 오른팔 : ", estimate_RIGHT_Arm);
+                    estimate_RIGHT_side = "오른팔을 높게"
+                    Log.d("낮게 올린 오른팔 : ", estimate_RIGHT_side);
                 } else if (RIGHT_SIDE_Arm_angle > 10) {
 //=======
                 //} else if (RIGHT_SIDE_Arm_angle <= 60 && RIGHT_SIDE_Arm_angle >= 30) {
                 } else if (RIGHT_SIDE_Arm_angle < -10 ){
-                    estimate_RIGHT_Arm = "오른팔을 높게"
-                    Log.d("낮게 올린 오른팔 : ", estimate_RIGHT_Arm);
+                    estimate_RIGHT_side = "오른팔을 높게"
+                    Log.d("낮게 올린 오른팔 : ", estimate_RIGHT_side);
                 //} else if (RIGHT_SIDE_Arm_angle < 30 && RIGHT_SIDE_Arm_angle >= -45) {
                 } else if (RIGHT_SIDE_Arm_angle >10) {
 //>>>>>>> Stashed changes
-                    estimate_RIGHT_Arm = "오른팔을 낮게"
-                    Log.d("많이 올린 오른팔 : ", estimate_RIGHT_Arm);
+                    estimate_RIGHT_side = "오른팔을 낮게"
+                    Log.d("많이 올린 오른팔 : ", estimate_RIGHT_side);
                 }
                 // 다리 평가?
-                if (ActionFlag == 3 && (estimate_LEFT_Arm == "Good" && estimate_RIGHT_Arm == "Good")) {
+                if (ActionFlag == 3 && (estimate_LEFT_side == "Good" && estimate_RIGHT_side == "Good")) {
                     ActionFlag = 0
                     ActionCount++
                 }

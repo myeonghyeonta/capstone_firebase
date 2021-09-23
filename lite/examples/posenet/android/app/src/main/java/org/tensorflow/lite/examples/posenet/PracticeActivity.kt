@@ -588,16 +588,27 @@ class PracticeActivity :
         var Teststring_1 = "hdgsd"
         var Teststring_2 = "쿠쿠루"
         Log.d("동작 플래그", ActionFlag.toString())
+        if (ClickState == "sidebend left 학습"){
+            if(ActionFlag==0) {
+            Teststring= "차렷"
+            }
+            else if(ActionFlag==1) {
+                Teststring= "구부리기"
+            }
 
-        if(ActionFlag == 0 || ActionFlag == 2){
-            Teststring = "차렷";
         }
-        else if(ActionFlag == 1){
-            Teststring = "왼쪽";
+        else if (ClickState== "sidejack 학습") {
+            if(ActionFlag == 0 || ActionFlag == 2){
+                Teststring = "차렷";
+            }
+            else if(ActionFlag == 1){
+                Teststring = "왼쪽";
+            }
+            else if(ActionFlag == 3){
+                Teststring = "오른쪽";
+            }
         }
-        else if(ActionFlag == 3){
-            Teststring = "오른쪽";
-        }
+
 
         // 실시간 피드백
         // Toast 메세지 띄우기 & 핸드폰 TalkBack 기능 키기
@@ -612,14 +623,17 @@ class PracticeActivity :
 
         canvas.drawText(
                 //"왼팔 : $estimate_LEFT_Arm",
-                "왼팔:$estimate_RIGHT_Arm",
+                //"왼팔:$estimate_RIGHT_Arm",
+                //이번에 추가해보는 문장 0911
+                "왼 바디 : $estimate_RIGHT_side ",
                 (15.0f * widthRatio),
                 (70.0f * heightRatio + bottom),
                 paint
         )
         canvas.drawText(
-                //"오른팔 : $estimate_RIGHT_Arm",rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr
-                "오른팔:$estimate_LEFT_Arm",
+                //"오른팔 : $estimate_RIGHT_Arm",
+                //"오른팔:$estimate_LEFT_Arm",
+                "오른 바디 : $estimate_LEFT_side",
                 (15.0f * widthRatio),
                 (90.0f * heightRatio + bottom),
                 paint
