@@ -16,6 +16,7 @@
 
 package org.tensorflow.lite.examples.posenet
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 
@@ -48,5 +49,13 @@ class CameraActivity : AppCompatActivity() {
               .replace(R.id.container, PosenetActivity())
               .commit()
     }
+      var getIntent = getIntent()
+      var name = getIntent.getStringExtra("name")
+      var count = getIntent.getStringExtra("count")
+
+      var intent = Intent(this, ScoreActivity::class.java)
+      intent.putExtra("name", name)
+      intent.putExtra("count", count)
+      startActivity(intent)
   }
 }
