@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
+import android.widget.TextView
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
@@ -23,13 +24,17 @@ class MainloginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_mainlogin)
 
+       // lateinit var textView : TextView //TODO
 
 
         val btn_click_1 = findViewById<Button>(R.id.btn_click_1)
         val btn_click_2 = findViewById<Button>(R.id.btn_click_2)
 
+        // textView = findViewById(R.id.text_name) as TextView //TODO
+
         btn_click_1.setOnClickListener {
             val intent = Intent(this, AbdominalActivity::class.java)
+            //intent.putExtra("name", textView.text.toString()) //TODO
             startActivity(intent)
         }
 

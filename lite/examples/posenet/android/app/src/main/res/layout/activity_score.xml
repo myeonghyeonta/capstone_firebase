@@ -53,26 +53,26 @@
             android:orientation="horizontal">
 
             <TextView
-            android:layout_marginTop="50dp"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="스쿼트"
-            android:textSize="40dp"
-            android:fontFamily="@font/wemakeprice_semibold"
-            />
+                android:id="@+id/text_namee"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="50dp"
+                android:layout_weight="1"
+                android:fontFamily="@font/wemakeprice_semibold"
+                android:text="none"
+                android:textSize="40dp" />
             //운동이름
 
             <TextView
-                android:layout_marginTop="50dp"
+                android:id="@+id/text_count"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="8dp"
-                android:gravity="bottom"
-                android:text="10 회"
-                android:textSize="16dp"
+                android:layout_marginTop="50dp"
                 android:fontFamily="@font/wemakeprice_semibold"
-                />
+                android:gravity="bottom"
+                android:text="00 회"
+                android:textSize="16dp" />
             //운동횟
 
         </LinearLayout>
@@ -129,12 +129,14 @@
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_weight="1"/>
+
             <TextView
+                android:id="@+id/count_good"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="22dp"
                 android:layout_gravity="center"
                 android:text="80"
-                android:textSize="25dp"/>
+                android:textSize="25dp" />
         </LinearLayout>
 
         <LinearLayout
@@ -151,12 +153,14 @@
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_weight="1"/>
+
             <TextView
+                android:id="@+id/count_normal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="54"
-                android:textSize="25dp"/>
+                android:textSize="25dp" />
         </LinearLayout>
 
         <LinearLayout
@@ -173,12 +177,14 @@
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_weight="1"/>
+
             <TextView
+                android:id="@+id/count_bad"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="30"
-                android:textSize="25dp"/>
+                android:textSize="25dp" />
         </LinearLayout>
 
 

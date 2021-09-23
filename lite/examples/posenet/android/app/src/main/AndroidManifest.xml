@@ -19,6 +19,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.Posenet">
         <activity
+            android:name=".Scoreitem"
+            android:exported="true" />
+        <activity
             android:name=".ScoreActivity"
             android:exported="true" />
         <activity android:name=".CountActivity" />
