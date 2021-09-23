@@ -829,7 +829,7 @@ class PosenetActivity :
     private fun setAutoFlash(requestBuilder: CaptureRequest.Builder) {
 
         // 프레임 속도 변경
-        val fpsRange = Range(0, 40)
+        val fpsRange = Range(0, 30)
 
         if (flashSupported) {
             requestBuilder.set(

@@ -693,13 +693,13 @@ class Posenet(
             ActionJsonPath = widesquatfileJsonPath
             ActionFramecount = 297
         }*/
-        else if(kindAction=="sidebend_left 운동"){
+        else if(kindAction=="sidebend left 운동"){
             sidebend_leftfilePath = "sidebend_left/"
             sidebend_leftfilePathFinal = ".json"
             // 실제
             sidebend_leftfileJsonPath = sidebend_leftfilePath + ActiveCounter + sidebend_leftfilePathFinal
             ActionJsonPath = sidebend_leftfileJsonPath
-            ActionFramecount = 297
+            ActionFramecount = 110
         }
 
 
@@ -1190,47 +1190,44 @@ class Posenet(
 
         // 바운드 높게 줄수록 점수 높음
 
-        if (Math.abs(LEFT_Body_angle - JSON_LEFT_Body_angle) <= 10 || Math.abs(
-                RIGHT_Body_angle - JSON_RIGHT_Body_angle
-            ) <= 10
+        if ( Math.abs(RIGHT_Body_angle - JSON_RIGHT_Arm_angle) <= 5 && Math.abs(CENTER_Shoulder_angle- JSON_CENTER_Shoulder_angle) <= 10
         ) {
             ActionScore += 100;
-        } else if (Math.abs(LEFT_Body_angle - JSON_LEFT_Body_angle) <= 15 || Math.abs(
-                RIGHT_Body_angle - JSON_RIGHT_Body_angle
-            ) <= 15
+        } else if (Math.abs(RIGHT_Body_angle - JSON_RIGHT_Body_angle) >= 5 && Math.abs(RIGHT_Body_angle - JSON_RIGHT_Body_angle) <= 10
+            || Math.abs(CENTER_Shoulder_angle- JSON_CENTER_Shoulder_angle) >= 10 && Math.abs(CENTER_Shoulder_angle- JSON_CENTER_Shoulder_angle) <= 15
         ) {
             ActionScore += 90;
-        } else if (Math.abs(LEFT_Body_angle - JSON_LEFT_Body_angle) <= 20 || Math.abs(
-                RIGHT_Body_angle - JSON_RIGHT_Body_angle
-            ) <= 20
+        } else if (Math.abs(RIGHT_Body_angle - JSON_RIGHT_Body_angle) >= 10 && Math.abs(RIGHT_Body_angle - JSON_RIGHT_Body_angle) <= 15
+            || Math.abs(CENTER_Shoulder_angle- JSON_CENTER_Shoulder_angle) >= 15 && Math.abs(CENTER_Shoulder_angle- JSON_CENTER_Shoulder_angle) <= 20
         ) {
             ActionScore += 80;
-        } else if (Math.abs(LEFT_Body_angle - JSON_LEFT_Body_angle) <= 25 || Math.abs(
-                RIGHT_Body_angle - JSON_RIGHT_Body_angle
-            ) <= 25
+        } else if (Math.abs(RIGHT_Body_angle - JSON_RIGHT_Body_angle) >= 15 && Math.abs(RIGHT_Body_angle - JSON_RIGHT_Body_angle) <= 20
+            || Math.abs(CENTER_Shoulder_angle- JSON_CENTER_Shoulder_angle) >= 20 && Math.abs(CENTER_Shoulder_angle- JSON_CENTER_Shoulder_angle) <= 25
         ) {
-            ActionScore += 70;
+            ActionScore += 80;
         } else {
             ActionScore += 50;
         }
 
 
-        Log.d("왼쪽 몸통 데이터 값 비교 : ", (LEFT_Body_angle - JSON_LEFT_Body_angle).toString())
-        Log.d("오른쪽 몸통 데이터 값 비교 : ", (RIGHT_Body_angle - JSON_RIGHT_Body_angle).toString())
+        Log.d("왼쪽 어깨에서 힙까지 데이터 값 비교 : ", (RIGHT_Body_angle - JSON_RIGHT_Body_angle).toString())
+        Log.d("어꺠 수평 데이터 값 비교 : ", (CENTER_Shoulder_angle- JSON_CENTER_Shoulder_angle).toString())
+
 
         if ((frameCounter % 15) == 0) {
 
-//            Log.d("ActionScore : ", ActionScore.toString())
-            Result_ActionScore = ActionScore / 15
-//            Log.d("Result_ActionScore : ", Result_ActionScore.toString())
+            Result_ActionScore = ActionScore / 10
+            Log.d("프레임 수 :", frameCounter.toString())
+            Log.d("액션스코어:", ActionScore.toString())
+            Log.d("Result_actionscore", Result_ActionScore.toString())
 
-            if ((Result_ActionScore) >= 85) {
+            if ((Result_ActionScore) >= 90) {
                 Log.d("평가중 굳 ActionScore : ", (Result_ActionScore).toString())
                 ActionFeedback = "Good"
                 Log.d("ActionFeedback : ", ActionFeedback)
                 ActionScore = 0
                 Result_ActionScore = 0
-            } else if ((Result_ActionScore) >= 70) {
+            } else if ((Result_ActionScore) >= 85) {
                 Log.d("평가중 노말 ActionScore : ", (Result_ActionScore).toString())
                 ActionFeedback = "Normal"
                 Log.d("ActionFeedback : ", ActionFeedback)
