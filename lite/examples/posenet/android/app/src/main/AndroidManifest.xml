@@ -20,6 +20,7 @@
         android:theme="@style/AppTheme.Posenet">
         <activity android:name=".CountActivity"></activity>
         <activity android:name=".LowerbodyActivity" />
+        <activity android:name=".AbdominalActivity"/>
         <activity android:name=".LoginActivity">
             <!--테스트하는데 불편해서-->
             <!--<intent-filter>
@@ -47,7 +48,6 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".AbdominalActivity" />
         <activity android:name=".LogoutActivity" />
     </application>
 
