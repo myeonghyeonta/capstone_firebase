@@ -18,9 +18,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.Posenet">
-        <activity
-            android:name=".Scoreitem"
-            android:exported="true" />
+
         <activity
             android:name=".ScoreActivity"
             android:exported="true" />
@@ -55,11 +53,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-<<<<<<< HEAD
 
-=======
-        <activity android:name=".AbdominalActivity" />
->>>>>>> c5be53d0edd258fbaefc5a48932e21035d0a351c
         <activity android:name=".LogoutActivity" />
     </application>
 

@@ -38,7 +38,7 @@ class AbdominalActivity : AppCompatActivity() {
         val sidebend_left = findViewById<Button>(R.id.sidebend)
 
 
-        textView = findViewById(R.id.text_name) as TextView //TODO1
+        textView = findViewById(R.id.text_exercise1) as TextView //TODO1
 
         sidebend_left_tutorial.setOnClickListener({
             val intent = Intent(this, CameraActivity::class.java)
@@ -50,7 +50,7 @@ class AbdominalActivity : AppCompatActivity() {
 
         sidebend_left.setOnClickListener({
             val intent = Intent(this, CountActivity::class.java)
-            intent.putExtra("name", textView.text.toString()) //TODO
+            intent.putExtra("exercise1", textView.text.toString()) //TODO
             ClickState = "sidebend left 운동";
             Log.d("sidebend left 운동", ClickState)
             //intent.putExtra("name", name)

@@ -10,6 +10,8 @@ import android.widget.AdapterView
 import android.widget.Button
 import kotlinx.android.synthetic.main.activity_count.*
 import android.widget.Spinner
+import org.tensorflow.lite.examples.posenet.Extensions.toast
+
 var number=0
 var a=""
 class CountActivity : AppCompatActivity() {
@@ -26,7 +28,7 @@ class CountActivity : AppCompatActivity() {
 */
         //TODO
         var intent = getIntent();
-        var name = intent.getStringExtra("name")
+        var exercise1 = intent.getStringExtra("exercise1")
 
         adapter1.setDropDownViewResource(android.R.layout.simple_spinner_item)
 
@@ -59,8 +61,7 @@ class CountActivity : AppCompatActivity() {
             /*ClickState = "sidebend left 운동";
             Log.d("sidebend left 운동", ClickState)
             startActivity(intent)*/
-            intent.putExtra("name",name)
-            intent.putExtra("count", number.toString())
+            intent.putExtra("exercise1",exercise1)
             startActivity(intent)
         })
 

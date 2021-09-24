@@ -19,7 +19,7 @@ class ScoreActivity : AppCompatActivity() {
 
         textViewName = findViewById(R.id.text_namee) as TextView
         textViewCount = findViewById(R.id.text_count) as TextView
-        textViewName.setText(intent.getStringExtra("name"))
+        textViewName.setText(intent.getStringExtra("exercise1"))
         textViewCount.setText(intent.getStringExtra("count")+" 회")
 
         btnSignOut.setOnClickListener({
