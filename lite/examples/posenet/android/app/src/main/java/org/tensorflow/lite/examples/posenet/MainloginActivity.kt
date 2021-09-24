@@ -5,7 +5,19 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+<<<<<<< HEAD
 
+=======
+import android.widget.TextView
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.ktx.database
+import com.google.firebase.database.ktx.getValue
+import com.google.firebase.ktx.Firebase
+
+import kotlinx.android.synthetic.main.activity_logout.*
+>>>>>>> c5be53d0edd258fbaefc5a48932e21035d0a351c
 import kotlinx.android.synthetic.main.activity_logout.btnSignOut
 import org.tensorflow.lite.examples.posenet.Extensions.toast
 
@@ -14,13 +26,17 @@ class MainloginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_mainlogin)
 
+       // lateinit var textView : TextView //TODO
 
 
         val btn_click_1 = findViewById<Button>(R.id.btn_click_1)
         val btn_click_2 = findViewById<Button>(R.id.btn_click_2)
 
+        // textView = findViewById(R.id.text_name) as TextView //TODO
+
         btn_click_1.setOnClickListener {
             val intent = Intent(this, AbdominalActivity::class.java)
+            //intent.putExtra("name", textView.text.toString()) //TODO
             startActivity(intent)
         }
 

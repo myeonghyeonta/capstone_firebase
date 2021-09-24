@@ -90,7 +90,7 @@
 
                 <LinearLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="80dp"
                     android:orientation="vertical">
 
                     <TextView
@@ -112,10 +112,11 @@
                         <Button
                             android:id="@+id/btn_click_1"
                             android:layout_width="136dp"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/wemakeprice_regular"
+                            android:layout_height="31dp"
                             android:background="@drawable/button_background"
-                            android:text="Click" />
+                            android:fontFamily="@font/wemakeprice_regular"
+                            android:text="Click"
+                            android:textSize="14dp"/>
 
                     </LinearLayout>
 
@@ -175,9 +176,9 @@
                         <Button
                             android:id="@+id/btn_click_2"
                             android:layout_width="136dp"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/wemakeprice_regular"
+                            android:layout_height="34dp"
                             android:background="@drawable/button_background"
+                            android:fontFamily="@font/wemakeprice_regular"
                             android:text="Click"
                             android:textSize="14dp" />
 

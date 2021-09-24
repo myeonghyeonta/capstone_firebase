@@ -24,6 +24,9 @@ class CountActivity : AppCompatActivity() {
 /*
         val sidejack = findViewById<Button>(R.id.sidejack)
 */
+        //TODO
+        var intent = getIntent();
+        var name = intent.getStringExtra("name")
 
         adapter1.setDropDownViewResource(android.R.layout.simple_spinner_item)
 
@@ -56,6 +59,8 @@ class CountActivity : AppCompatActivity() {
             /*ClickState = "sidebend left 운동";
             Log.d("sidebend left 운동", ClickState)
             startActivity(intent)*/
+            intent.putExtra("name",name)
+            intent.putExtra("count", number.toString())
             startActivity(intent)
         })
 
