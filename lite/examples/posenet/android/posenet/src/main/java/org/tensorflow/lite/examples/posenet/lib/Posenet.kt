@@ -127,7 +127,11 @@ var widesquatCount = 0
 var sidebend_leftCount=0
 var ActionScore = 0
 
- var Estimate_sideband: Float = 0.0F
+var GoodCount = 0
+var NormalCount = 0
+var BadCount = 0
+
+var Estimate_sideband: Float = 0.0F
 var Result_ActionScore = 0
 
 
@@ -589,6 +593,7 @@ class Posenet(
         }
 
 
+
         if(kindAction == "sidejack 학습"){   //sidejack 학습
             // 학습
 //<<<<<<< Updated upstream
@@ -658,6 +663,8 @@ class Posenet(
 
                 // 사이드잭운동
                 Sidebend_leftFrameComparison();
+
+
             } else {
                 ActionFeedback = "Bad"
                 Result_ActionScore = 0
@@ -1114,19 +1121,25 @@ class Posenet(
             if ((Result_ActionScore) >= 85) {
                 Log.d("평가중 굳 ActionScore : ", (Result_ActionScore).toString())
                 ActionFeedback = "Good"
+                GoodCount++
                 Log.d("ActionFeedback : ", ActionFeedback)
+                Log.d("Good 개수 : ", GoodCount.toString())
                 ActionScore = 0
                 Result_ActionScore = 0
             } else if ((Result_ActionScore) >= 70) {
                 Log.d("평가중 노말 ActionScore : ", (Result_ActionScore).toString())
                 ActionFeedback = "Normal"
+                NormalCount++
                 Log.d("ActionFeedback : ", ActionFeedback)
+                Log.d("Normal 개수 : ", NormalCount.toString())
                 ActionScore = 0
                 Result_ActionScore = 0
             } else {
-//                Log.d("평가중 뱃 ActionScore : ", (Result_ActionScore).toString())
+                Log.d("평가중 뱃 ActionScore : ", (Result_ActionScore).toString())
                 ActionFeedback = "Bad"
-//                Log.d("ActionFeedback : ",ActionFeedback)
+                BadCount++
+                Log.d("ActionFeedback : ",ActionFeedback)
+                Log.d("Bad 개수 : ", BadCount.toString())
                 ActionScore = 0
                 Result_ActionScore = 0
             }
@@ -1175,26 +1188,32 @@ class Posenet(
             if ((Result_ActionScore) >= 90) {
                 Log.d("평가중 굳 ActionScore : ", (Result_ActionScore).toString())
                 ActionFeedback = "Good"
+                GoodCount++
                 Log.d("ActionFeedback : ", ActionFeedback)
+                Log.d("Good 개수 : ", GoodCount.toString())
                 ActionScore = 0
                 Result_ActionScore = 0
             } else if ((Result_ActionScore) >= 80) {
                 Log.d("평가중 노말 ActionScore : ", (Result_ActionScore).toString())
                 ActionFeedback = "Normal"
+                NormalCount++
                 Log.d("ActionFeedback : ", ActionFeedback)
+                Log.d("Normal 개수 : ", NormalCount.toString())
                 ActionScore = 0
                 Result_ActionScore = 0
             } else {
-//                Log.d("평가중 뱃 ActionScore : ", (Result_ActionScore).toString())
+                Log.d("평가중 뱃 ActionScore : ", (Result_ActionScore).toString())
                 ActionFeedback = "Bad"
-//                Log.d("ActionFeedback : ",ActionFeedback)
+                BadCount++
+                Log.d("ActionFeedback : ",ActionFeedback)
+                Log.d("Bad 개수 : ", BadCount.toString())
                 ActionScore = 0
                 Result_ActionScore = 0
             }
         }
+
     }
 
-    //서빈 사이드밴드 수정중... 신체부위와 범위 고치는 중(보라색 글씨 부분)
     fun Sidebend_leftFrameComparison() {
 
         // 바운드 높게 줄수록 점수 높음
@@ -1225,7 +1244,7 @@ class Posenet(
 
         if ((frameCounter % 15) == 0) {
 
-            Result_ActionScore = ActionScore / 10
+            Result_ActionScore = ActionScore / 12
             Log.d("프레임 수 :", frameCounter.toString())
             Log.d("액션스코어:", ActionScore.toString())
             Log.d("Result_actionscore", Result_ActionScore.toString())
@@ -1233,23 +1252,31 @@ class Posenet(
             if ((Result_ActionScore) >= 90) {
                 Log.d("평가중 굳 ActionScore : ", (Result_ActionScore).toString())
                 ActionFeedback = "Good"
+                GoodCount++
                 Log.d("ActionFeedback : ", ActionFeedback)
+                Log.d("Good 개수 : ", GoodCount.toString())
                 ActionScore = 0
                 Result_ActionScore = 0
             } else if ((Result_ActionScore) >= 85) {
                 Log.d("평가중 노말 ActionScore : ", (Result_ActionScore).toString())
                 ActionFeedback = "Normal"
+                NormalCount++
                 Log.d("ActionFeedback : ", ActionFeedback)
+                Log.d("Normal 개수 : ", NormalCount.toString())
                 ActionScore = 0
                 Result_ActionScore = 0
             } else {
-//                Log.d("평가중 뱃 ActionScore : ", (Result_ActionScore).toString())
+                Log.d("평가중 뱃 ActionScore : ", (Result_ActionScore).toString())
                 ActionFeedback = "Bad"
-//                Log.d("ActionFeedback : ",ActionFeedback)
+                BadCount++
+                Log.d("ActionFeedback : ",ActionFeedback)
+                Log.d("Bad 개수 : ", BadCount.toString())
                 ActionScore = 0
                 Result_ActionScore = 0
             }
         }
+
+
     }
 
     //sideband_left 학습을 위한 poseEstimate 시작
