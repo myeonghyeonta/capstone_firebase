@@ -8,6 +8,7 @@ import android.widget.Button
 import android.widget.TextView
 import kotlinx.android.synthetic.main.activity_logout.*
 import org.tensorflow.lite.examples.posenet.Extensions.toast
+import org.tensorflow.lite.examples.posenet.lib.ActionCount
 
 
 class AbdominalActivity : AppCompatActivity() {
@@ -42,6 +43,7 @@ class AbdominalActivity : AppCompatActivity() {
         sidebend_left_tutorial.setOnClickListener({
             val intent = Intent(this, CameraActivity::class.java)
             ClickState = "sidebend left 학습";
+            ActionCount=0;
             Log.d("sidebend left 학습", ClickState)
             startActivity(intent)
         })

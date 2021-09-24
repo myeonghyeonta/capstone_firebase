@@ -7,6 +7,7 @@ import android.util.Log
 import android.widget.Button
 import kotlinx.android.synthetic.main.activity_logout.*
 import org.tensorflow.lite.examples.posenet.Extensions.toast
+import org.tensorflow.lite.examples.posenet.lib.ActionCount
 
 var ClickState = ""
 
@@ -33,6 +34,7 @@ class LowerbodyActivity : AppCompatActivity() {
         sidejack_tutorial.setOnClickListener({
             val intent = Intent(this, CameraActivity::class.java)
             ClickState = "sidejack 학습";
+            ActionCount=0;
             Log.d("sidejack 학습", ClickState)
             startActivity(intent)
         })

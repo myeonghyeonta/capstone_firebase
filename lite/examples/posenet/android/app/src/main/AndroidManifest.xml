@@ -26,6 +26,7 @@
             android:exported="true" />
         <activity android:name=".CountActivity" />
         <activity android:name=".LowerbodyActivity" />
+        <activity android:name=".AbdominalActivity"/>
         <activity android:name=".LoginActivity">
 
             <!-- 테스트하는데 불편해서 -->
@@ -54,7 +55,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+<<<<<<< HEAD
+
+=======
         <activity android:name=".AbdominalActivity" />
+>>>>>>> c5be53d0edd258fbaefc5a48932e21035d0a351c
         <activity android:name=".LogoutActivity" />
     </application>
 
