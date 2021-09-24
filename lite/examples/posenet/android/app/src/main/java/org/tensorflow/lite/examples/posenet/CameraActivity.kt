@@ -27,6 +27,7 @@ class CameraActivity : AppCompatActivity() {
 
       var intent = getIntent();
       var exercise1 = intent.getStringExtra("exercise1")
+      var count = intent.getStringExtra("count")
 
 
     super.onCreate(savedInstanceState)
@@ -55,6 +56,7 @@ class CameraActivity : AppCompatActivity() {
               .replace(R.id.container, PosenetActivity().apply{
                   arguments = Bundle().apply{
                       putString("exercise1",exercise1)
+                      putString("count",count)
                   }
               })
               .commit()

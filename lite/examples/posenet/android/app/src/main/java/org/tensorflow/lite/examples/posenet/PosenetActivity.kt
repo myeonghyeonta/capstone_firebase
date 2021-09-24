@@ -230,20 +230,20 @@ class PosenetActivity :
 
         //재생횟수설정
         var exercise1 = arguments?.getString("exercise1")
-
+        var count = arguments?.getString("count")
 
         //var getIntent = getIntent()
         val intent = Intent(context, ScoreActivity::class.java)
         //var name = getIntent.getStringExtra("name")
         intent.putExtra("exercise1", exercise1)
-
-        var count =0 //운동횟수 카운트
+        intent.putExtra("count",count)
+        var ct =0 //운동횟수 카운트
         //var number = 25 //나중에 EditText만들어서 운동전 운동횟수 입력받기
         videoView = view.findViewById(R.id.videoView)
         videoView!!.setOnCompletionListener {
-            count++
-            showToast("$count 회재생") //재생횟수 확인용 메세지
-            if(count == number) {
+            ct++
+            showToast("$ct 회재생") //재생횟수 확인용 메세지
+            if(ct == number) {
                 startActivity(intent)
             }
         }
