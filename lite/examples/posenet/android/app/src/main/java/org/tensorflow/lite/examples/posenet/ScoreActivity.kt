@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.TextView
 import kotlinx.android.synthetic.main.activity_logout.*
+import kotlinx.android.synthetic.main.activity_logout.btnSignOut
+import kotlinx.android.synthetic.main.activity_score.*
 import org.tensorflow.lite.examples.posenet.Extensions.toast
 
 class ScoreActivity : AppCompatActivity() {
@@ -29,6 +31,11 @@ class ScoreActivity : AppCompatActivity() {
             startActivity(intent)
             finish()
         })
+
+        btnOk.setOnClickListener {
+            val intent = Intent(this, MainloginActivity::class.java)
+            startActivity(intent)
+        }
     }
 }
 
