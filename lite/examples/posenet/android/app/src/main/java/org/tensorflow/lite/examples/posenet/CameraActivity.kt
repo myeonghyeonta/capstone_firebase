@@ -61,5 +61,7 @@ class CameraActivity : AppCompatActivity() {
               })
               .commit()
     }
+
+
   }
 }
