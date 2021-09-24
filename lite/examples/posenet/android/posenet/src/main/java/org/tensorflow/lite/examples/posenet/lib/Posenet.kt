@@ -1,18 +1,18 @@
- /*
- * Copyright 2019 The TensorFlow Authors. All Rights Reserved.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *       http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+/*
+* Copyright 2019 The TensorFlow Authors. All Rights Reserved.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*       http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
 package org.tensorflow.lite.examples.posenet.lib
 
 import org.tensorflow.lite.examples.posenet.*
@@ -115,8 +115,8 @@ var ActionFlag: Int = 0
 var ActionCount: Int = 0
 var estimate_LEFT_Arm = ""
 var estimate_RIGHT_Arm = ""
- var estimate_LEFT_side=""
- var estimate_RIGHT_side=""
+var estimate_LEFT_side=""
+var estimate_RIGHT_side=""
 
 
 var kindAction = ""
@@ -127,7 +127,7 @@ var widesquatCount = 0
 var sidebend_leftCount=0
 var ActionScore = 0
 
- var Estimate_sideband: Float = 0.0F
+var Estimate_sideband: Float = 0.0F
 var Result_ActionScore = 0
 
 
@@ -694,14 +694,14 @@ class Posenet(
             ActionJsonPath = sidejackfileJsonPath
             ActionFramecount = 46
         }
-    /*    else if(kindAction == "widesquat"){
-            widesquatfilePath = "squat/"
-            widesquatfilePathFinal = ".json"
-            // 실제
-            widesquatfileJsonPath = widesquatfilePath + ActiveCounter + widesquatfilePathFinal
-            ActionJsonPath = widesquatfileJsonPath
-            ActionFramecount = 297
-        }*/
+        /*    else if(kindAction == "widesquat"){
+                widesquatfilePath = "squat/"
+                widesquatfilePathFinal = ".json"
+                // 실제
+                widesquatfileJsonPath = widesquatfilePath + ActiveCounter + widesquatfilePathFinal
+                ActionJsonPath = widesquatfileJsonPath
+                ActionFramecount = 297
+            }*/
         else if(kindAction=="sidebend left 운동"){
             sidebend_leftfilePath = "sidebend_left/"
             sidebend_leftfilePathFinal = ".json"
@@ -1052,10 +1052,7 @@ class Posenet(
 //            var end = SystemClock.currentThreadTimeMillis();
 //            Log.d("운동 한세트 걸린시간 : ", (end - start).toString());
 //            start = end;
-
             ActiveCounter = 0
-
-
             // 한 세트 출력
 //            if(kindAction == "sidejack 운동"){
 //                sidejackCount++;
@@ -1063,7 +1060,6 @@ class Posenet(
 //            else{
 //                widesquatCount++;
 //            }
-
         } else {
             ActiveCounter++;
         }*/
@@ -1349,7 +1345,7 @@ class Posenet(
         // 부위별 score가 0.8 ~ 0.9이면 프레임 평가
         if (Estimate_Arm_Bound > 5) {
             // 동작 상태에 따라 다르게
-                Log.d("왼팔 각도 출력", LEFT_SIDE_Arm_angle.toString());
+            Log.d("왼팔 각도 출력", LEFT_SIDE_Arm_angle.toString());
             Log.d("오른팔 각도 출력", RIGHT_SIDE_Arm_angle.toString());
             if (ActionFlag == 0 || ActionFlag == 2) {
                 // 팔
@@ -1387,11 +1383,11 @@ class Posenet(
                     estimate_LEFT_side = "왼팔을 높게"
                     Log.d("낮게 올린 왼팔 : ", estimate_LEFT_side);
 //=======
-                //} else if (LEFT_SIDE_Arm_angle <= 60 && LEFT_SIDE_Arm_angle >= 30) {
+                    //} else if (LEFT_SIDE_Arm_angle <= 60 && LEFT_SIDE_Arm_angle >= 30) {
                 } else if (LEFT_SIDE_Arm_angle > 10 ) {
                     estimate_LEFT_side = "왼팔을 높게"
                     Log.d("낮게 올린 왼팔 : ", estimate_LEFT_side);
-                //} else if (LEFT_SIDE_Arm_angle < 30 && LEFT_SIDE_Arm_angle >= -45) {
+                    //} else if (LEFT_SIDE_Arm_angle < 30 && LEFT_SIDE_Arm_angle >= -45) {
 //>>>>>>> Stashed changes
                 } else if (LEFT_SIDE_Arm_angle < -10) {
                     estimate_LEFT_side = "왼팔을 낮게"
@@ -1405,11 +1401,11 @@ class Posenet(
                     estimate_RIGHT_side = "오른팔을 높게"
                     Log.d("낮게 올린 오른팔 : ", estimate_RIGHT_side);
 //=======
-                //} else if (RIGHT_SIDE_Arm_angle <= 60 && RIGHT_SIDE_Arm_angle >= 30) {
+                    //} else if (RIGHT_SIDE_Arm_angle <= 60 && RIGHT_SIDE_Arm_angle >= 30) {
                 } else if (RIGHT_SIDE_Arm_angle < -10) {
                     estimate_RIGHT_side = "오른팔을 높게"
                     Log.d("낮게 올린 오른팔 : ", estimate_RIGHT_side);
-                //} else if (RIGHT_SIDE_Arm_angle < 30 && RIGHT_SIDE_Arm_angle >= -45) {
+                    //} else if (RIGHT_SIDE_Arm_angle < 30 && RIGHT_SIDE_Arm_angle >= -45) {
 //>>>>>>> Stashed changes
                 } else if (RIGHT_SIDE_Arm_angle > 10) {
                     estimate_RIGHT_side = "오른팔을 낮게"
@@ -1430,11 +1426,11 @@ class Posenet(
                     estimate_LEFT_side = "왼팔을 높게"
                     Log.d("낮게 올린 왼팔 : ", estimate_LEFT_side);
 //=======
-                //} else if (LEFT_SIDE_Arm_angle <= 60 && LEFT_SIDE_Arm_angle >= 30) {
+                    //} else if (LEFT_SIDE_Arm_angle <= 60 && LEFT_SIDE_Arm_angle >= 30) {
                 } else if (LEFT_SIDE_Arm_angle >10) {
                     estimate_LEFT_side = "왼팔을 높게"
                     Log.d("낮게 올린 왼팔 : ", estimate_LEFT_side);
-                //} else if (LEFT_SIDE_Arm_angle < 30 && LEFT_SIDE_Arm_angle >= -45) {
+                    //} else if (LEFT_SIDE_Arm_angle < 30 && LEFT_SIDE_Arm_angle >= -45) {
 //>>>>>>> Stashed changes
                 } else if (LEFT_SIDE_Arm_angle < -10) {
                     estimate_LEFT_side = "왼팔을 낮게"
@@ -1449,11 +1445,11 @@ class Posenet(
                     Log.d("낮게 올린 오른팔 : ", estimate_RIGHT_side);
                 } else if (RIGHT_SIDE_Arm_angle > 10) {
 //=======
-                //} else if (RIGHT_SIDE_Arm_angle <= 60 && RIGHT_SIDE_Arm_angle >= 30) {
+                    //} else if (RIGHT_SIDE_Arm_angle <= 60 && RIGHT_SIDE_Arm_angle >= 30) {
                 } else if (RIGHT_SIDE_Arm_angle < -10 ){
                     estimate_RIGHT_side = "오른팔을 높게"
                     Log.d("낮게 올린 오른팔 : ", estimate_RIGHT_side);
-                //} else if (RIGHT_SIDE_Arm_angle < 30 && RIGHT_SIDE_Arm_angle >= -45) {
+                    //} else if (RIGHT_SIDE_Arm_angle < 30 && RIGHT_SIDE_Arm_angle >= -45) {
                 } else if (RIGHT_SIDE_Arm_angle >10) {
 //>>>>>>> Stashed changes
                     estimate_RIGHT_side = "오른팔을 낮게"
@@ -1475,9 +1471,8 @@ class Posenet(
 
         // 다리 평가 X
         // 부위별 score가 0.8 ~ 0.9
-     /*   if (Estimate_Leg_Bound > 5) {
-
-        }*/
+        /*   if (Estimate_Leg_Bound > 5) {
+           }*/
 
     }
 
