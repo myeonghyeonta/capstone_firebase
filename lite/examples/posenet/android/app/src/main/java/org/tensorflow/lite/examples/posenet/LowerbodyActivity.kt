@@ -8,6 +8,9 @@ import android.widget.Button
 import kotlinx.android.synthetic.main.activity_logout.*
 import org.tensorflow.lite.examples.posenet.Extensions.toast
 import org.tensorflow.lite.examples.posenet.lib.ActionCount
+import org.tensorflow.lite.examples.posenet.lib.BadCount
+import org.tensorflow.lite.examples.posenet.lib.GoodCount
+import org.tensorflow.lite.examples.posenet.lib.NormalCount
 
 var ClickState = ""
 
@@ -42,6 +45,11 @@ class LowerbodyActivity : AppCompatActivity() {
         sidejack.setOnClickListener({
             val intent = Intent(this, CountActivity::class.java)
             ClickState = "sidejack 운동";
+
+            GoodCount =0
+            NormalCount =0
+            BadCount =0
+
             Log.d("sidejack 운동", ClickState)
             startActivity(intent)
         })

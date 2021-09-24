@@ -9,6 +9,9 @@ import android.widget.TextView
 import kotlinx.android.synthetic.main.activity_logout.*
 import org.tensorflow.lite.examples.posenet.Extensions.toast
 import org.tensorflow.lite.examples.posenet.lib.ActionCount
+import org.tensorflow.lite.examples.posenet.lib.BadCount
+import org.tensorflow.lite.examples.posenet.lib.GoodCount
+import org.tensorflow.lite.examples.posenet.lib.NormalCount
 
 
 class AbdominalActivity : AppCompatActivity() {
@@ -52,6 +55,11 @@ class AbdominalActivity : AppCompatActivity() {
             val intent = Intent(this, CountActivity::class.java)
             intent.putExtra("exercise1", textView.text.toString()) //TODO
             ClickState = "sidebend left 운동";
+
+            GoodCount =0
+            NormalCount =0
+            BadCount =0
+
             Log.d("sidebend left 운동", ClickState)
             //intent.putExtra("name", name)
             startActivity(intent)
