@@ -4,8 +4,8 @@
 
     <uses-sdk />
 
-    <uses-permission android:name="android.permission.CAMERA" />
-   <!-- <uses-permission android:name="android.permission.VIBRATE" /> --><!--차렷자세 알림 진동-->
+    <uses-permission android:name="android.permission.CAMERA" /> <!-- <uses-permission android:name="android.permission.VIBRATE" /> -->
+    <!-- 차렷자세 알림 진동 -->
     <uses-permission android:name="android.permission.INTERNET" /> <!-- 명현firebase 추가 -->
     <uses-feature android:name="android.hardware.camera" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
@@ -18,16 +18,23 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.Posenet">
-        <activity android:name=".CountActivity"></activity>
+
+        <activity
+            android:name=".ScoreActivity"
+            android:exported="true" />
+        <activity android:name=".CountActivity" />
         <activity android:name=".LowerbodyActivity" />
         <activity android:name=".AbdominalActivity"/>
         <activity android:name=".LoginActivity">
-            <!--테스트하는데 불편해서-->
-            <!--<intent-filter>
+
+            <!-- 테스트하는데 불편해서 -->
+            <!--
+            <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>-->
+            </intent-filter>
+            -->
         </activity>
         <activity android:name=".RegisterActivity" />
         <activity
@@ -38,9 +45,8 @@
         <activity
             android:name=".CameraActivity"
             android:exported="true" />
-        <activity android:name=".MainActivity" />
-        <!--테스트하는 동안만-->
-        <activity android:name=".MainloginActivity" >
+        <activity android:name=".MainActivity" /> <!-- 테스트하는 동안만 -->
+        <activity android:name=".MainloginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
