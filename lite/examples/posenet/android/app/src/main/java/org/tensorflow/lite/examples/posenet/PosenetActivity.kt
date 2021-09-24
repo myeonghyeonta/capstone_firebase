@@ -285,9 +285,9 @@ class PosenetActivity :
             videoView!!.setVideoURI(videoUri) //영상을 띄우는 느낌
 
         }
-       /* else if (ClickState == "sidebend right 학습") {
-            videoView?.isInvisible
-        }*/
+        /* else if (ClickState == "sidebend right 학습") {
+             videoView?.isInvisible
+         }*/
 
         // [210125]
         jointView = view.findViewById(R.id.jointView) //초기화할때 id가 조인트 뷰인것을 찾아서 넣는다 스켈레톤 출력
