@@ -16,13 +16,19 @@
 
 package org.tensorflow.lite.examples.posenet
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import org.tensorflow.lite.examples.posenet.Extensions.toast
 
 class CameraActivity : AppCompatActivity() {
 
+
   override fun onCreate(savedInstanceState: Bundle?) {
+
+      var intent = getIntent();
+      var exercise1 = intent.getStringExtra("exercise1")
+
+
     super.onCreate(savedInstanceState)
     if (ClickState =="sidejack 학습"){
       setContentView(R.layout.tfe_pn_activity_camera)
@@ -46,16 +52,12 @@ class CameraActivity : AppCompatActivity() {
     else if (ClickState == "sidebend left 운동"){
       setContentView(R.layout.tfe_pn_activity_camera)
       savedInstanceState ?: supportFragmentManager.beginTransaction()
-              .replace(R.id.container, PosenetActivity())
+              .replace(R.id.container, PosenetActivity().apply{
+                  arguments = Bundle().apply{
+                      putString("exercise1",exercise1)
+                  }
+              })
               .commit()
     }
-      var getIntent = getIntent()
-      var name = getIntent.getStringExtra("name")
-      var count = getIntent.getStringExtra("count")
-
-      var intent = Intent(this, ScoreActivity::class.java)
-      intent.putExtra("name", name)
-      intent.putExtra("count", count)
-      startActivity(intent)
   }
 }

@@ -5,9 +5,6 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
-<<<<<<< HEAD
-
-=======
 import android.widget.TextView
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -17,7 +14,7 @@ import com.google.firebase.database.ktx.getValue
 import com.google.firebase.ktx.Firebase
 
 import kotlinx.android.synthetic.main.activity_logout.*
->>>>>>> c5be53d0edd258fbaefc5a48932e21035d0a351c
+
 import kotlinx.android.synthetic.main.activity_logout.btnSignOut
 import org.tensorflow.lite.examples.posenet.Extensions.toast
 

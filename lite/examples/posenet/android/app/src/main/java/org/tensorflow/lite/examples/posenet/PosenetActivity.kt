@@ -44,6 +44,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.view.isInvisible
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
+import org.tensorflow.lite.examples.posenet.Extensions.toast
 import org.tensorflow.lite.examples.posenet.lib.*
 import java.util.concurrent.Semaphore
 import java.util.concurrent.TimeUnit
@@ -220,12 +221,21 @@ class PosenetActivity :
         savedInstanceState: Bundle?
     ): View? = inflater.inflate(R.layout.tfe_pn_activity_posenet, container, false)
 
+
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) { //oncreateview에서 return해준 view
         surfaceView = view.findViewById(R.id.surfaceView)
         surfaceHolder = surfaceView!!.holder
 
 
         //재생횟수설정
+        var exercise1 = arguments?.getString("exercise1")
+
+
+        //var getIntent = getIntent()
+        val intent = Intent(context, ScoreActivity::class.java)
+        //var name = getIntent.getStringExtra("name")
+        intent.putExtra("exercise1", exercise1)
 
         var count =0 //운동횟수 카운트
         //var number = 25 //나중에 EditText만들어서 운동전 운동횟수 입력받기
@@ -234,7 +244,7 @@ class PosenetActivity :
             count++
             showToast("$count 회재생") //재생횟수 확인용 메세지
             if(count == number) {
-                startActivity(Intent(context, MainloginActivity::class.java))
+                startActivity(intent)
             }
         }
 
