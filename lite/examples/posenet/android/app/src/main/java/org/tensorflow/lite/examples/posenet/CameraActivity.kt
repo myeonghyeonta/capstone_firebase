@@ -17,6 +17,7 @@
 package org.tensorflow.lite.examples.posenet
 
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import org.tensorflow.lite.examples.posenet.Extensions.toast
 
@@ -27,6 +28,8 @@ class CameraActivity : AppCompatActivity() {
 
       var intent = getIntent();
       var exercise1 = intent.getStringExtra("exercise1")
+      var exercise2 = intent.getStringExtra("exercise2")
+
       var count = intent.getStringExtra("count")
 
 
@@ -78,8 +81,9 @@ class CameraActivity : AppCompatActivity() {
         savedInstanceState ?: supportFragmentManager.beginTransaction()
             .replace(R.id.container, PosenetActivity().apply{
                 arguments = Bundle().apply{
-                    putString("exercise1",exercise1)
+                    putString("exercise2",exercise2)
                     putString("count",count)
+
                 }
             })
             .commit()

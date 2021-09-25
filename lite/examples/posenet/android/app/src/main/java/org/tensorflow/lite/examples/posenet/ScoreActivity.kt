@@ -3,6 +3,7 @@ package org.tensorflow.lite.examples.posenet
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.TextView
 import kotlinx.android.synthetic.main.activity_logout.*
 import kotlinx.android.synthetic.main.activity_logout.btnSignOut
@@ -21,7 +22,20 @@ class ScoreActivity : AppCompatActivity() {
 
         textViewName = findViewById(R.id.text_namee) as TextView
         textViewCount = findViewById(R.id.text_count) as TextView
-        textViewName.setText(intent.getStringExtra("exercise1"))
+
+        if (ClickState == "sidejack 운동")
+        {
+            textViewName.setText(intent.getStringExtra("exercise1"))
+        }
+        else if(ClickState == "sidebend left 운동")
+        {
+            textViewName.setText(intent.getStringExtra("exercise1"))
+        }
+        else if(ClickState=="sidebend right 운동")
+        {
+            textViewName.setText(intent.getStringExtra("exercise2"))
+        }
+
         textViewCount.setText(intent.getStringExtra("count")+" 회")
 
 
