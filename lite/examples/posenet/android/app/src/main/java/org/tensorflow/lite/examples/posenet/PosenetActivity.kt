@@ -229,12 +229,14 @@ class PosenetActivity :
 
         //재생횟수설정
         var exercise1 = arguments?.getString("exercise1")
+        var exercise2 = arguments?.getString("exercise2")
         var count = arguments?.getString("count")
 
         //var getIntent = getIntent()
         val intent = Intent(context, ScoreActivity::class.java)
         //var name = getIntent.getStringExtra("name")
         intent.putExtra("exercise1", exercise1)
+        intent.putExtra("exercise2",exercise2)
         intent.putExtra("count",count)
         var ct =0 //운동횟수 카운트
         //var number = 25 //나중에 EditText만들어서 운동전 운동횟수 입력받기
