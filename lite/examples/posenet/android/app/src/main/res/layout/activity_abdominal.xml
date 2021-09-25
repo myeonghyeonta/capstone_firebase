@@ -77,7 +77,7 @@ tools:context=".AbdominalActivity">
                     android:fontFamily="@font/wemakeprice_semibold"
                     android:gravity="center"
                     android:paddingTop="10dp"
-                    android:text="사이드 밴드\n(Side band)"
+                    android:text="사이드 밴드 (L)\n(Side band) (L)"
                     android:textColor="@color/black"
                     android:textSize="20dp" />
 
@@ -98,7 +98,7 @@ tools:context=".AbdominalActivity">
                 android:paddingRight="16dp">
 
                 <Button
-                    android:id="@+id/sidebend_tutorial"
+                    android:id="@+id/sidebend_left_tutorial"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="3dp"
@@ -108,7 +108,7 @@ tools:context=".AbdominalActivity">
                     android:textSize="14dp"/>
 
                 <Button
-                    android:id="@+id/sidebend"
+                    android:id="@+id/sidebend_left"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="운동"
@@ -149,6 +149,86 @@ tools:context=".AbdominalActivity">
 
                 <TextView
                     android:id="@+id/text_exercise2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="15dp"
+                    android:fontFamily="@font/wemakeprice_semibold"
+                    android:gravity="center"
+                    android:paddingTop="10dp"
+                    android:text="사이드 밴드 (R)\n(Side band) (R)"
+                    android:textColor="@color/black"
+                    android:textSize="20dp" />
+
+
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1"></View>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="10dp"
+                android:paddingRight="16dp">
+
+                <Button
+                    android:id="@+id/sidebend_right_tutorial"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="3dp"
+                    android:text="학습"
+                    android:fontFamily="@font/wemakeprice_regular"
+                    android:background="@drawable/button_background"
+                    android:textSize="14dp"/>
+
+                <Button
+                    android:id="@+id/sidebend_right"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="운동"
+                    android:fontFamily="@font/wemakeprice_regular"
+                    android:background="@drawable/button_background"
+                    android:textSize="14dp"/>
+
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
+
+<androidx.cardview.widget.CardView
+    android:layout_width="339dp"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:layout_marginTop="18dp"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="4dp">
+
+    <LinearLayout
+        android:layout_width="334dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingLeft="15dp"
+        android:paddingTop="8dp"
+        android:paddingBottom="10dp">
+
+        <LinearLayout
+            android:layout_width="318dp"
+            android:layout_height="119dp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/text_exercise3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"

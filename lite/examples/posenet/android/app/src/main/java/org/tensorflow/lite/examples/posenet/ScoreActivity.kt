@@ -22,6 +22,8 @@ class ScoreActivity : AppCompatActivity() {
         textViewName.setText(intent.getStringExtra("exercise1"))
         textViewCount.setText(intent.getStringExtra("count")+" 회")
 
+
+
         btnSignOut.setOnClickListener({
             FirebaseUtils.firebaseAuth.signOut()
             val intent = Intent(this, LoginActivity::class.java)

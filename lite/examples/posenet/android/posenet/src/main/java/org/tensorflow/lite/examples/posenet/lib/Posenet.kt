@@ -125,6 +125,7 @@ var ActionFeedback = ""
 var sidejackCount = 0
 var widesquatCount = 0
 var sidebend_leftCount=0
+var sidebend_rightCount=0
 var ActionScore = 0
 
 var GoodCount = 0
@@ -132,7 +133,7 @@ var NormalCount = 0
 var BadCount = 0
 
 
-var Estimate_sideband: Float = 0.0F
+var Estimate_sidebend: Float = 0.0F
 var Result_ActionScore = 0
 
 
@@ -645,7 +646,7 @@ class Posenet(
         }
 
         else if(kindAction =="sidebend left 학습"){
-            poseEstimate_sideband_left(person);
+            poseEstimate_sidebend_left(person);
             realtime_dataCal(); //0730 추가한 부분
         }
         else if(kindAction == "sidebend left 운동"){
@@ -671,6 +672,35 @@ class Posenet(
                 Result_ActionScore = 0
             }
         }
+
+        else if(kindAction =="sidebend right 학습"){
+            poseEstimate_sidebend_right(person);
+            realtime_dataCal();
+        }
+        else if(kindAction == "sidebend right 운동"){
+
+            Log.d("person.score : ", person.score.toString())
+            // 사람 점수가 잘 나오면 평가 시작
+            if (person.score >= 0.7) {
+                // 리얼 타임 데이터 추출
+                realtime_dataCal();
+
+                // 프레임별 실시간데이터 & 선생데이터 비교
+                // 선생데이터 (JSON파일 프레임 데이터 추출)
+                jsonObjectsExample()
+
+
+
+                // 사이드잭운동
+                Sidebend_rightFrameComparison();
+
+
+            } else {
+                ActionFeedback = "Bad"
+                Result_ActionScore = 0
+            }
+        }
+
         frameCounter++;
 
         return person
@@ -690,6 +720,9 @@ class Posenet(
         var sidebend_leftfilePath = ""
         var sidebend_leftfilePathFinal=""
         var sidebend_leftfileJsonPath=""
+        var sidebend_rightfilePath = ""
+        var sidebend_rightfilePathFinal=""
+        var sidebend_rightfileJsonPath=""
 
         var ActionFramecount = 0
         var ActionJsonPath = ""
@@ -716,6 +749,14 @@ class Posenet(
             // 실제
             sidebend_leftfileJsonPath = sidebend_leftfilePath + ActiveCounter + sidebend_leftfilePathFinal
             ActionJsonPath = sidebend_leftfileJsonPath
+            ActionFramecount = 110
+        }
+        else if(kindAction=="sidebend right 운동"){
+            sidebend_rightfilePath = "sidebend_right/"
+            sidebend_rightfilePathFinal = ".json"
+            // 실제
+            sidebend_rightfileJsonPath = sidebend_rightfilePath + ActiveCounter + sidebend_rightfilePathFinal
+            ActionJsonPath = sidebend_rightfileJsonPath
             ActionFramecount = 110
         }
 
@@ -1210,12 +1251,11 @@ class Posenet(
         }
 
     }
-
     fun Sidebend_leftFrameComparison() {
 
         // 바운드 높게 줄수록 점수 높음
 
-        if ( Math.abs(RIGHT_Body_angle - JSON_RIGHT_Arm_angle) <= 5 && Math.abs(CENTER_Shoulder_angle- JSON_CENTER_Shoulder_angle) <= 10
+        if ( Math.abs(RIGHT_Body_angle - JSON_RIGHT_Body_angle) <= 5 && Math.abs(CENTER_Shoulder_angle- JSON_CENTER_Shoulder_angle) <= 10
         ) {
             ActionScore += 100;
         } else if (Math.abs(RIGHT_Body_angle - JSON_RIGHT_Body_angle) >= 5 && Math.abs(RIGHT_Body_angle - JSON_RIGHT_Body_angle) <= 10
@@ -1275,16 +1315,80 @@ class Posenet(
 
 
     }
+    fun Sidebend_rightFrameComparison() {
 
-    //sideband_left 학습을 위한 poseEstimate 시작
-    fun poseEstimate_sideband_left(person : Person) {
-        Estimate_sideband = person.keyPoints.get(5).score+ person.keyPoints.get(6).score+ person.keyPoints.get(11).score+person.keyPoints.get(12).score ;
-        Log.d("Estimate_sideband : ", Estimate_sideband.toString()) ;
+        // 바운드 높게 줄수록 점수 높음
+
+        if ( Math.abs(LEFT_Body_angle - JSON_LEFT_Body_angle) <= 5 && Math.abs(CENTER_Shoulder_angle- JSON_CENTER_Shoulder_angle) <= 10
+        ) {
+            ActionScore += 100;
+        } else if (Math.abs(LEFT_Body_angle - JSON_LEFT_Body_angle) >= 5 && Math.abs(LEFT_Body_angle - JSON_LEFT_Body_angle) <= 10
+            || Math.abs(CENTER_Shoulder_angle- JSON_CENTER_Shoulder_angle) >= 10 && Math.abs(CENTER_Shoulder_angle- JSON_CENTER_Shoulder_angle) <= 15
+        ) {
+            ActionScore += 90;
+        } else if (Math.abs(LEFT_Body_angle - JSON_LEFT_Body_angle) >= 10 && Math.abs(LEFT_Body_angle - JSON_LEFT_Body_angle) <= 15
+            || Math.abs(CENTER_Shoulder_angle- JSON_CENTER_Shoulder_angle) >= 15 && Math.abs(CENTER_Shoulder_angle- JSON_CENTER_Shoulder_angle) <= 20
+        ) {
+            ActionScore += 80;
+        } else if (Math.abs(LEFT_Body_angle - JSON_LEFT_Body_angle) >= 15 && Math.abs(LEFT_Body_angle - JSON_LEFT_Body_angle) <= 20
+            || Math.abs(CENTER_Shoulder_angle- JSON_CENTER_Shoulder_angle) >= 20 && Math.abs(CENTER_Shoulder_angle- JSON_CENTER_Shoulder_angle) <= 25
+        ) {
+            ActionScore += 80;
+        } else {
+            ActionScore += 50;
+        }
+
+
+        Log.d("왼쪽 어깨에서 힙까지 데이터 값 비교 : ", (LEFT_Body_angle - JSON_LEFT_Body_angle).toString())
+        Log.d("어깨 수평 데이터 값 비교 : ", (CENTER_Shoulder_angle- JSON_CENTER_Shoulder_angle).toString())
+
+
+        if ((frameCounter % 15) == 0) {
+
+            Result_ActionScore = ActionScore / 12
+            Log.d("프레임 수 :", frameCounter.toString())
+            Log.d("액션스코어:", ActionScore.toString())
+            Log.d("Result_actionscore", Result_ActionScore.toString())
+
+            if ((Result_ActionScore) >= 90) {
+                Log.d("평가중 굳 ActionScore : ", (Result_ActionScore).toString())
+                ActionFeedback = "Good"
+                GoodCount++
+                Log.d("ActionFeedback : ", ActionFeedback)
+                Log.d("Good 개수 : ", GoodCount.toString())
+                ActionScore = 0
+                Result_ActionScore = 0
+            } else if ((Result_ActionScore) >= 85) {
+                Log.d("평가중 노말 ActionScore : ", (Result_ActionScore).toString())
+                ActionFeedback = "Normal"
+                NormalCount++
+                Log.d("ActionFeedback : ", ActionFeedback)
+                Log.d("Normal 개수 : ", NormalCount.toString())
+                ActionScore = 0
+                Result_ActionScore = 0
+            } else {
+                Log.d("평가중 뱃 ActionScore : ", (Result_ActionScore).toString())
+                ActionFeedback = "Bad"
+                BadCount++
+                Log.d("ActionFeedback : ",ActionFeedback)
+                Log.d("Bad 개수 : ", BadCount.toString())
+                ActionScore = 0
+                Result_ActionScore = 0
+            }
+        }
+
+
+    }
+
+    //sidebend_left 학습을 위한 poseEstimate 시작
+    fun poseEstimate_sidebend_left(person : Person) {
+        Estimate_sidebend = person.keyPoints.get(5).score+ person.keyPoints.get(6).score+ person.keyPoints.get(11).score+person.keyPoints.get(12).score ;
+        Log.d("Estimate_sidebend : ", Estimate_sidebend.toString()) ;
         estimate_LEFT_side=""
         estimate_RIGHT_side=""
         //LEFT_Body_angle
         //RIGHT_Body_angle
-        if (Estimate_sideband > 3.0) {
+        if (Estimate_sidebend > 3.0) {
             if (ActionFlag == 0 ) {
                 // 몸
                 // 차렷(stand)0
@@ -1341,8 +1445,12 @@ class Posenet(
         }
 
     }
-    //sideband_left 를 위한 poseEstimate 끝
+    //sidebend_left 를 위한 poseEstimate 끝
 
+    //sidebend_left 학습을 위한 poseEstimate 시작
+    fun poseEstimate_sidebend_right(person : Person) {
+
+    }
 
     // 튜토리얼로 활용
     fun poseEstimate(person: Person) {

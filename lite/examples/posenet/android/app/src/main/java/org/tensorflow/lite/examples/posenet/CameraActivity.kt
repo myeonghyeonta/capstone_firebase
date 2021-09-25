@@ -61,5 +61,18 @@ class CameraActivity : AppCompatActivity() {
               })
               .commit()
     }
+    else if (ClickState =="sidebend right 학습"){
+        setContentView(R.layout.tfe_pn_activity_camera)
+        savedInstanceState ?: supportFragmentManager.beginTransaction()
+            .replace(R.id.container, PracticeActivity())
+            .commit()
+
+    }
+    else if (ClickState == "sidebend right 운동"){
+        setContentView(R.layout.tfe_pn_activity_camera)
+        savedInstanceState ?: supportFragmentManager.beginTransaction()
+            .replace(R.id.container, PosenetActivity())
+            .commit()
+      }
   }
 }

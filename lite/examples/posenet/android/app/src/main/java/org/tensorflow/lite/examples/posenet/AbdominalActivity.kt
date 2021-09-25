@@ -37,12 +37,14 @@ class AbdominalActivity : AppCompatActivity() {
 
 
 
-        val sidebend_left_tutorial = findViewById<Button>(R.id.sidebend_tutorial)
-        val sidebend_left = findViewById<Button>(R.id.sidebend)
-
+        val sidebend_left_tutorial = findViewById<Button>(R.id.sidebend_left_tutorial)
+        val sidebend_left = findViewById<Button>(R.id.sidebend_left)
+        val sidebend_right_tutorial = findViewById<Button>(R.id.sidebend_right_tutorial)
+        val sidebend_right = findViewById<Button>(R.id.sidebend_right)
 
         textView = findViewById(R.id.text_exercise1) as TextView //TODO1
 
+        // 사이드밴드 왼쪽
         sidebend_left_tutorial.setOnClickListener({
             val intent = Intent(this, CameraActivity::class.java)
             ClickState = "sidebend left 학습";
@@ -61,6 +63,29 @@ class AbdominalActivity : AppCompatActivity() {
             BadCount =0
 
             Log.d("sidebend left 운동", ClickState)
+            //intent.putExtra("name", name)
+            startActivity(intent)
+        })
+
+        // 사이드밴드 오른쪽
+        sidebend_right_tutorial.setOnClickListener({
+            val intent = Intent(this, CameraActivity::class.java)
+            ClickState = "sidebend right 학습";
+            ActionCount=0;
+            Log.d("sidebend right 학습", ClickState)
+            startActivity(intent)
+        })
+
+        sidebend_right.setOnClickListener({
+            val intent = Intent(this, CountActivity::class.java)
+            intent.putExtra("exercise1", textView.text.toString()) //TODO
+            ClickState = "sidebend right 운동";
+
+            GoodCount =0
+            NormalCount =0
+            BadCount =0
+
+            Log.d("sidebend right 운동", ClickState)
             //intent.putExtra("name", name)
             startActivity(intent)
         })

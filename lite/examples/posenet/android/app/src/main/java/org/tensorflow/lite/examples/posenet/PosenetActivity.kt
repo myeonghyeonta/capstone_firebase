@@ -44,7 +44,6 @@ import androidx.core.app.ActivityCompat
 import androidx.core.view.isInvisible
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
-import org.tensorflow.lite.examples.posenet.Extensions.toast
 import org.tensorflow.lite.examples.posenet.lib.*
 import java.util.concurrent.Semaphore
 import java.util.concurrent.TimeUnit
@@ -274,7 +273,7 @@ class PosenetActivity :
 
         else if (ClickState == "sidebend left 학습") {
             videoView?.isInvisible
-            Log.v("test","sidebend 학습")
+            Log.v("test","sidebend 왼쪽 학습")
         }
         else if (ClickState == "sidebend left 운동") {
             Log.v("test", "사이드밴드 영상 실행")
@@ -285,10 +284,20 @@ class PosenetActivity :
             videoView!!.setVideoURI(videoUri) //영상을 띄우는 느낌
 
         }
-       /* else if (ClickState == "sidebend right 학습") {
-            videoView?.isInvisible
-        }*/
 
+        else if (ClickState == "sidebend right 학습") {
+            videoView?.isInvisible
+            Log.v("test","sidebend 오른쪽 학습")
+        }
+        else if (ClickState == "sidebend right 운동") {
+            Log.v("test", "사이드밴드 영상 실행")
+            Log.v("test ", ClickState)
+            // 운동에 따라 종류 변경
+            var videoUri =
+                Uri.parse("android.resource://" + context!!.packageName + "/" + R.raw.sidebend_right)
+            videoView!!.setVideoURI(videoUri) //영상을 띄우는 느낌
+
+        }
         // [210125]
         jointView = view.findViewById(R.id.jointView) //초기화할때 id가 조인트 뷰인것을 찾아서 넣는다 스켈레톤 출력
         jointHolder = jointView!!.holder //holder 표면 픽셀편집
