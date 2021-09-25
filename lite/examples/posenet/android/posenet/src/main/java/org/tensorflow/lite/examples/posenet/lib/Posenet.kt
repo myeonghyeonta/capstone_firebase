@@ -128,9 +128,9 @@ var sidebend_leftCount=0
 var sidebend_rightCount=0
 var ActionScore = 0
 
-var GoodCount = 0
-var NormalCount = 0
-var BadCount = 0
+var GoodCount = 0.0
+var NormalCount = 0.0
+var BadCount = 0.0
 
 
 var Estimate_sidebend: Float = 0.0F
@@ -624,7 +624,6 @@ class Posenet(
 
                 // 사이드잭운동
                 SidejackFrameComparison();
-
 
 
             } else {
@@ -1182,6 +1181,8 @@ class Posenet(
                 Result_ActionScore = 0
             }
         }
+        Log.d("good2", GoodCount.toString())
+
     }
     // 운동 프레임 비교
     fun WidesquatFrameComparison() {

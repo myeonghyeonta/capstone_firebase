@@ -13,6 +13,11 @@ import org.tensorflow.lite.examples.posenet.Extensions.toast
 class ScoreActivity : AppCompatActivity() {
     private lateinit var textViewName : TextView
     private lateinit var textViewCount : TextView
+    private lateinit var textViewGoodCount : TextView
+    private lateinit var textViewNormalCount : TextView
+    private lateinit var textViewBadCount : TextView
+    private lateinit var textViewScore : TextView
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,8 +25,13 @@ class ScoreActivity : AppCompatActivity() {
 
         var intent = getIntent();
 
-        textViewName = findViewById(R.id.text_namee) as TextView
+        textViewName = findViewById(R.id.text_name) as TextView
         textViewCount = findViewById(R.id.text_count) as TextView
+
+        textViewGoodCount = findViewById(R.id.count_good) as TextView
+        textViewNormalCount = findViewById(R.id.count_normal) as TextView
+        textViewBadCount = findViewById(R.id.count_bad) as TextView
+        textViewScore = findViewById(R.id.text_score) as TextView
 
         if (ClickState == "sidejack 운동")
         {
@@ -37,6 +47,10 @@ class ScoreActivity : AppCompatActivity() {
         }
 
         textViewCount.setText(intent.getStringExtra("count")+" 회")
+        textViewGoodCount.setText(intent.getStringExtra("count_good")+"%")
+        textViewNormalCount.setText(intent.getStringExtra("count_normal")+"%")
+        textViewBadCount.setText(intent.getStringExtra("count_bad")+"%")
+        textViewScore.setText(intent.getStringExtra("score")+"점")
 
 
 
