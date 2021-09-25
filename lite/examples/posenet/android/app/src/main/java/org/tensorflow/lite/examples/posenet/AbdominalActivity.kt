@@ -21,6 +21,7 @@ class AbdominalActivity : AppCompatActivity() {
 
         lateinit var textView : TextView //1
 
+
         //TODO
        // var intent2 = getIntent();
         //var name = intent2.getStringExtra("name")
@@ -63,7 +64,6 @@ class AbdominalActivity : AppCompatActivity() {
             BadCount =0
 
             Log.d("sidebend left 운동", ClickState)
-            //intent.putExtra("name", name)
             startActivity(intent)
         })
 

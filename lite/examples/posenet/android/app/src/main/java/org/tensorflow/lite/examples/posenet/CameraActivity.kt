@@ -41,7 +41,12 @@ class CameraActivity : AppCompatActivity() {
     else if (ClickState == "sidejack 운동"){
       setContentView(R.layout.tfe_pn_activity_camera)
       savedInstanceState ?: supportFragmentManager.beginTransaction()
-          .replace(R.id.container, PosenetActivity())
+          .replace(R.id.container, PosenetActivity().apply{
+              arguments = Bundle().apply{
+                  putString("exercise1",exercise1)
+                  putString("count",count)
+              }
+          })
           .commit()
     }
     else if (ClickState == "sidebend left 학습"){
@@ -74,5 +79,6 @@ class CameraActivity : AppCompatActivity() {
             .replace(R.id.container, PosenetActivity())
             .commit()
       }
+
   }
 }
