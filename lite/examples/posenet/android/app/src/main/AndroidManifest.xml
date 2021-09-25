@@ -18,13 +18,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.Posenet">
-
+        <activity
+            android:name=".MypageActivity"
+            android:exported="true" />
+        <activity
+            android:name=".CalendarActivity"
+            android:exported="true" />
         <activity
             android:name=".ScoreActivity"
             android:exported="true" />
         <activity android:name=".CountActivity" />
         <activity android:name=".LowerbodyActivity" />
-        <activity android:name=".AbdominalActivity"/>
+        <activity android:name=".AbdominalActivity" />
         <activity android:name=".LoginActivity">
 
             <!-- 테스트하는데 불편해서 -->
@@ -53,7 +58,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity android:name=".LogoutActivity" />
     </application>
 
