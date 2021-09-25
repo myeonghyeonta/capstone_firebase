@@ -1,14 +1,16 @@
 package org.tensorflow.lite.examples.posenet
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_logout.*
 import kotlinx.android.synthetic.main.activity_logout.btnSignOut
 import kotlinx.android.synthetic.main.activity_score.*
 import org.tensorflow.lite.examples.posenet.Extensions.toast
+import java.text.SimpleDateFormat
+import java.util.*
 
 class ScoreActivity : AppCompatActivity() {
     private lateinit var textViewName : TextView
@@ -19,11 +21,23 @@ class ScoreActivity : AppCompatActivity() {
     private lateinit var textViewScore : TextView
 
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_score)
 
         var intent = getIntent();
+
+
+        //날짜
+        val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd")
+        val calendar = Calendar.getInstance()
+        val Date: String = simpleDateFormat.format(calendar.getTime())
+        Log.d("time",Date)
+
+
+
+
 
         textViewName = findViewById(R.id.text_name) as TextView
         textViewCount = findViewById(R.id.text_count) as TextView
