@@ -5,6 +5,9 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_logout.*
 import kotlinx.android.synthetic.main.activity_logout.btnSignOut
 import kotlinx.android.synthetic.main.activity_score.*
@@ -19,7 +22,7 @@ class ScoreActivity : AppCompatActivity() {
     private lateinit var textViewNormalCount : TextView
     private lateinit var textViewBadCount : TextView
     private lateinit var textViewScore : TextView
-
+    private lateinit var database: DatabaseReference
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,7 +38,7 @@ class ScoreActivity : AppCompatActivity() {
         val Date: String = simpleDateFormat.format(calendar.getTime())
         Log.d("time",Date)
 
-
+        var exercise = ""
 
 
 
@@ -66,7 +69,21 @@ class ScoreActivity : AppCompatActivity() {
         textViewBadCount.setText(intent.getStringExtra("count_bad")+"%")
         textViewScore.setText(intent.getStringExtra("score")+"점")
 
+        var count_good = intent.getStringExtra("count_good")
+        var count_normal = intent.getStringExtra("count_normal")
+        var count_bad = intent.getStringExtra("count_bad")
+        var score = intent.getStringExtra("score")
 
+
+
+        data class Score(var count_good: String? = null,var count_normal: String? = null,var count_bad: String? = null,var score: String? = null)
+
+        fun writeNewScore(count_good: String,count_normal: String,count_bad: String,score: String) {
+            val score = Score(count_good,count_normal,count_bad,score)
+            database= Firebase.database.reference
+            FirebaseUtils.firebaseAuth.uid?.let { database.child("scores").child(it).child(Date).child(ClickState).setValue(score) }
+
+        }
 
         btnSignOut.setOnClickListener({
             FirebaseUtils.firebaseAuth.signOut()
@@ -79,6 +96,7 @@ class ScoreActivity : AppCompatActivity() {
         btnOk.setOnClickListener {
             val intent = Intent(this, MainloginActivity::class.java)
             startActivity(intent)
+            writeNewScore(count_good,count_normal,count_bad,score)
         }
     }
 }
