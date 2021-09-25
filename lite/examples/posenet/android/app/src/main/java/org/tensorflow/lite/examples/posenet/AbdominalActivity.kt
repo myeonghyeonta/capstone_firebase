@@ -45,7 +45,7 @@ class AbdominalActivity : AppCompatActivity() {
         val sidebend_right = findViewById<Button>(R.id.sidebend_right)
 
         textView1 = findViewById(R.id.text_exercise1) as TextView //TODO1
-        textView2 = findViewById<TextView>(R.id.text_exercise2) //TODO1
+        textView2 = findViewById(R.id.text_exercise2) as TextView//TODO1
 
         // 사이드밴드 왼쪽
         sidebend_left_tutorial.setOnClickListener({
