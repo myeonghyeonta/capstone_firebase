@@ -588,7 +588,7 @@ class PracticeActivity :
         var Teststring_1 = "hdgsd"
         var Teststring_2 = "쿠쿠루"
         Log.d("동작 플래그", ActionFlag.toString())
-        if (ClickState == "sidebend left 학습"){
+        if (ClickState == "sidebend left 학습" || ClickState == "sidebend right 학습"){
             if(ActionFlag==0) {
             Teststring= "차렷"
             }
@@ -622,17 +622,17 @@ class PracticeActivity :
 //>>>>>>> Stashed changes
 
         canvas.drawText(
-                //"왼팔 : $estimate_LEFT_Arm",
-                //"왼팔:$estimate_RIGHT_Arm",
                 //이번에 추가해보는 문장 0911
                 "왼 바디 : $estimate_RIGHT_side ",
+                //테스트를 위한 구문
+                //"왼 바디 : $RIGHT_Body_angle",
                 (15.0f * widthRatio),
                 (70.0f * heightRatio + bottom),
                 paint
         )
         canvas.drawText(
-                //"오른팔 : $estimate_RIGHT_Arm",
-                //"오른팔:$estimate_LEFT_Arm",
+                //테스트를 위한 구문
+                //"오른 바디 : $LEFT_Body_angle",
                 "오른 바디 : $estimate_LEFT_side",
                 (15.0f * widthRatio),
                 (90.0f * heightRatio + bottom),
