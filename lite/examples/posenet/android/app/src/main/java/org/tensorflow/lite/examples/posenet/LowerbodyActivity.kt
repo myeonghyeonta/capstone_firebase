@@ -52,9 +52,9 @@ class LowerbodyActivity : AppCompatActivity() {
             intent.putExtra("exercise1", textView.text.toString()) //TODO
             ClickState = "sidejack 운동";
 
-            GoodCount =0
-            NormalCount =0
-            BadCount =0
+            GoodCount =0.0
+            NormalCount =0.0
+            BadCount =0.0
 
             Log.d("sidejack 운동", ClickState)
             startActivity(intent)

@@ -61,9 +61,9 @@ class AbdominalActivity : AppCompatActivity() {
             intent.putExtra("exercise1", textView1.text.toString()) //TODO
             ClickState = "sidebend left 운동";
 
-            GoodCount =0
-            NormalCount =0
-            BadCount =0
+            GoodCount =0.0
+            NormalCount =0.0
+            BadCount =0.0
 
             Log.d("sidebend left 운동", ClickState)
             startActivity(intent)
@@ -83,9 +83,9 @@ class AbdominalActivity : AppCompatActivity() {
             intent.putExtra("exercise2", textView2.text.toString()) //TODO
             ClickState = "sidebend right 운동";
 
-            GoodCount =0
-            NormalCount =0
-            BadCount =0
+            GoodCount =0.0
+            NormalCount =0.0
+            BadCount =0.0
 
             Log.d("sidebend right 운동", ClickState)
             //intent.putExtra("name", name)

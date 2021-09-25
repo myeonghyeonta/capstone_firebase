@@ -44,7 +44,9 @@ import androidx.core.app.ActivityCompat
 import androidx.core.view.isInvisible
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
+import org.tensorflow.lite.examples.posenet.Extensions.toast
 import org.tensorflow.lite.examples.posenet.lib.*
+import java.text.DecimalFormat
 import java.util.concurrent.Semaphore
 import java.util.concurrent.TimeUnit
 import kotlin.math.abs
@@ -164,6 +166,8 @@ class PosenetActivity :
 
 
 
+
+
     /** [CameraDevice.StateCallback] is called when [CameraDevice] changes its state.   */
     private val stateCallback = object : CameraDevice.StateCallback() {
         // openCamera() 메서드에서 CameraManager.openCamera() 를 실행할때 인자로 넘겨주어야하는 콜백메서드
@@ -232,12 +236,29 @@ class PosenetActivity :
         var exercise2 = arguments?.getString("exercise2")
         var count = arguments?.getString("count")
 
+
+        val df1 = DecimalFormat("00.0")
+        val df2 = DecimalFormat("000")
+
+        var count_good = 0.0
+        var count_normal = 0.0
+        var count_bad = 0.0
+        var score = 0.0
+
+
+
+
+
+
+
         //var getIntent = getIntent()
         val intent = Intent(context, ScoreActivity::class.java)
         //var name = getIntent.getStringExtra("name")
         intent.putExtra("exercise1", exercise1)
         intent.putExtra("exercise2",exercise2)
         intent.putExtra("count",count)
+
+
         var ct =0 //운동횟수 카운트
         //var number = 25 //나중에 EditText만들어서 운동전 운동횟수 입력받기
         videoView = view.findViewById(R.id.videoView)
@@ -245,6 +266,18 @@ class PosenetActivity :
             ct++
             showToast("$ct 회재생") //재생횟수 확인용 메세지
             if(ct == number) {
+                var totalcount = GoodCount+ NormalCount+ BadCount
+
+                count_good=GoodCount/totalcount*100.0
+                count_normal=NormalCount/totalcount*100.0
+                count_bad=BadCount/totalcount*100.0
+
+                score = count_good + count_normal/2.0
+
+                intent.putExtra("count_good",df1.format(count_good))
+                intent.putExtra("count_normal",df1.format(count_normal))
+                intent.putExtra("count_bad",df1.format(count_bad))
+                intent.putExtra("score",df2.format(score))
                 startActivity(intent)
             }
         }
@@ -771,6 +804,8 @@ class PosenetActivity :
         val person = posenet.estimateSinglePose(scaledBitmap)
         val canvas: Canvas = surfaceHolder!!.lockCanvas()
         drawTeacher(canvas, person, scaledBitmap)
+
+
 
         // [210125]
         val jointCanvas: Canvas = jointHolder!!.lockCanvas()
