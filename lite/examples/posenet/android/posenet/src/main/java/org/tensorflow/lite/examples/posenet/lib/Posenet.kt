@@ -128,9 +128,9 @@ var sidebend_leftCount=0
 var sidebend_rightCount=0
 var ActionScore = 0
 
-var GoodCount = 0
-var NormalCount = 0
-var BadCount = 0
+var GoodCount = 0.0
+var NormalCount = 0.0
+var BadCount = 0.0
 
 
 var Estimate_sidebend: Float = 0.0F
@@ -624,7 +624,6 @@ class Posenet(
 
                 // 사이드잭운동
                 SidejackFrameComparison();
-
 
 
             } else {
@@ -1182,6 +1181,8 @@ class Posenet(
                 Result_ActionScore = 0
             }
         }
+        Log.d("good2", GoodCount.toString())
+
     }
     // 운동 프레임 비교
     fun WidesquatFrameComparison() {
@@ -1394,17 +1395,17 @@ class Posenet(
                 // 차렷(stand)0
                 if (LEFT_Body_angle >= -90 && LEFT_Body_angle <= -80) {
                     estimate_LEFT_side = "Good"
-                    Log.d("차렷 왼쪽 몸통 : ", estimate_LEFT_Arm);
+                    Log.d("sb_L 차렷자세인 오른쪽 몸통 : ", estimate_LEFT_side);
                 } else {
                     estimate_LEFT_side = "차렷자세 해주세요"
-                    Log.d("왼팔을 몸쪽으로 : ", estimate_LEFT_Arm);
+                    Log.d("sb_L 차렷자세가 아닌 오른쪽 몸통 : ", estimate_LEFT_side);
                 }
                 if (RIGHT_Body_angle <= -90 && RIGHT_Body_angle >= -100) {
                     estimate_RIGHT_side = "Good"
-                    Log.d("차렷 오른 몸통 : ", estimate_RIGHT_Arm);
+                    Log.d("sb_L 차렷자세인 왼쪽 몸통 : ", estimate_RIGHT_side);
                 } else {
                     estimate_RIGHT_side = "차렷자세 해주세요"
-                    Log.d("오른팔을 몸쪽으로 : ", estimate_RIGHT_Arm);
+                    Log.d("sb_L 차렷자세가 아닌 왼쪽 몸통 : ", estimate_RIGHT_side);
                 }
 
 
@@ -1417,21 +1418,21 @@ class Posenet(
                 // 팔
                 if (LEFT_Body_angle <= -95 && LEFT_Body_angle >= -105) {
                     estimate_LEFT_side = "Good";
-                    Log.d("차렷 왼쪽 몸통 : ", estimate_LEFT_side);
+                    Log.d("sb_L 구부린 오른쪽 몸통 : ", estimate_LEFT_side);
                 } else {
                     estimate_LEFT_side = "";
-                    Log.d("왼팔을 몸쪽으로 : ", estimate_LEFT_side);
+                    Log.d("sb_L 구부리지 않은 오른쪽 몸통 : ", estimate_LEFT_side);
                 }
                 if (RIGHT_Body_angle <= -105 && RIGHT_Body_angle >= -115) {
                     estimate_RIGHT_side = "Good"
-                    Log.d("차렷 오른 몸통 : ", estimate_RIGHT_Arm);
+                    Log.d("sb_L 구부린 왼쪽 몸통 : ", estimate_RIGHT_Arm);
                 } else if (RIGHT_Body_angle>-115){
                     estimate_RIGHT_side = "좀 더 숙여주세요"
-                    Log.d("오른팔을 몸쪽으로 : ", estimate_RIGHT_Arm);
+                    Log.d("sb_L 덜 구부린 왼쪽 몸통 : ", estimate_RIGHT_Arm);
                 }
                 else if(RIGHT_Body_angle<-125){
                     estimate_RIGHT_side = "너무 숙였습니다"
-                    Log.d("오른팔을 몸쪽으로 : ", estimate_RIGHT_Arm);
+                    Log.d("sb_L 많이 구부린 왼쪽 몸통 : ", estimate_RIGHT_Arm);
                 }
 
 
@@ -1449,6 +1450,70 @@ class Posenet(
 
     //sidebend_left 학습을 위한 poseEstimate 시작
     fun poseEstimate_sidebend_right(person : Person) {
+        Estimate_sidebend = person.keyPoints.get(5).score+ person.keyPoints.get(6).score+ person.keyPoints.get(11).score+person.keyPoints.get(12).score ;
+        Log.d("Estimate_sidebend : ", Estimate_sidebend.toString()) ;
+        estimate_LEFT_side=""
+        estimate_RIGHT_side=""
+        //LEFT_Body_angle
+        //RIGHT_Body_angle
+        if (Estimate_sidebend > 3.0) {
+            if (ActionFlag == 0 ) {
+                // 몸
+                // 차렷(stand)0
+                if (LEFT_Body_angle >= -90 && LEFT_Body_angle <= -80) {
+                    estimate_LEFT_side = "Good"
+                    Log.d("sb_R 차렷자세인 오른쪽 몸통 : ", estimate_LEFT_side);
+                } else {
+                    estimate_LEFT_side = "차렷자세 해주세요"
+                    Log.d("sb_R 차렷자세가 아닌 오른쪽 몸통 : ", estimate_LEFT_side);
+                }
+                if (RIGHT_Body_angle <= -90 && RIGHT_Body_angle >= -100) {
+                    estimate_RIGHT_side = "Good"
+                    Log.d("sb_R 차렷자세인 왼쪽 몸통 : ", estimate_RIGHT_side);
+                } else {
+                    estimate_RIGHT_side = "차렷자세 해주세요"
+                    Log.d("sb_R 차렷자세가 아닌 왼쪽 몸통 : ", estimate_RIGHT_side);
+                }
+
+
+                if (ActionFlag == 0 && (estimate_LEFT_side == "Good" && estimate_RIGHT_side == "Good")) {
+                    ActionFlag = 1;
+                }
+
+
+            } else if (ActionFlag == 1) {
+                // sidebend_right 구부리기 (왼몸통의 분기)
+                if (LEFT_Body_angle <= -55 && LEFT_Body_angle >= -65) {
+                    estimate_LEFT_side = "Good";
+                    Log.d("sb_R 구부린 오른쪽 몸통 : ", estimate_LEFT_side);
+                } else if (LEFT_Body_angle> -55){
+                    estimate_LEFT_side = "너무 숙였습니다";
+                    Log.d("sb_R 너무 구부린 오른쪽 몸통 : ", estimate_LEFT_side);
+                }
+                else if (LEFT_Body_angle< -65){
+                    estimate_LEFT_side = "좀 더 숙여주세요";
+                    Log.d("sb_R 덜 구부린 오른쪽 몸통 : ", estimate_LEFT_side);
+                }
+
+                // sidebend_right 구부리기 (오른몸통의 분기)
+                if (RIGHT_Body_angle <= -75 && RIGHT_Body_angle >= -85) {
+                    estimate_RIGHT_side = "Good"
+                    Log.d("sb_R 구부린 왼쪽 몸통 : ", estimate_RIGHT_side);
+                }
+                else {
+                    estimate_RIGHT_side = "";
+                    Log.d("sb_R 구부리지 않은 왼쪽 몸통 : ", estimate_RIGHT_side);
+                }
+
+
+                if (ActionFlag == 1 && (estimate_LEFT_side == "Good" && estimate_RIGHT_side == "Good")) {
+                    ActionFlag = 0
+                    ActionCount++
+                }
+
+            }
+
+        }
 
     }
 
