@@ -29,6 +29,7 @@ class CountActivity : AppCompatActivity() {
         //TODO
         var intent = getIntent();
         var exercise1 = intent.getStringExtra("exercise1")
+        var exercise2 = intent.getStringExtra("exercise2")
 
 
         adapter1.setDropDownViewResource(android.R.layout.simple_spinner_item)
@@ -62,8 +63,25 @@ class CountActivity : AppCompatActivity() {
             /*ClickState = "sidebend left 운동";
             Log.d("sidebend left 운동", ClickState)
             startActivity(intent)*/
-            intent.putExtra("exercise1",exercise1)
-            intent.putExtra("count",number.toString())
+            if (ClickState == "sidejack 운동")
+            {
+                intent.putExtra("exercise1",exercise1)
+                intent.putExtra("count",number.toString())
+
+            }
+            else if(ClickState == "sidebend left 운동")
+            {
+                intent.putExtra("exercise1",exercise1)
+                intent.putExtra("count",number.toString())
+            }
+            else if(ClickState =="sidebend right 운동")
+            {
+                intent.putExtra("exercise2",exercise2)
+                intent.putExtra("count",number.toString())
+
+            }
+            /*intent.putExtra("exercise1",exercise1)
+            intent.putExtra("count",number.toString())*/
             startActivity(intent)
         })
 
