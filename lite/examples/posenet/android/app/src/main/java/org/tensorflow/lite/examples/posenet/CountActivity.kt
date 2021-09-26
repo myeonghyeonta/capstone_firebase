@@ -1,15 +1,11 @@
 package org.tensorflow.lite.examples.posenet
-import android.widget.Toast
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.ArrayAdapter
-import android.widget.AdapterView
-import android.widget.Button
+import android.widget.*
 import kotlinx.android.synthetic.main.activity_count.*
-import android.widget.Spinner
 import org.tensorflow.lite.examples.posenet.Extensions.toast
 
 var number=0
@@ -21,8 +17,6 @@ class CountActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_count)
-        val spinner = findViewById<Spinner>(R.id.spinner)
-        var adapter1 = ArrayAdapter(this, android.R.layout.simple_spinner_item, data1)
 /*
         val sidejack = findViewById<Button>(R.id.sidejack)
 */
@@ -31,6 +25,13 @@ class CountActivity : AppCompatActivity() {
         var exercise1 = intent.getStringExtra("exercise1")
         var exercise2 = intent.getStringExtra("exercise2")
 
+
+        /*
+
+        드롭다운 형식 사용
+
+        val spinner = findViewById<Spinner>(R.id.spinner)
+        var adapter1 = ArrayAdapter(this, android.R.layout.simple_spinner_item, data1)
 
         adapter1.setDropDownViewResource(android.R.layout.simple_spinner_item)
 
@@ -46,11 +47,29 @@ class CountActivity : AppCompatActivity() {
                 TODO("Not yet implemented")
             }
         }
+        */
+
 
         start.setOnClickListener({
-            number=(a.replace("회","")).toInt()
+            //아무것도 입력하지 않았을때 탈출
+            if (exer_count.getText().toString().isNullOrEmpty()){
+                Toast.makeText(this@CountActivity, "아무것도 입력하지 않았습니다", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            var numb=Integer.parseInt(exer_count.getText().toString())
+
+            if (numb>20){
+                Toast.makeText(this@CountActivity, "숫자가 너무 큽니다 20회 아래로 정해주세요", Toast.LENGTH_SHORT).show()
+            }
+            else if(numb<=0){
+                Toast.makeText(this@CountActivity, "0보다 큰값으로 정해주세요", Toast.LENGTH_SHORT).show()
+            }
+            else {
+                number=numb
             val intent = Intent(this, CameraActivity::class.java)
-            /*if (ClickState == "sidebend left 운동")
+                Log.d("운동 진입", ClickState)
+                /*if (ClickState == "sidebend left 운동")
             {
                 Log.d("countactivity", ClickState )
                 startActivity(intent)
@@ -60,29 +79,26 @@ class CountActivity : AppCompatActivity() {
                 Log.d("countactivity", ClickState )
                 startActivity(intent)
             }*/
-            /*ClickState = "sidebend left 운동";
+                /*ClickState = "sidebend left 운동";
             Log.d("sidebend left 운동", ClickState)
             startActivity(intent)*/
-            if (ClickState == "sidejack 운동")
-            {
-                intent.putExtra("exercise1",exercise1)
-                intent.putExtra("count",number.toString())
+            if (ClickState == "sidejack 운동") {
+
+                intent.putExtra("exercise1", exercise1)
+                intent.putExtra("count", number.toString())
+
+            } else if (ClickState == "sidebend left 운동") {
+                intent.putExtra("exercise1", exercise1)
+                intent.putExtra("count", number.toString())
+            } else if (ClickState == "sidebend right 운동") {
+                intent.putExtra("exercise2", exercise2)
+                intent.putExtra("count", number.toString())
 
             }
-            else if(ClickState == "sidebend left 운동")
-            {
-                intent.putExtra("exercise1",exercise1)
-                intent.putExtra("count",number.toString())
-            }
-            else if(ClickState =="sidebend right 운동")
-            {
-                intent.putExtra("exercise2",exercise2)
-                intent.putExtra("count",number.toString())
-
-            }
-            /*intent.putExtra("exercise1",exercise1)
+                /*intent.putExtra("exercise1",exercise1)
             intent.putExtra("count",number.toString())*/
             startActivity(intent)
+            }
         })
 
 
