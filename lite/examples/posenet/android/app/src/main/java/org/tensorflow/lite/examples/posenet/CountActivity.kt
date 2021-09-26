@@ -3,10 +3,8 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.View
 import android.widget.*
 import kotlinx.android.synthetic.main.activity_count.*
-import org.tensorflow.lite.examples.posenet.Extensions.toast
 
 var number=0
 var a=""
@@ -67,21 +65,9 @@ class CountActivity : AppCompatActivity() {
             }
             else {
                 number=numb
-            val intent = Intent(this, CameraActivity::class.java)
+            val intent = Intent(this, Waiting_ScreenActivity::class.java)
                 Log.d("운동 진입", ClickState)
-                /*if (ClickState == "sidebend left 운동")
-            {
-                Log.d("countactivity", ClickState )
-                startActivity(intent)
-            }
-            else if (ClickState == "sidejack 운동")
-            {
-                Log.d("countactivity", ClickState )
-                startActivity(intent)
-            }*/
-                /*ClickState = "sidebend left 운동";
-            Log.d("sidebend left 운동", ClickState)
-            startActivity(intent)*/
+
             if (ClickState == "sidejack 운동") {
 
                 intent.putExtra("exercise1", exercise1)
@@ -95,8 +81,7 @@ class CountActivity : AppCompatActivity() {
                 intent.putExtra("count", number.toString())
 
             }
-                /*intent.putExtra("exercise1",exercise1)
-            intent.putExtra("count",number.toString())*/
+
             startActivity(intent)
             }
         })

@@ -27,6 +27,7 @@
     <string name="email">Email</string> <!--명현실험-->
     <string name="you_are_signed_in">You are Signed in</string> <!--명현실험-->
     <string name="sign_out">Sign Out</string> <!--명현실험-->
+    <string name="progressbar_speed">400</string>
 
 
 </resources>

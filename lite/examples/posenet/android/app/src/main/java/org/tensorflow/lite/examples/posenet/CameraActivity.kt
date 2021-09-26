@@ -26,12 +26,26 @@ class CameraActivity : AppCompatActivity() {
 
   override fun onCreate(savedInstanceState: Bundle?) {
 
+      var test = "데이터 안넘어 와~~~~"
       var intent = getIntent();
       var exercise1 = intent.getStringExtra("exercise1")
       var exercise2 = intent.getStringExtra("exercise2")
 
       var count = intent.getStringExtra("count")
 
+      if(exercise1!=null&&count!=null){
+          Log.d("운동이이이름", exercise1)
+          Log.d("개애애애수", count)
+      }
+      else if(exercise2!=null&&count!=null){
+          Log.d("운동이이이름", exercise2)
+          Log.d("개애애애수", count)
+      }
+      else {
+          Log.d("뭐",test)
+      }
+     /* Log.d("운동이이이름", exercise1)
+      Log.d("개애애애수", count)*/
 
     super.onCreate(savedInstanceState)
     if (ClickState =="sidejack 학습"){
