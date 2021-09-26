@@ -131,11 +131,17 @@ class ScoreActivity : AppCompatActivity() {
                 }
             }
             scoreReference.addValueEventListener(postListener)
+            FirebaseUtils.firebaseAuth.uid?.let {
+                database.child("scores").child(it).child(Date).child(ClickState).get().addOnSuccessListener {
+                    Log.i("firebase읽기", "Got value ${it.value}")
 
-            database.child("Score").child(Date).get().addOnSuccessListener {
-                Log.i("firebase읽기", "Got value ${it.value}")
-            }.addOnFailureListener{
-                Log.e("firebase읽기", "Error getting data", it)
+                    var array =arrayOf(it.value)
+                    Log.d("firebase읽기1", "Got value ${array[0]}")
+                    
+
+                }.addOnFailureListener {
+                    Log.e("firebase읽기", "Error getting data", it)
+                }
             }
         }
 
