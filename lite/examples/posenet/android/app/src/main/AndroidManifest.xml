@@ -19,10 +19,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.Posenet">
         <activity
-            android:name=".MypageActivity"
+            android:name=".Waiting_ScreenActivity"
             android:exported="true" />
         <activity
-            android:name=".CalendarActivity"
+            android:name=".MypageActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar"
             android:exported="true" />
         <activity
             android:name=".ScoreActivity"
