@@ -13,12 +13,14 @@ import org.tensorflow.lite.examples.posenet.lib.BadCount
 import org.tensorflow.lite.examples.posenet.lib.GoodCount
 import org.tensorflow.lite.examples.posenet.lib.NormalCount
 
+var ClickState = ""
 
-class LowerbodyActivity : AppCompatActivity() {
+
+class UpperbodyActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        setContentView(R.layout.activity_lowerbody)
+        setContentView(R.layout.activity_upperbody)
 
         lateinit var textView : TextView //1
 
@@ -32,29 +34,29 @@ class LowerbodyActivity : AppCompatActivity() {
 
 
 
-        val widesquat_tutorial = findViewById<Button>(R.id.widesquat_tutorial)
-        val widesquat = findViewById<Button>(R.id.widesquat)
+        val sidejack_tutorial = findViewById<Button>(R.id.sidejack_tutorial)
+        val sidejack = findViewById<Button>(R.id.sidejack)
 
         textView = findViewById(R.id.text_exercise1) as TextView //TODO1
 
-        widesquat_tutorial.setOnClickListener({
+        sidejack_tutorial.setOnClickListener({
             val intent = Intent(this, CameraActivity::class.java)
-            ClickState = "widesquat 학습";
+            ClickState = "sidejack 학습";
             ActionCount=0;
-            Log.d("widesquat 학습", ClickState)
+            Log.d("sidejack 학습", ClickState)
             startActivity(intent)
         })
 
-        widesquat.setOnClickListener({
+        sidejack.setOnClickListener({
             val intent = Intent(this, CountActivity::class.java)
             intent.putExtra("exercise1", textView.text.toString()) //TODO
-            ClickState = "widesquat 운동";
+            ClickState = "sidejack 운동";
 
             GoodCount =0.0
             NormalCount =0.0
             BadCount =0.0
 
-            Log.d("widesquat 운동", ClickState)
+            Log.d("sidejack 운동", ClickState)
             startActivity(intent)
         })
 

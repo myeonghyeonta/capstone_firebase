@@ -28,6 +28,7 @@ class MainloginActivity : AppCompatActivity() {
 
         val btn_click_1 = findViewById<Button>(R.id.btn_click_1)
         val btn_click_2 = findViewById<Button>(R.id.btn_click_2)
+        val btn_click_3 = findViewById<Button>(R.id.btn_click_3)
 
         // textView = findViewById(R.id.text_name) as TextView //TODO
 
@@ -38,6 +39,11 @@ class MainloginActivity : AppCompatActivity() {
         }
 
         btn_click_2.setOnClickListener {
+            val intent = Intent(this, UpperbodyActivity::class.java)
+            startActivity(intent)
+        }
+
+        btn_click_3.setOnClickListener {
             val intent = Intent(this, LowerbodyActivity::class.java)
             startActivity(intent)
         }

@@ -79,7 +79,10 @@ class CountActivity : AppCompatActivity() {
             } else if (ClickState == "sidebend right 운동") {
                 intent.putExtra("exercise2", exercise2)
                 intent.putExtra("count", number.toString())
-
+            }
+            else if (ClickState == "widesquat 운동") {
+                intent.putExtra("exercise1", exercise1)
+                intent.putExtra("count", number.toString())
             }
 
             startActivity(intent)

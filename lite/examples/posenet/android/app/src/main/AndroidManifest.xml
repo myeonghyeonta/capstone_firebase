@@ -29,8 +29,9 @@
             android:name=".ScoreActivity"
             android:exported="true" />
         <activity android:name=".CountActivity" />
-        <activity android:name=".LowerbodyActivity" />
+        <activity android:name=".UpperbodyActivity" />
         <activity android:name=".AbdominalActivity" />
+        <activity android:name=".LowerbodyActivity"/>
         <activity android:name=".LoginActivity">
 
             <!-- 테스트하는데 불편해서 -->
