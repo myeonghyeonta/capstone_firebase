@@ -297,13 +297,8 @@ class PosenetActivity :
                 Uri.parse("android.resource://" + context!!.packageName + "/" + R.raw.lateral)
             videoView!!.setVideoURI(videoUri) //영상을 띄우는 느낌
             //영상을 띄우고 부터 사용자가 정해준 시간뒤에 화면이 넘어가는 부분
-            //LowerbodyActivity를 가려는 activity이름으로 바꿔주면 됨
+            //UpperbodyActivity를 가려는 activity이름으로 바꿔주면 됨
 
-        } else if(ClickState == "widesquat"){
-            // 운동에 따라 종류 변경
-            var videoUri =
-                Uri.parse("android.resource://" + context!!.packageName + "/" + R.raw.wide_squat)
-            videoView!!.setVideoURI(videoUri)
         }
 
         else if (ClickState == "sidebend left 학습") {
@@ -333,6 +328,17 @@ class PosenetActivity :
             videoView!!.setVideoURI(videoUri) //영상을 띄우는 느낌
 
         }
+        else if (ClickState == "widesquat 학습") {
+            videoView?.isInvisible
+            Log.v("test","widesquat 학습")
+        }
+        else if(ClickState == "widesquat 운동"){
+            // 운동에 따라 종류 변경
+            var videoUri =
+                Uri.parse("android.resource://" + context!!.packageName + "/" + R.raw.wide_squat)
+            videoView!!.setVideoURI(videoUri)
+        }
+
         // [210125]
         jointView = view.findViewById(R.id.jointView) //초기화할때 id가 조인트 뷰인것을 찾아서 넣는다 스켈레톤 출력
         jointHolder = jointView!!.holder //holder 표면 픽셀편집

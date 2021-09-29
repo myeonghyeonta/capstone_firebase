@@ -102,6 +102,22 @@ class CameraActivity : AppCompatActivity() {
             })
             .commit()
       }
-
+    else if (ClickState == "widesquat 학습"){
+        setContentView(R.layout.tfe_pn_activity_camera)
+        savedInstanceState ?: supportFragmentManager.beginTransaction()
+            .replace(R.id.container, PracticeActivity())
+            .commit()
+    }
+    else if (ClickState == "widesquat 운동"){
+        setContentView(R.layout.tfe_pn_activity_camera)
+        savedInstanceState ?: supportFragmentManager.beginTransaction()
+            .replace(R.id.container, PosenetActivity().apply{
+                arguments = Bundle().apply{
+                    putString("exercise1",exercise1)
+                    putString("count",count)
+                }
+            })
+            .commit()
+    }
   }
 }

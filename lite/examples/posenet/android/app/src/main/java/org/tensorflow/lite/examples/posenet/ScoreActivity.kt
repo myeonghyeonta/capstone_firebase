@@ -65,6 +65,10 @@ class ScoreActivity : AppCompatActivity() {
         {
             textViewName.setText(intent.getStringExtra("exercise2"))
         }
+        else if(ClickState=="widesquat 운동")
+        {
+            textViewName.setText(intent.getStringExtra("exercise1"))
+        }
 
         textViewCount.setText(intent.getStringExtra("count")+" 회")
         textViewGoodCount.setText(intent.getStringExtra("count_good")+"%")

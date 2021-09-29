@@ -631,18 +631,6 @@ class Posenet(
                 Result_ActionScore = 0
             }
         }
-        else if(kindAction == "widesquat"){
-            realtime_dataCal();
-
-            // 프레임별 실시간데이터 & 선생데이터 비교
-            // 선생데이터 (JSON파일 프레임 데이터 추출)
-
-            jsonObjectsExample()
-
-            // 와이드 스쿼트 운동
-            WidesquatFrameComparison();
-
-        }
 
         else if(kindAction =="sidebend left 학습"){
             poseEstimate_sidebend_left(person);
@@ -699,6 +687,30 @@ class Posenet(
                 Result_ActionScore = 0
             }
         }
+        //스쿼트 학습 추가 필요
+        else if(kindAction == "widesquat 운동"){
+
+            Log.d("person.score : ", person.score.toString())
+            // 사람 점수가 잘 나오면 평가 시작
+            if (person.score >= 0.7) {
+                // 리얼 타임 데이터 추출
+                realtime_dataCal();
+
+                // 프레임별 실시간데이터 & 선생데이터 비교
+                // 선생데이터 (JSON파일 프레임 데이터 추출)
+                jsonObjectsExample()
+
+
+
+                // 사이드잭운동
+                WidesquatFrameComparison();
+
+
+            } else {
+                ActionFeedback = "Bad"
+                Result_ActionScore = 0
+            }
+        }
 
         frameCounter++;
 
@@ -734,14 +746,7 @@ class Posenet(
             ActionJsonPath = sidejackfileJsonPath
             ActionFramecount = 46
         }
-        /*    else if(kindAction == "widesquat"){
-                widesquatfilePath = "squat/"
-                widesquatfilePathFinal = ".json"
-                // 실제
-                widesquatfileJsonPath = widesquatfilePath + ActiveCounter + widesquatfilePathFinal
-                ActionJsonPath = widesquatfileJsonPath
-                ActionFramecount = 297
-            }*/
+
         else if(kindAction=="sidebend left 운동"){
             sidebend_leftfilePath = "sidebend_left/"
             sidebend_leftfilePathFinal = ".json"
@@ -758,6 +763,15 @@ class Posenet(
             ActionJsonPath = sidebend_rightfileJsonPath
             ActionFramecount = 110
         }
+        else if(kindAction == "widesquat 운동"){
+            widesquatfilePath = "wide_squat/"
+            widesquatfilePathFinal = ".json"
+            // 실제
+            widesquatfileJsonPath = widesquatfilePath + ActiveCounter + widesquatfilePathFinal
+            ActionJsonPath = widesquatfileJsonPath
+            ActionFramecount = 61
+        }
+
 
 
 //        Log.d("fileJsonPath :",fileJsonPath)
@@ -1185,73 +1199,6 @@ class Posenet(
 
     }
     // 운동 프레임 비교
-    fun WidesquatFrameComparison() {
-
-
-        // 바운드 높게 줄수록 점수 높음
-        if (Math.abs(LEFT_KneeUp_angle - JSON_LEFT_KneeUp_angle) <= 10 || Math.abs(
-                RIGHT_KneeUp_angle - JSON_RIGHT_KneeUp_angle
-            ) <= 10
-        ) {
-            ActionScore += 100;
-        } else if (Math.abs(LEFT_KneeUp_angle - JSON_LEFT_KneeUp_angle) <= 20 || Math.abs(
-                RIGHT_KneeUp_angle - JSON_RIGHT_KneeUp_angle) <= 20
-        ) {
-            ActionScore += 90;
-        } else if (Math.abs(LEFT_KneeUp_angle - JSON_LEFT_KneeUp_angle) <= 25 || Math.abs(
-                RIGHT_KneeUp_angle - JSON_RIGHT_KneeUp_angle) <= 25
-        ) {
-            ActionScore += 80;
-        } else if (Math.abs(LEFT_KneeUp_angle - JSON_LEFT_KneeUp_angle) <= 30 || Math.abs(
-                RIGHT_KneeUp_angle - JSON_RIGHT_KneeUp_angle) <= 30
-        ) {
-            ActionScore += 70;
-        } else {
-            ActionScore += 50;
-        }
-
-
-        Log.d("왼 허벅지 데이터 값 비교 : ", (LEFT_KneeUp_angle - JSON_LEFT_KneeUp_angle).toString())
-        Log.d("왼 정강이 데이터 값 비교 : ", (LEFT_KneeDown_angle - JSON_LEFT_KneeDown_angle).toString())
-
-        Log.d("오른 허벅지 데이터 값 비교 : ", (RIGHT_KneeUp_angle - JSON_RIGHT_KneeUp_angle).toString())
-        Log.d("오른 정강이 데이터 값 비교 : ", (RIGHT_KneeDown_angle - JSON_RIGHT_KneeDown_angle).toString())
-
-
-        if ((frameCounter % 15) == 0) {
-
-//            Log.d("ActionScore : ", ActionScore.toString())
-            Result_ActionScore = ActionScore / 15
-//            Log.d("Result_ActionScore : ", Result_ActionScore.toString())
-
-            if ((Result_ActionScore) >= 90) {
-                Log.d("평가중 굳 ActionScore : ", (Result_ActionScore).toString())
-                ActionFeedback = "Good"
-                GoodCount++
-                Log.d("ActionFeedback : ", ActionFeedback)
-                Log.d("Good 개수 : ", GoodCount.toString())
-                ActionScore = 0
-                Result_ActionScore = 0
-            } else if ((Result_ActionScore) >= 80) {
-                Log.d("평가중 노말 ActionScore : ", (Result_ActionScore).toString())
-                ActionFeedback = "Normal"
-                NormalCount++
-                Log.d("ActionFeedback : ", ActionFeedback)
-                Log.d("Normal 개수 : ", NormalCount.toString())
-                ActionScore = 0
-                Result_ActionScore = 0
-            } else {
-                Log.d("평가중 뱃 ActionScore : ", (Result_ActionScore).toString())
-                ActionFeedback = "Bad"
-                BadCount++
-                Log.d("ActionFeedback : ",ActionFeedback)
-                Log.d("Bad 개수 : ", BadCount.toString())
-                ActionScore = 0
-                Result_ActionScore = 0
-            }
-        }
-
-    }
     fun Sidebend_leftFrameComparison() {
 
         // 바운드 높게 줄수록 점수 높음
@@ -1378,6 +1325,72 @@ class Posenet(
             }
         }
 
+
+    }
+
+    fun WidesquatFrameComparison() {
+
+
+        // 바운드 높게 줄수록 점수 높음
+        if (Math.abs(LEFT_KneeUp_angle - JSON_LEFT_KneeUp_angle) <= 10 && Math.abs(RIGHT_KneeUp_angle - JSON_RIGHT_KneeUp_angle) <= 10)
+        {
+            ActionScore += 100;
+        } else if ((Math.abs(LEFT_KneeUp_angle - JSON_LEFT_KneeUp_angle) >= 10 && Math.abs(LEFT_KneeUp_angle - JSON_LEFT_KneeUp_angle) <= 20)
+            || (Math.abs(RIGHT_KneeUp_angle - JSON_RIGHT_KneeUp_angle) >= 10 && (RIGHT_KneeUp_angle - JSON_RIGHT_KneeUp_angle) <= 20))
+        {
+            ActionScore += 90;
+        } else if ((Math.abs(LEFT_KneeUp_angle - JSON_LEFT_KneeUp_angle) >= 20 && Math.abs(LEFT_KneeUp_angle - JSON_LEFT_KneeUp_angle) <= 25)
+            || (Math.abs(RIGHT_KneeUp_angle - JSON_RIGHT_KneeUp_angle) >= 20 && (RIGHT_KneeUp_angle - JSON_RIGHT_KneeUp_angle) <= 25))
+        {
+            ActionScore += 80;
+        } else if ((Math.abs(LEFT_KneeUp_angle - JSON_LEFT_KneeUp_angle) >= 25 && Math.abs(LEFT_KneeUp_angle - JSON_LEFT_KneeUp_angle) <= 30)
+            || (Math.abs(RIGHT_KneeUp_angle - JSON_RIGHT_KneeUp_angle) >= 25 && (RIGHT_KneeUp_angle - JSON_RIGHT_KneeUp_angle) <= 30))
+        {
+            ActionScore += 70;
+        } else {
+            ActionScore += 50;
+        }
+
+
+        Log.d("왼 허벅지 데이터 값 비교 : ", (LEFT_KneeUp_angle - JSON_LEFT_KneeUp_angle).toString())
+        Log.d("왼 정강이 데이터 값 비교 : ", (LEFT_KneeDown_angle - JSON_LEFT_KneeDown_angle).toString())
+
+        Log.d("오른 허벅지 데이터 값 비교 : ", (RIGHT_KneeUp_angle - JSON_RIGHT_KneeUp_angle).toString())
+        Log.d("오른 정강이 데이터 값 비교 : ", (RIGHT_KneeDown_angle - JSON_RIGHT_KneeDown_angle).toString())
+
+
+        if ((frameCounter % 15) == 0) {
+
+//            Log.d("ActionScore : ", ActionScore.toString())
+            Result_ActionScore = ActionScore / 15
+//            Log.d("Result_ActionScore : ", Result_ActionScore.toString())
+
+            if ((Result_ActionScore) >= 90) {
+                Log.d("평가중 굳 ActionScore : ", (Result_ActionScore).toString())
+                ActionFeedback = "Good"
+                GoodCount++
+                Log.d("ActionFeedback : ", ActionFeedback)
+                Log.d("Good 개수 : ", GoodCount.toString())
+                ActionScore = 0
+                Result_ActionScore = 0
+            } else if ((Result_ActionScore) >= 80) {
+                Log.d("평가중 노말 ActionScore : ", (Result_ActionScore).toString())
+                ActionFeedback = "Normal"
+                NormalCount++
+                Log.d("ActionFeedback : ", ActionFeedback)
+                Log.d("Normal 개수 : ", NormalCount.toString())
+                ActionScore = 0
+                Result_ActionScore = 0
+            } else {
+                Log.d("평가중 뱃 ActionScore : ", (Result_ActionScore).toString())
+                ActionFeedback = "Bad"
+                BadCount++
+                Log.d("ActionFeedback : ",ActionFeedback)
+                Log.d("Bad 개수 : ", BadCount.toString())
+                ActionScore = 0
+                Result_ActionScore = 0
+            }
+        }
 
     }
 
