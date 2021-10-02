@@ -134,6 +134,7 @@ var BadCount = 0.0
 
 
 var Estimate_sidebend: Float = 0.0F
+var Estimate_widesquat: Float=0.0F
 var Result_ActionScore = 0
 
 
@@ -687,7 +688,12 @@ class Posenet(
                 Result_ActionScore = 0
             }
         }
-        //스쿼트 학습 추가 필요
+        //스쿼트 학습 추가
+        else if(kindAction == "widesquat 학습") {
+            poseEstimate_widesquat(person);
+            realtime_dataCal();
+        }
+
         else if(kindAction == "widesquat 운동"){
 
             Log.d("person.score : ", person.score.toString())
@@ -1690,4 +1696,108 @@ class Posenet(
 
     }
 
+    fun poseEstimate_widesquat(person : Person) {
+        Estimate_widesquat = person.keyPoints.get(11).score+ person.keyPoints.get(12).score+ person.keyPoints.get(13).score+person.keyPoints.get(14).score ;
+        Log.d("Estimate_widesquat : ", Estimate_widesquat.toString()) ;
+        estimate_LEFT_side=""
+        estimate_RIGHT_side=""
+        if (Estimate_widesquat > 3.0) {
+            //처음 차렷자세로 가기
+            if (ActionFlag == 0) {
+                //왼발 확인
+                if (RIGHT_KneeUp_angle <= -65 && RIGHT_KneeUp_angle >= -75) {
+                    estimate_RIGHT_side = "Good"
+                    Log.d("제대로 벌린 왼발 : ", estimate_RIGHT_side);
+
+                } else if (RIGHT_KneeUp_angle <-75) {
+                    estimate_RIGHT_side = "너무 좁혔습니다"
+                    Log.d("좁게 벌린 왼발 : ", estimate_RIGHT_side);
+                } else if (RIGHT_KneeUp_angle >-65) {
+                    estimate_RIGHT_side = "너무 벌렸습니다"
+                    Log.d("넓게 벌린 왼발 : ", estimate_RIGHT_side);
+                }
+                //오른발 확인
+                if (LEFT_KneeUp_angle <= -100 && LEFT_KneeUp_angle >= -110) {
+                    estimate_LEFT_side = "Good"
+                    Log.d("제대로 벌린 오른발 : ", estimate_LEFT_side);
+
+                } else if (LEFT_KneeUp_angle >-100) {
+                    estimate_LEFT_side = "너무 좁혔습니다"
+                    Log.d("좁게 벌린 오른발 : ", estimate_LEFT_side);
+                } else if (LEFT_KneeUp_angle <-110) {
+                    estimate_LEFT_side = "너무 벌렸습니다"
+                    Log.d("넓게 벌린 오른발 : ", estimate_LEFT_side);
+                }
+
+                if (ActionFlag == 0 && (estimate_LEFT_side == "Good" && estimate_RIGHT_side == "Good")) {
+                    ActionFlag = 2;
+                }
+            } 
+            //차렷 자세로 가기
+            else if (ActionFlag == 1) {
+                if (RIGHT_KneeUp_angle <= -65 && RIGHT_KneeUp_angle >= -75) {
+                    estimate_RIGHT_side = "Good"
+                    Log.d("제대로 된 왼발 : ", estimate_RIGHT_side);
+
+                } else if (RIGHT_KneeUp_angle <-75) {
+                    estimate_RIGHT_side = "너무 올라왔습니다"
+                    Log.d("너무 올라온 왼발 : ", estimate_RIGHT_side);
+                } else if (RIGHT_KneeUp_angle >-65) {
+                    estimate_RIGHT_side = "더 올라오세요"
+                    Log.d("덜 올라온 왼발 : ", estimate_RIGHT_side);
+                }
+                //오른발 확인
+                if (LEFT_KneeUp_angle <= -100 && LEFT_KneeUp_angle >= -110) {
+                    estimate_LEFT_side = "Good"
+                    Log.d("제대로 된 오른발 : ", estimate_LEFT_side);
+
+                } else if (LEFT_KneeUp_angle >-100) {
+                    estimate_LEFT_side = "너무 올라왔습니다"
+                    Log.d("너무 올라온 오른발 : ", estimate_LEFT_side);
+                } else if (LEFT_KneeUp_angle <-110) {
+                    estimate_LEFT_side = "더 올라오세요"
+                    Log.d("덜 올라온 오른발 : ", estimate_LEFT_side);
+                }
+
+
+                if (ActionFlag == 1 && (estimate_LEFT_side == "Good" && estimate_RIGHT_side == "Good")) {
+                    ActionFlag = 2
+                }
+            }
+            //스쿼트 자세로 가기
+            else if (ActionFlag == 2) {
+                //왼발 확인
+                if (RIGHT_KneeUp_angle <= -30 && RIGHT_KneeUp_angle >= -40) {
+                    estimate_RIGHT_side = "Good"
+                    Log.d("제대로 숙인 왼발 : ", estimate_RIGHT_side);
+
+                } else if (RIGHT_KneeUp_angle <-40) {
+                    estimate_RIGHT_side = "더 숙여주세요"
+                    Log.d("덜 숙인 왼발 : ", estimate_RIGHT_side);
+                } else if (RIGHT_KneeUp_angle >-30) {
+                    estimate_RIGHT_side = "너무 숙였습니다"
+                    Log.d("너무 숙인 왼발 : ", estimate_RIGHT_side);
+                }
+                //오른발 확인
+                if (LEFT_KneeUp_angle <= -130 && LEFT_KneeUp_angle >= -140) {
+                    estimate_LEFT_side = "Good"
+                    Log.d("제대로 숙인 오른발 : ", estimate_LEFT_side);
+
+                } else if (LEFT_KneeUp_angle >-130) {
+                    estimate_LEFT_side = "더 숙여주세요"
+                    Log.d("덜 숙인 오른발 : ", estimate_LEFT_side);
+                } else if (LEFT_KneeUp_angle <-140) {
+                    estimate_LEFT_side = "너무 숙였습니다"
+                    Log.d("너무 숙인 오른발 : ", estimate_LEFT_side);
+                }
+
+
+                if ( (ActionFlag == 2) && (estimate_LEFT_side == "Good" && estimate_RIGHT_side == "Good")) {
+                    ActionFlag = 1
+                    ActionCount++
+                }
+            }
+        }
+
+    }
 }
