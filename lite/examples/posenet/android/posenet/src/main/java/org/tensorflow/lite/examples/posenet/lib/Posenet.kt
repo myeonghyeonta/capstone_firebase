@@ -1136,46 +1136,51 @@ class Posenet(
 
     // 운동 프레임 비교
     fun SidejackFrameComparison() {
-
+        var test_left_sidearm = 0.0
+        var test_right_sidearm = 0.0
         // 바운드 높게 줄수록 점수 높음
 
-        if (Math.abs(LEFT_SIDE_Arm_angle - JSON_LEFT_SIDE_Arm_angle) <= 10 || Math.abs(
-                RIGHT_SIDE_Arm_angle - JSON_RIGHT_SIDE_Arm_angle
-            ) <= 10
-        ) {
+        if (Math.abs(LEFT_SIDE_Arm_angle - JSON_LEFT_SIDE_Arm_angle) <= 20 && Math.abs(RIGHT_SIDE_Arm_angle - JSON_RIGHT_SIDE_Arm_angle) <= 20)
+        {
+            test_left_sidearm = Math.abs(LEFT_SIDE_Arm_angle - JSON_LEFT_SIDE_Arm_angle)
+            test_right_sidearm = Math.abs(RIGHT_SIDE_Arm_angle - JSON_RIGHT_SIDE_Arm_angle)
             ActionScore += 100;
-        } else if (Math.abs(LEFT_SIDE_Arm_angle - JSON_LEFT_SIDE_Arm_angle) <= 15 || Math.abs(
-                RIGHT_SIDE_Arm_angle - JSON_RIGHT_SIDE_Arm_angle
-            ) <= 15
-        ) {
+        } else if ((Math.abs(LEFT_SIDE_Arm_angle - JSON_LEFT_SIDE_Arm_angle) >= 20 && Math.abs(LEFT_SIDE_Arm_angle - JSON_LEFT_SIDE_Arm_angle) <= 35)
+            && (Math.abs(RIGHT_SIDE_Arm_angle - JSON_RIGHT_SIDE_Arm_angle) >= 20 && Math.abs(RIGHT_SIDE_Arm_angle - JSON_RIGHT_SIDE_Arm_angle) <= 35))
+        {
+            test_left_sidearm = Math.abs(LEFT_SIDE_Arm_angle - JSON_LEFT_SIDE_Arm_angle)
+            test_right_sidearm = Math.abs(RIGHT_SIDE_Arm_angle - JSON_RIGHT_SIDE_Arm_angle)
             ActionScore += 90;
-        } else if (Math.abs(LEFT_SIDE_Arm_angle - JSON_LEFT_SIDE_Arm_angle) <= 20 || Math.abs(
-                RIGHT_SIDE_Arm_angle - JSON_RIGHT_SIDE_Arm_angle
-            ) <= 20
-        ) {
+        } else if  ((Math.abs(LEFT_SIDE_Arm_angle - JSON_LEFT_SIDE_Arm_angle) >= 35 && Math.abs(LEFT_SIDE_Arm_angle - JSON_LEFT_SIDE_Arm_angle) <= 50)
+            && (Math.abs(RIGHT_SIDE_Arm_angle - JSON_RIGHT_SIDE_Arm_angle) >= 35 && Math.abs(RIGHT_SIDE_Arm_angle - JSON_RIGHT_SIDE_Arm_angle) <= 50))
+        {
+            test_left_sidearm = Math.abs(LEFT_SIDE_Arm_angle - JSON_LEFT_SIDE_Arm_angle)
+            test_right_sidearm = Math.abs(RIGHT_SIDE_Arm_angle - JSON_RIGHT_SIDE_Arm_angle)
             ActionScore += 80;
-        } else if (Math.abs(LEFT_SIDE_Arm_angle - JSON_LEFT_SIDE_Arm_angle) <= 25 || Math.abs(
-                RIGHT_SIDE_Arm_angle - JSON_RIGHT_SIDE_Arm_angle
-            ) <= 25
-        ) {
+        } else if  ((Math.abs(LEFT_SIDE_Arm_angle - JSON_LEFT_SIDE_Arm_angle) >= 50 && Math.abs(LEFT_SIDE_Arm_angle - JSON_LEFT_SIDE_Arm_angle) <= 60)
+            && (Math.abs(RIGHT_SIDE_Arm_angle - JSON_RIGHT_SIDE_Arm_angle) >= 50 && Math.abs(RIGHT_SIDE_Arm_angle - JSON_RIGHT_SIDE_Arm_angle) <= 60))
+        {
+            test_left_sidearm = Math.abs(LEFT_SIDE_Arm_angle - JSON_LEFT_SIDE_Arm_angle)
+            test_right_sidearm = Math.abs(RIGHT_SIDE_Arm_angle - JSON_RIGHT_SIDE_Arm_angle)
             ActionScore += 70;
         } else {
             ActionScore += 50;
         }
 
 
-        Log.d("팔 데이터 값 비교 : ", (LEFT_SIDE_Arm_angle - JSON_LEFT_SIDE_Arm_angle).toString())
-        Log.d("팔 데이터 값 비교 : ", (RIGHT_SIDE_Arm_angle - JSON_RIGHT_SIDE_Arm_angle).toString())
+        Log.d("왼팔 데이터 값 비교 : ", test_left_sidearm.toString())
+        Log.d("오른팔 데이터 값 비교 : ", test_right_sidearm.toString())
 
 
 
         if ((frameCounter % 15) == 0) {
 
-//            Log.d("ActionScore : ", ActionScore.toString())
             Result_ActionScore = ActionScore / 15
-//            Log.d("Result_ActionScore : ", Result_ActionScore.toString())
+            Log.d("프레임 수 :", frameCounter.toString())
+            Log.d("ActionScore : ", ActionScore.toString())
+            Log.d("Result_ActionScore : ", Result_ActionScore.toString())
 
-            if ((Result_ActionScore) >= 85) {
+            if ((Result_ActionScore) >= 90) {
                 Log.d("평가중 굳 ActionScore : ", (Result_ActionScore).toString())
                 ActionFeedback = "Good"
                 GoodCount++
@@ -1183,7 +1188,7 @@ class Posenet(
                 Log.d("Good 개수 : ", GoodCount.toString())
                 ActionScore = 0
                 Result_ActionScore = 0
-            } else if ((Result_ActionScore) >= 70) {
+            } else if ((Result_ActionScore) >= 80) {
                 Log.d("평가중 노말 ActionScore : ", (Result_ActionScore).toString())
                 ActionFeedback = "Normal"
                 NormalCount++
@@ -1206,39 +1211,49 @@ class Posenet(
     }
     // 운동 프레임 비교
     fun Sidebend_leftFrameComparison() {
-
+        var test_right_body = 0.0
+        var center_shoulder = 0.0
         // 바운드 높게 줄수록 점수 높음
 
-        if ( Math.abs(RIGHT_Body_angle - JSON_RIGHT_Body_angle) <= 5 && Math.abs(CENTER_Shoulder_angle- JSON_CENTER_Shoulder_angle) <= 10
-        ) {
+        if ( Math.abs(RIGHT_Body_angle - JSON_RIGHT_Body_angle) <= 15 && Math.abs(CENTER_Shoulder_angle- JSON_CENTER_Shoulder_angle) <= 15)
+        {
+            test_right_body = Math.abs(RIGHT_Body_angle - JSON_RIGHT_Body_angle)
+            center_shoulder = Math.abs(CENTER_Shoulder_angle- JSON_CENTER_Shoulder_angle)
             ActionScore += 100;
-        } else if (Math.abs(RIGHT_Body_angle - JSON_RIGHT_Body_angle) >= 5 && Math.abs(RIGHT_Body_angle - JSON_RIGHT_Body_angle) <= 10
-            || Math.abs(CENTER_Shoulder_angle- JSON_CENTER_Shoulder_angle) >= 10 && Math.abs(CENTER_Shoulder_angle- JSON_CENTER_Shoulder_angle) <= 15
-        ) {
+        } else if ((Math.abs(RIGHT_Body_angle - JSON_RIGHT_Body_angle) >= 15 && Math.abs(RIGHT_Body_angle - JSON_RIGHT_Body_angle) <= 25)
+            && (Math.abs(CENTER_Shoulder_angle- JSON_CENTER_Shoulder_angle) >= 15 && Math.abs(CENTER_Shoulder_angle- JSON_CENTER_Shoulder_angle) <= 25))
+        {
+            test_right_body = Math.abs(RIGHT_Body_angle - JSON_RIGHT_Body_angle)
+            center_shoulder = Math.abs(CENTER_Shoulder_angle- JSON_CENTER_Shoulder_angle)
             ActionScore += 90;
-        } else if (Math.abs(RIGHT_Body_angle - JSON_RIGHT_Body_angle) >= 10 && Math.abs(RIGHT_Body_angle - JSON_RIGHT_Body_angle) <= 15
-            || Math.abs(CENTER_Shoulder_angle- JSON_CENTER_Shoulder_angle) >= 15 && Math.abs(CENTER_Shoulder_angle- JSON_CENTER_Shoulder_angle) <= 20
-        ) {
+        } else if ((Math.abs(RIGHT_Body_angle - JSON_RIGHT_Body_angle) >= 25 && Math.abs(RIGHT_Body_angle - JSON_RIGHT_Body_angle) <= 35)
+            && (Math.abs(CENTER_Shoulder_angle- JSON_CENTER_Shoulder_angle) >= 25 && Math.abs(CENTER_Shoulder_angle- JSON_CENTER_Shoulder_angle) <= 35))
+        {
+            test_right_body = Math.abs(RIGHT_Body_angle - JSON_RIGHT_Body_angle)
+            center_shoulder = Math.abs(CENTER_Shoulder_angle- JSON_CENTER_Shoulder_angle)
             ActionScore += 80;
-        } else if (Math.abs(RIGHT_Body_angle - JSON_RIGHT_Body_angle) >= 15 && Math.abs(RIGHT_Body_angle - JSON_RIGHT_Body_angle) <= 20
-            || Math.abs(CENTER_Shoulder_angle- JSON_CENTER_Shoulder_angle) >= 20 && Math.abs(CENTER_Shoulder_angle- JSON_CENTER_Shoulder_angle) <= 25
-        ) {
+        } else if ((Math.abs(RIGHT_Body_angle - JSON_RIGHT_Body_angle) >= 35 && Math.abs(RIGHT_Body_angle - JSON_RIGHT_Body_angle) <= 45)
+                    && (Math.abs(CENTER_Shoulder_angle- JSON_CENTER_Shoulder_angle) >= 35 && Math.abs(CENTER_Shoulder_angle- JSON_CENTER_Shoulder_angle) <= 45))
+        {
+            test_right_body = Math.abs(RIGHT_Body_angle - JSON_RIGHT_Body_angle)
+            center_shoulder = Math.abs(CENTER_Shoulder_angle- JSON_CENTER_Shoulder_angle)
             ActionScore += 80;
-        } else {
+        } else
+        {
             ActionScore += 50;
         }
 
 
-        Log.d("왼쪽 어깨에서 힙까지 데이터 값 비교 : ", (RIGHT_Body_angle - JSON_RIGHT_Body_angle).toString())
-        Log.d("어꺠 수평 데이터 값 비교 : ", (CENTER_Shoulder_angle- JSON_CENTER_Shoulder_angle).toString())
+        Log.d("왼쪽 어깨에서 힙까지 데이터 값 비교 : ", test_right_body.toString())
+        Log.d("어깨 수평 데이터 값 비교 : ", center_shoulder.toString())
 
 
         if ((frameCounter % 15) == 0) {
 
-            Result_ActionScore = ActionScore / 12
+            Result_ActionScore = ActionScore / 15
             Log.d("프레임 수 :", frameCounter.toString())
-            Log.d("액션스코어:", ActionScore.toString())
-            Log.d("Result_actionscore", Result_ActionScore.toString())
+            Log.d("ActionScore : ", ActionScore.toString())
+            Log.d("Result_ActionScore : ", Result_ActionScore.toString())
 
             if ((Result_ActionScore) >= 90) {
                 Log.d("평가중 굳 ActionScore : ", (Result_ActionScore).toString())
@@ -1248,7 +1263,7 @@ class Posenet(
                 Log.d("Good 개수 : ", GoodCount.toString())
                 ActionScore = 0
                 Result_ActionScore = 0
-            } else if ((Result_ActionScore) >= 85) {
+            } else if ((Result_ActionScore) >= 80) {
                 Log.d("평가중 노말 ActionScore : ", (Result_ActionScore).toString())
                 ActionFeedback = "Normal"
                 NormalCount++
@@ -1270,36 +1285,46 @@ class Posenet(
 
     }
     fun Sidebend_rightFrameComparison() {
-
+        var test_left_body = 0.0
+        var center_shoulder = 0.0
         // 바운드 높게 줄수록 점수 높음
 
-        if ( Math.abs(LEFT_Body_angle - JSON_LEFT_Body_angle) <= 5 && Math.abs(CENTER_Shoulder_angle- JSON_CENTER_Shoulder_angle) <= 10
-        ) {
+        if ( Math.abs(LEFT_Body_angle - JSON_LEFT_Body_angle) <= 15 && Math.abs(CENTER_Shoulder_angle- JSON_CENTER_Shoulder_angle) <= 15)
+        {
+            test_left_body = Math.abs(LEFT_Body_angle - JSON_LEFT_Body_angle)
+            center_shoulder = Math.abs(CENTER_Shoulder_angle- JSON_CENTER_Shoulder_angle)
             ActionScore += 100;
-        } else if (Math.abs(LEFT_Body_angle - JSON_LEFT_Body_angle) >= 5 && Math.abs(LEFT_Body_angle - JSON_LEFT_Body_angle) <= 10
-            || Math.abs(CENTER_Shoulder_angle- JSON_CENTER_Shoulder_angle) >= 10 && Math.abs(CENTER_Shoulder_angle- JSON_CENTER_Shoulder_angle) <= 15
-        ) {
+        } else if ((Math.abs(LEFT_Body_angle - JSON_LEFT_Body_angle) >= 15 && Math.abs(LEFT_Body_angle - JSON_LEFT_Body_angle) <= 25)
+            && (Math.abs(CENTER_Shoulder_angle- JSON_CENTER_Shoulder_angle) >= 15 && Math.abs(CENTER_Shoulder_angle- JSON_CENTER_Shoulder_angle) <= 25))
+        {
+            test_left_body = Math.abs(LEFT_Body_angle - JSON_RIGHT_Body_angle)
+            center_shoulder = Math.abs(CENTER_Shoulder_angle- JSON_CENTER_Shoulder_angle)
             ActionScore += 90;
-        } else if (Math.abs(LEFT_Body_angle - JSON_LEFT_Body_angle) >= 10 && Math.abs(LEFT_Body_angle - JSON_LEFT_Body_angle) <= 15
-            || Math.abs(CENTER_Shoulder_angle- JSON_CENTER_Shoulder_angle) >= 15 && Math.abs(CENTER_Shoulder_angle- JSON_CENTER_Shoulder_angle) <= 20
-        ) {
+        } else if ((Math.abs(LEFT_Body_angle - JSON_LEFT_Body_angle) >= 25 && Math.abs(LEFT_Body_angle - JSON_LEFT_Body_angle) <= 35)
+            && (Math.abs(CENTER_Shoulder_angle- JSON_CENTER_Shoulder_angle) >= 25 && Math.abs(CENTER_Shoulder_angle- JSON_CENTER_Shoulder_angle) <= 35))
+        {
+            test_left_body = Math.abs(LEFT_Body_angle - JSON_LEFT_Body_angle)
+            center_shoulder = Math.abs(CENTER_Shoulder_angle- JSON_CENTER_Shoulder_angle)
             ActionScore += 80;
-        } else if (Math.abs(LEFT_Body_angle - JSON_LEFT_Body_angle) >= 15 && Math.abs(LEFT_Body_angle - JSON_LEFT_Body_angle) <= 20
-            || Math.abs(CENTER_Shoulder_angle- JSON_CENTER_Shoulder_angle) >= 20 && Math.abs(CENTER_Shoulder_angle- JSON_CENTER_Shoulder_angle) <= 25
-        ) {
+        } else if ((Math.abs(LEFT_Body_angle - JSON_LEFT_Body_angle) >= 35 && Math.abs(LEFT_Body_angle - JSON_LEFT_Body_angle) <= 45)
+            && (Math.abs(CENTER_Shoulder_angle- JSON_CENTER_Shoulder_angle) >= 35 && Math.abs(CENTER_Shoulder_angle- JSON_CENTER_Shoulder_angle) <= 45))
+        {
+            test_left_body = Math.abs(LEFT_Body_angle - JSON_LEFT_Body_angle)
+            center_shoulder = Math.abs(CENTER_Shoulder_angle- JSON_CENTER_Shoulder_angle)
             ActionScore += 80;
-        } else {
+        } else
+        {
             ActionScore += 50;
         }
 
 
-        Log.d("왼쪽 어깨에서 힙까지 데이터 값 비교 : ", (LEFT_Body_angle - JSON_LEFT_Body_angle).toString())
-        Log.d("어깨 수평 데이터 값 비교 : ", (CENTER_Shoulder_angle- JSON_CENTER_Shoulder_angle).toString())
+        Log.d("왼쪽 어깨에서 힙까지 데이터 값 비교 : ", test_left_body.toString())
+        Log.d("어깨 수평 데이터 값 비교 : ", center_shoulder.toString())
 
 
         if ((frameCounter % 15) == 0) {
 
-            Result_ActionScore = ActionScore / 12
+            Result_ActionScore = ActionScore / 15
             Log.d("프레임 수 :", frameCounter.toString())
             Log.d("액션스코어:", ActionScore.toString())
             Log.d("Result_actionscore", Result_ActionScore.toString())
@@ -1312,7 +1337,7 @@ class Posenet(
                 Log.d("Good 개수 : ", GoodCount.toString())
                 ActionScore = 0
                 Result_ActionScore = 0
-            } else if ((Result_ActionScore) >= 85) {
+            } else if ((Result_ActionScore) >= 80) {
                 Log.d("평가중 노말 ActionScore : ", (Result_ActionScore).toString())
                 ActionFeedback = "Normal"
                 NormalCount++
@@ -1335,41 +1360,66 @@ class Posenet(
     }
 
     fun WidesquatFrameComparison() {
-
+        var test_left_kneeup = 0.0
+        var test_left_kneedown = 0.0
+        var test_right_kneeup = 0.0
+        var test_right_kneedown = 0.0
 
         // 바운드 높게 줄수록 점수 높음
-        if (Math.abs(LEFT_KneeUp_angle - JSON_LEFT_KneeUp_angle) <= 10 && Math.abs(RIGHT_KneeUp_angle - JSON_RIGHT_KneeUp_angle) <= 10)
+        if ((Math.abs(LEFT_KneeUp_angle - JSON_LEFT_KneeUp_angle) <= 25 && Math.abs(RIGHT_KneeUp_angle - JSON_RIGHT_KneeUp_angle) <= 25 )
+            && (Math.abs(LEFT_KneeDown_angle - JSON_LEFT_KneeDown_angle) <= 25 && Math.abs(RIGHT_KneeUp_angle - JSON_RIGHT_KneeUp_angle) <= 25 ) )
         {
+            test_left_kneeup = Math.abs(LEFT_KneeUp_angle - JSON_LEFT_KneeUp_angle)
+            test_right_kneeup = Math.abs(RIGHT_KneeUp_angle - JSON_RIGHT_KneeUp_angle)
+            test_left_kneedown = Math.abs(LEFT_KneeDown_angle - JSON_LEFT_KneeDown_angle)
+            test_right_kneedown = Math.abs(RIGHT_KneeDown_angle - JSON_RIGHT_KneeDown_angle)
             ActionScore += 100;
-        } else if ((Math.abs(LEFT_KneeUp_angle - JSON_LEFT_KneeUp_angle) >= 10 && Math.abs(LEFT_KneeUp_angle - JSON_LEFT_KneeUp_angle) <= 20)
-            || (Math.abs(RIGHT_KneeUp_angle - JSON_RIGHT_KneeUp_angle) >= 10 && (RIGHT_KneeUp_angle - JSON_RIGHT_KneeUp_angle) <= 20))
+        } else if (((Math.abs(LEFT_KneeUp_angle - JSON_LEFT_KneeUp_angle) >= 25 && Math.abs(LEFT_KneeUp_angle - JSON_LEFT_KneeUp_angle) <= 35)
+                    && (Math.abs(RIGHT_KneeUp_angle - JSON_RIGHT_KneeUp_angle) >= 25 && (RIGHT_KneeUp_angle - JSON_RIGHT_KneeUp_angle) <= 35))
+            &&((Math.abs(LEFT_KneeDown_angle - JSON_LEFT_KneeDown_angle) >= 25 && Math.abs(LEFT_KneeDown_angle - JSON_LEFT_KneeDown_angle) <= 35)
+                    && (Math.abs(RIGHT_KneeDown_angle - JSON_RIGHT_KneeDown_angle) >= 25 && (RIGHT_KneeDown_angle - JSON_RIGHT_KneeDown_angle) <= 35)))
         {
+            test_left_kneeup = Math.abs(LEFT_KneeUp_angle - JSON_LEFT_KneeUp_angle)
+            test_right_kneeup = Math.abs(RIGHT_KneeUp_angle - JSON_RIGHT_KneeUp_angle)
+            test_left_kneedown = Math.abs(LEFT_KneeDown_angle - JSON_LEFT_KneeDown_angle)
+            test_right_kneedown = Math.abs(RIGHT_KneeDown_angle - JSON_RIGHT_KneeDown_angle)
             ActionScore += 90;
-        } else if ((Math.abs(LEFT_KneeUp_angle - JSON_LEFT_KneeUp_angle) >= 20 && Math.abs(LEFT_KneeUp_angle - JSON_LEFT_KneeUp_angle) <= 25)
-            || (Math.abs(RIGHT_KneeUp_angle - JSON_RIGHT_KneeUp_angle) >= 20 && (RIGHT_KneeUp_angle - JSON_RIGHT_KneeUp_angle) <= 25))
+        } else if (((Math.abs(LEFT_KneeUp_angle - JSON_LEFT_KneeUp_angle) >= 35 && Math.abs(LEFT_KneeUp_angle - JSON_LEFT_KneeUp_angle) <= 45)
+                    && (Math.abs(RIGHT_KneeUp_angle - JSON_RIGHT_KneeUp_angle) >= 35 && (RIGHT_KneeUp_angle - JSON_RIGHT_KneeUp_angle) <= 45))
+            &&((Math.abs(LEFT_KneeDown_angle - JSON_LEFT_KneeDown_angle) >= 35 && Math.abs(LEFT_KneeDown_angle - JSON_LEFT_KneeDown_angle) <= 45)
+                    && (Math.abs(RIGHT_KneeDown_angle - JSON_RIGHT_KneeDown_angle) >= 35 && (RIGHT_KneeUp_angle - JSON_RIGHT_KneeDown_angle) <= 45)))
         {
+            test_left_kneeup = Math.abs(LEFT_KneeUp_angle - JSON_LEFT_KneeUp_angle)
+            test_right_kneeup = Math.abs(RIGHT_KneeUp_angle - JSON_RIGHT_KneeUp_angle)
+            test_left_kneedown = Math.abs(LEFT_KneeDown_angle - JSON_LEFT_KneeDown_angle)
+            test_right_kneedown = Math.abs(RIGHT_KneeDown_angle - JSON_RIGHT_KneeDown_angle)
             ActionScore += 80;
-        } else if ((Math.abs(LEFT_KneeUp_angle - JSON_LEFT_KneeUp_angle) >= 25 && Math.abs(LEFT_KneeUp_angle - JSON_LEFT_KneeUp_angle) <= 30)
-            || (Math.abs(RIGHT_KneeUp_angle - JSON_RIGHT_KneeUp_angle) >= 25 && (RIGHT_KneeUp_angle - JSON_RIGHT_KneeUp_angle) <= 30))
+        } else if (((Math.abs(LEFT_KneeUp_angle - JSON_LEFT_KneeUp_angle) >= 45 && Math.abs(LEFT_KneeUp_angle - JSON_LEFT_KneeUp_angle) <= 55)
+                    && (Math.abs(RIGHT_KneeUp_angle - JSON_RIGHT_KneeUp_angle) >= 45 && (RIGHT_KneeUp_angle - JSON_RIGHT_KneeUp_angle) <= 55))
+            &&((Math.abs(LEFT_KneeDown_angle - JSON_LEFT_KneeDown_angle) >= 45 && Math.abs(LEFT_KneeDown_angle - JSON_LEFT_KneeDown_angle) <= 55)
+                    && (Math.abs(RIGHT_KneeDown_angle - JSON_RIGHT_KneeDown_angle) >= 45 && (RIGHT_KneeDown_angle - JSON_RIGHT_KneeDown_angle) <= 55)))
         {
+            test_left_kneeup = Math.abs(LEFT_KneeUp_angle - JSON_LEFT_KneeUp_angle)
+            test_right_kneeup = Math.abs(RIGHT_KneeUp_angle - JSON_RIGHT_KneeUp_angle)
+            test_left_kneedown = Math.abs(LEFT_KneeDown_angle - JSON_LEFT_KneeDown_angle)
+            test_right_kneedown = Math.abs(RIGHT_KneeDown_angle - JSON_RIGHT_KneeDown_angle)
             ActionScore += 70;
         } else {
             ActionScore += 50;
         }
 
+        Log.d("왼 허벅지 데이터 값 비교 : ", test_left_kneeup.toString())
+        Log.d("왼 정강이 데이터 값 비교 : ", test_left_kneedown.toString())
 
-        Log.d("왼 허벅지 데이터 값 비교 : ", (LEFT_KneeUp_angle - JSON_LEFT_KneeUp_angle).toString())
-        Log.d("왼 정강이 데이터 값 비교 : ", (LEFT_KneeDown_angle - JSON_LEFT_KneeDown_angle).toString())
-
-        Log.d("오른 허벅지 데이터 값 비교 : ", (RIGHT_KneeUp_angle - JSON_RIGHT_KneeUp_angle).toString())
-        Log.d("오른 정강이 데이터 값 비교 : ", (RIGHT_KneeDown_angle - JSON_RIGHT_KneeDown_angle).toString())
+        Log.d("오른 허벅지 데이터 값 비교 : ", test_right_kneeup.toString())
+        Log.d("오른 정강이 데이터 값 비교 : ", test_right_kneedown.toString())
 
 
         if ((frameCounter % 15) == 0) {
 
-//            Log.d("ActionScore : ", ActionScore.toString())
-            Result_ActionScore = ActionScore / 15
-//            Log.d("Result_ActionScore : ", Result_ActionScore.toString())
+           Result_ActionScore = ActionScore / 15
+           Log.d("ActionScore : ", ActionScore.toString())
+           Log.d("Result_ActionScore : ", Result_ActionScore.toString())
 
             if ((Result_ActionScore) >= 90) {
                 Log.d("평가중 굳 ActionScore : ", (Result_ActionScore).toString())
