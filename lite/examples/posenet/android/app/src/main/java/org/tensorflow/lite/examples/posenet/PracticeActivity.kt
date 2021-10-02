@@ -608,7 +608,17 @@ class PracticeActivity :
                 Teststring = "오른쪽";
             }
         }
-
+        else if(ClickState == "widesquat 학습"){
+            if(ActionFlag==0) {
+                Teststring= "시작자세"
+            }
+            else if(ActionFlag==1) {
+                Teststring= "차렷자세"
+            }
+            else if(ActionFlag==2) {
+                Teststring= "스쿼트"
+            }
+        }
 
         // 실시간 피드백
         // Toast 메세지 띄우기 & 핸드폰 TalkBack 기능 키기
@@ -625,14 +635,14 @@ class PracticeActivity :
                 //이번에 추가해보는 문장 0911
                 "왼 바디 : $estimate_RIGHT_side ",
                 //테스트를 위한 구문
-                //"왼 바디 : $RIGHT_Body_angle",
+                //"왼 바디 : $RIGHT_KneeUp_angle",
                 (15.0f * widthRatio),
                 (70.0f * heightRatio + bottom),
                 paint
         )
         canvas.drawText(
                 //테스트를 위한 구문
-                //"오른 바디 : $LEFT_Body_angle",
+                //"오른 바디 : $LEFT_KneeUp_angle",
                 "오른 바디 : $estimate_LEFT_side",
                 (15.0f * widthRatio),
                 (90.0f * heightRatio + bottom),
