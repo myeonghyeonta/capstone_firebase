@@ -613,7 +613,7 @@ class PracticeActivity :
                 Teststring= "시작자세"
             }
             else if(ActionFlag==1) {
-                Teststring= "차렷자세"
+                Teststring= "스쿼트 시작자세"
             }
             else if(ActionFlag==2) {
                 Teststring= "스쿼트"
