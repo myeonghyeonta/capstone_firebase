@@ -33,19 +33,21 @@
         <activity android:name=".AbdominalActivity" />
         <activity android:name=".LowerbodyActivity"/>
         <activity android:name=".LoginActivity">
-            <!-- 테스트하는데 불편해서-->
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".RegisterActivity" />
         <activity
             android:name=".TestActivity"
             android:exported="true"
             android:label="@string/tfe_pn_app_name" />
-        <activity android:name=".SplashActivity" />
+        <activity android:name=".SplashActivity" >
+            <!-- 테스트하는데 불편해서-->
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".CameraActivity"
             android:exported="true" />

@@ -240,7 +240,7 @@
                         <Button
                             android:id="@+id/btn_click_3"
                             android:layout_width="136dp"
-                            android:layout_height="match_parent"
+                            android:layout_height="34dp"
                             android:background="@drawable/button_background"
                             android:fontFamily="@font/wemakeprice_regular"
                             android:text="Click"
