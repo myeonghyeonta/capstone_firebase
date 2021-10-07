@@ -39,9 +39,8 @@ class ScoreActivity : AppCompatActivity() {
         val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd")
         val calendar = Calendar.getInstance()
         val Date: String = simpleDateFormat.format(calendar.getTime())
+        val Time: String = SimpleDateFormat("HH:mm:ss").format(calendar.timeInMillis)
         Log.d("time",Date)
-
-        var exercise = ""
 
 
 
@@ -76,14 +75,15 @@ class ScoreActivity : AppCompatActivity() {
         textViewBadCount.setText(intent.getStringExtra("count_bad")+"%")
         textViewScore.setText(intent.getStringExtra("score")+"점")
 
+        var count = intent.getStringExtra("count")
         var count_good = intent.getStringExtra("count_good")
         var count_normal = intent.getStringExtra("count_normal")
         var count_bad = intent.getStringExtra("count_bad")
         var score = intent.getStringExtra("score")
 
 
-
         data class Score(
+            var count: String? = null,
             var count_good: String? = null,
             var count_normal: String? = null,
             var count_bad: String? = null,
@@ -92,12 +92,13 @@ class ScoreActivity : AppCompatActivity() {
 
 
 
-        fun writeNewScore(count_good: String,count_normal: String,count_bad: String,score: String) {
 
-            val score = Score(count_good, count_normal, count_bad, score)
+        fun writeNewScore(count: String,count_good: String,count_normal: String,count_bad: String,score: String) {
+
+            val score = Score(count,count_good, count_normal, count_bad, score)
             database = Firebase.database.reference
             FirebaseUtils.firebaseAuth.uid?.let {
-                database.child("scores").child(it).child(Date).child(ClickState).setValue(score)
+                    database.child("scores").child(it).child(Date).child(ClickState).child(Time).setValue(score)
             }
         }
 
@@ -116,7 +117,7 @@ class ScoreActivity : AppCompatActivity() {
         btnOk.setOnClickListener {
             val intent = Intent(this, MainloginActivity::class.java)
             startActivity(intent)
-            writeNewScore(count_good,count_normal,count_bad,score)
+            writeNewScore(count,count_good,count_normal,count_bad,score)
 
 
             //데이터 읽기
@@ -136,7 +137,7 @@ class ScoreActivity : AppCompatActivity() {
             }
             scoreReference.addValueEventListener(postListener)
             FirebaseUtils.firebaseAuth.uid?.let {
-                database.child("scores").child(it).child(Date).child(ClickState).get().addOnSuccessListener {
+                database.child("scores").child(it).child(Date).child(ClickState).child(Time).get().addOnSuccessListener {
                     Log.i("firebase읽기", "Got value ${it.value}")
 
                     var array =arrayOf(it.value)
