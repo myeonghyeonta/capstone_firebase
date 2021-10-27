@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+
+        <item android:id="@+id/navi_list"
+            android:icon="@drawable/ic_baseline_home_24"
+            android:title="운동목록"/>
+
+        <item android:id="@+id/navi_calendar"
+            android:icon="@drawable/ic_baseline_calendar_today_24"
+            android:title="캘린더"/>
+
+        <item android:id="@+id/chart"
+            android:icon="@drawable/ic_baseline_assessment_24"
+            android:title="운동기록"/>
+
+    </group>
+</menu>

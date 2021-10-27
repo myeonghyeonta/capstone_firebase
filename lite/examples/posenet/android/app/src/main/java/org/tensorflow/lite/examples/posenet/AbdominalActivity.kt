@@ -7,6 +7,8 @@ import android.util.Log
 import android.widget.Button
 import android.widget.TextView
 import kotlinx.android.synthetic.main.activity_logout.*
+import kotlinx.android.synthetic.main.activity_logout.btnSignOut
+import kotlinx.android.synthetic.main.activity_lowerbody.*
 import org.tensorflow.lite.examples.posenet.Extensions.toast
 import org.tensorflow.lite.examples.posenet.lib.ActionCount
 import org.tensorflow.lite.examples.posenet.lib.BadCount
@@ -37,6 +39,13 @@ class AbdominalActivity : AppCompatActivity() {
         })
 
 
+        back.setOnClickListener ({
+            val intent = Intent(this, MainloginActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            startActivity(intent)
+            finish()
+        })
 
 
         val sidebend_left_tutorial = findViewById<Button>(R.id.sidebend_left_tutorial)
