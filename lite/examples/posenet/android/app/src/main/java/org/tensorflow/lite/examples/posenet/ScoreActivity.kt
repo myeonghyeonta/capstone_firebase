@@ -7,7 +7,6 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.database.*
 import com.google.firebase.database.ktx.database
-import com.google.firebase.database.ktx.getValue
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_logout.*
 import kotlinx.android.synthetic.main.activity_logout.btnSignOut
@@ -17,6 +16,7 @@ import org.tensorflow.lite.examples.posenet.Extensions.toast
 import java.io.Serializable
 import java.text.SimpleDateFormat
 import java.util.*
+
 
 class ScoreActivity : AppCompatActivity() {
     private lateinit var textViewName : TextView
@@ -118,42 +118,7 @@ class ScoreActivity : AppCompatActivity() {
             val intent = Intent(this, MainloginActivity::class.java)
             startActivity(intent)
             writeNewScore(count,count_good,count_normal,count_bad,score)
-
-
-            //데이터 읽기
-            val scoreReference = FirebaseDatabase.getInstance().getReference("Score")
-
-            val postListener = object : ValueEventListener {
-                override fun onDataChange(dataSnapshot: DataSnapshot) {
-                    // Get Post object and use the values to update the UI
-                    val post = dataSnapshot.getValue<Score>()
-                    // ...
-                }
-
-                override fun onCancelled(databaseError: DatabaseError) {
-                    // Getting Post failed, log a message
-                    Log.w("TAG", "loadPost:onCancelled", databaseError.toException())
-                }
-            }
-            scoreReference.addValueEventListener(postListener)
-            FirebaseUtils.firebaseAuth.uid?.let {
-                database.child("scores").child(it).child(Date).child(ClickState).child(Time).get().addOnSuccessListener {
-                    Log.i("firebase읽기", "Got value ${it.value}")
-
-                    var array =arrayOf(it.value)
-                    Log.d("firebase읽기1", "Got value ${array[0]}")
-                    
-
-                }.addOnFailureListener {
-                    Log.e("firebase읽기", "Error getting data", it)
-                }
-            }
         }
-
-
-
     }
-
-
 }
 
