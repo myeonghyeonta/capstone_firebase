@@ -1,9 +1,12 @@
 package org.tensorflow.lite.examples.posenet
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.core.view.GravityCompat
 import com.github.mikephil.charting.charts.BarChart
 import com.github.mikephil.charting.components.AxisBase
 import com.github.mikephil.charting.components.XAxis
@@ -12,12 +15,18 @@ import com.github.mikephil.charting.data.BarDataSet
 import com.github.mikephil.charting.data.BarEntry
 import com.github.mikephil.charting.formatter.ValueFormatter
 import com.github.mikephil.charting.interfaces.datasets.IBarDataSet
+import com.google.android.material.navigation.NavigationView
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import kotlinx.android.synthetic.main.activity_graph.*
+import kotlinx.android.synthetic.main.activity_mainlogin.*
+import kotlinx.android.synthetic.main.activity_mainlogin.btn_navi
+import kotlinx.android.synthetic.main.activity_mainlogin.layout_drawer
+import kotlinx.android.synthetic.main.activity_mainlogin.naviview
 import kotlin.collections.ArrayList
 
-class GraphActivity : AppCompatActivity() {
+class GraphActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     private lateinit var database: DatabaseReference
     var calendarArray = Array(100, { item -> "" })
@@ -25,6 +34,18 @@ class GraphActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_graph)
+
+
+
+        btn_navi.setOnClickListener {
+            layout_drawer.openDrawer(GravityCompat.START) //START : left, END : Right 랑 같은 말
+
+        }
+
+       naviview.setNavigationItemSelectedListener(this)
+
+
+
         var barChart: BarChart = findViewById(R.id.barChart) // barChart 생성
 
         var calcount: Long
@@ -142,4 +163,36 @@ class GraphActivity : AppCompatActivity() {
             return days.getOrNull(value.toInt() - 1) ?: value.toString()
         }
     }
+
+
+
+    override fun onNavigationItemSelected(item: MenuItem): Boolean { //네비게이션 메뉴 아이템 클릭 시 수
+        when (item.itemId) {
+
+
+            R.id.navi_list -> {
+                startActivity(Intent(this, MainloginActivity::class.java))
+
+            }
+
+
+            R.id.chart -> {
+                startActivity(Intent(this, GraphActivity::class.java))
+
+
+            }
+        }
+        layout_drawer.closeDrawers() //네비게이션 뷰 닫기
+        return false
+    }
+
+    override fun onBackPressed() { //백버튼 누를 시 수행하는 메소
+        if (layout_drawer.isDrawerOpen(GravityCompat.START)) {
+            layout_drawer.closeDrawers()
+        } else {
+            super.onBackPressed() //일반 백버튼 기능 실행(finish 역할)
+
+        }
+    }
 }
+
