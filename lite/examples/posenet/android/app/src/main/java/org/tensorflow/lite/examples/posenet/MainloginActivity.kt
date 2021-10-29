@@ -79,7 +79,9 @@ class MainloginActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
 
             }
 
-
+            R.id.navi_calendar ->{
+                startActivity(Intent(this, MypageActivity::class.java))
+            }
             R.id.chart -> {
                 startActivity(Intent(this, GraphActivity::class.java))
 
