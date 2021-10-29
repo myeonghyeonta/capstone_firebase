@@ -13,11 +13,16 @@
         android:layout_height="match_parent">
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:id="@+id/linearLayout2"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:background="@drawable/gradation_background"
             android:gravity="center_vertical"
             android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="@+id/linearLayout3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             tools:ignore="MissingConstraints">
 
             <ImageView
@@ -30,7 +35,7 @@
             <View
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:layout_weight="1"></View>
+                android:layout_weight="1" />
 
             <Button
                 android:id="@+id/btnSignOut"
@@ -49,10 +54,14 @@
 
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:id="@+id/linearLayout3"
+            android:layout_width="0dp"
             android:layout_height="60dp"
-            android:orientation="horizontal"
             android:gravity="center_vertical"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             tools:ignore="MissingConstraints">
 
             <TextView
@@ -60,22 +69,26 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="50dp"
                 android:fontFamily="@font/wemakeprice_semibold"
-                android:text="운동기록그래프"
+                android:text="운동기록 그래프"
                 android:textColor="@color/black"
                 android:textSize="25sp" />
 
-
-
-
         </LinearLayout>
+
+        <com.github.mikephil.charting.charts.BarChart
+            android:id="@+id/barChart"
+            android:layout_width="0dp"
+            android:layout_height="376dp"
+            android:layout_marginTop="60dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/linearLayout2" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-    <com.github.mikephil.charting.charts.BarChart
-        android:id="@+id/barChart"
-        android:layout_width="match_parent"
-        android:layout_height="376dp"/>
+
 
 
 
