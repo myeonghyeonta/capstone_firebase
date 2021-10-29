@@ -100,6 +100,7 @@ class GraphActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
                         }
                         valueArray[i.toInt()] = countsum.toString()
                     }
+
                     for (l in 0 until calcount) { //데이터셋 만들기
                         entries.add(BarEntry(l.toFloat() + 1f, valueArray[l.toInt()].toFloat()))
                     }
