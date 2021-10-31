@@ -160,8 +160,16 @@ class MypageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
     //없으면 그냥 텍스트만 보이게 하는 함수
     fun check_day(year:Int, month:Int, day:Int){
         try{
-            //선택한 날짜를 firebase에 저장된 날짜와 형식을 맞춘다
-                var checking_date =year.toString()+"-"+month.toString()+"-"+day.toString()
+            var day_invert=""
+
+            //선택한 날짜를 firebase에 저장된 날짜와 형식을
+            if(day<10){
+                day_invert="0"+day.toString()
+            }
+            else{
+                day_invert=day.toString()
+            }
+            var checking_date =year.toString()+"-"+month.toString()+"-"+day_invert
             Log.i("firebase읽기, ch", "Got value  ${checking_date}")
             //운동기록이 있는 경우
             //if 안에 운동기록 찾는 과정을 넣거나 먼저 실행해주기
