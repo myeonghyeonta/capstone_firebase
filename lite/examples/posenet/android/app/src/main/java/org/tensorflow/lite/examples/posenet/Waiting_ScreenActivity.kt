@@ -29,8 +29,13 @@ class Waiting_ScreenActivity : AppCompatActivity() {
             intent.putExtra("exercise1", exercise1)
             intent.putExtra("exercise2", exercise2)
             intent.putExtra("count", count)
+            intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY)
             startActivity(intent)
         }, WAITING_TIME)
+
+
+
+
 
     }
 }
