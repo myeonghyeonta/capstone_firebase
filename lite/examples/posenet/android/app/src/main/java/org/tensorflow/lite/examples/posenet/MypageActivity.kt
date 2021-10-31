@@ -135,6 +135,9 @@ class MypageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
                 colors=colorItems
                 valueTextColor= Color.BLACK
                 valueTextSize=16f
+
+
+
             }
 
             //추가한 데이터를  PieData 형태로 추가
@@ -149,9 +152,6 @@ class MypageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
             }
 
         }
-
-
-
 
 
     }

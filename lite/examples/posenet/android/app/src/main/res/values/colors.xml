@@ -28,7 +28,11 @@
   <color name="gray_blue">#929CA6</color>
   <color name="whisper">#E9E9E9</color>
   <color name="aluminium">#7E878F</color>
-  <color name="mint">#14B9B7</color>
+  <color name="mint">#09AEAC</color>
   <color name="blue">#2F86ED</color>
+  <color name="gray">#E8E8E8</color>
+  <color name="yellow">#FFC507</color>
+  <color name="yellow2">#FFD500</color>
+  <color name="status_backgroud">#FAFAFA</color>
 
 </resources>

@@ -16,7 +16,8 @@
             android:id="@+id/linearLayout2"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:background="@drawable/gradation_background"
+            android:background="@color/status_backgroud"
+            android:elevation="10dp"
             android:gravity="center_vertical"
             android:orientation="horizontal"
             app:layout_constraintBottom_toBottomOf="@+id/linearLayout3"
@@ -31,6 +32,15 @@
                 android:layout_height="match_parent"
                 android:scaleType="center"
                 android:src="@drawable/ic_baseline_menu_24" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/wemakeprice_semibold"
+                android:text="운동기록 그래프"
+                android:layout_marginTop="2dp"
+                android:textColor="@color/black"
+                android:textSize="22sp"/>
 
             <View
                 android:layout_width="0dp"
@@ -62,16 +72,9 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="MissingConstraints">
+            tools:ignore="MissingConstraints"
+            android:background="@color/status_backgroud">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="50dp"
-                android:fontFamily="@font/wemakeprice_semibold"
-                android:text="운동기록 그래프"
-                android:textColor="@color/black"
-                android:textSize="25sp" />
 
         </LinearLayout>
 
@@ -86,11 +89,6 @@
             app:layout_constraintTop_toTopOf="@+id/linearLayout2" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-
-
-
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/naviview"
