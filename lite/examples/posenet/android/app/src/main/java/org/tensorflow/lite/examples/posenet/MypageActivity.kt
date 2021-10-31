@@ -1,28 +1,39 @@
 package org.tensorflow.lite.examples.posenet
 
 import androidx.appcompat.app.AppCompatActivity
+import android.content.Intent
 import android.os.Bundle
 import android.widget.*
 import android.graphics.Color
 import android.icu.util.*
 import android.util.Log
+import android.view.MenuItem
+
 import android.view.View
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import android.widget.TextView
 import android.widget.CalendarView
+import androidx.core.view.GravityCompat
 import androidx.core.view.isVisible
 import com.github.mikephil.charting.animation.Easing
 import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet
 import com.github.mikephil.charting.data.PieEntry
 import com.github.mikephil.charting.utils.ColorTemplate
+import com.google.android.material.navigation.NavigationView
+import kotlinx.android.synthetic.main.activity_mainlogin.btn_navi
+import kotlinx.android.synthetic.main.activity_mainlogin.layout_drawer
+import kotlinx.android.synthetic.main.activity_mainlogin.naviview
 import kotlinx.android.synthetic.main.activity_count.*
+import kotlinx.android.synthetic.main.activity_logout.*
 import kotlinx.android.synthetic.main.activity_mypage.*
+import kotlinx.android.synthetic.main.activity_logout.btnSignOut
+import org.tensorflow.lite.examples.posenet.Extensions.toast
 import java.lang.Exception
 
-class MypageActivity : AppCompatActivity() {
+class MypageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
     private lateinit var database: DatabaseReference
     lateinit var calendarView: CalendarView
     lateinit var textView: TextView
@@ -70,6 +81,21 @@ class MypageActivity : AppCompatActivity() {
         //calendar_date_set.contains("넷") 로 안에 있는지 여부확인가능
 
         setContentView(R.layout.activity_mypage)
+
+        btn_navi.setOnClickListener {
+            layout_drawer.openDrawer(GravityCompat.START) //START : left, END : Right 랑 같은 말
+
+        }
+
+        btnSignOut.setOnClickListener {
+            FirebaseUtils.firebaseAuth.signOut()
+            startActivity(Intent(this, LoginActivity::class.java))
+            toast("로그아웃")
+            finish()
+        }
+
+        naviview.setNavigationItemSelectedListener(this)
+
         Piechart.isVisible=false
         //check_day(2021,9,26)
         calendarView=findViewById((R.id.calendarView))
@@ -97,6 +123,7 @@ class MypageActivity : AppCompatActivity() {
             val entries = ArrayList<PieEntry>()
             Piechart.isVisible=true
             Piechart.setUsePercentValues(true)
+            Piechart.setEntryLabelTextSize(0f) // 파이차트 글씨 안나오게
             entries.add(PieEntry(pie_data[0],"sidebend left"))
             entries.add(PieEntry(pie_data[1],"sidebend right"))
             entries.add(PieEntry(pie_data[2],"sidejack"))
@@ -199,6 +226,34 @@ class MypageActivity : AppCompatActivity() {
         catch (e:Exception){
 
         }
+
+    }
+    override fun onNavigationItemSelected(item: MenuItem): Boolean { //네비게이션 메뉴 아이템 클릭 시 수
+        when (item.itemId) {
+
+
+            R.id.navi_list -> {
+                startActivity(Intent(this, MainloginActivity::class.java))
+
+            }
+
+
+            R.id.chart -> {
+                startActivity(Intent(this, GraphActivity::class.java))
+
+
+            }
+        }
+        layout_drawer.closeDrawers() //네비게이션 뷰 닫기
+        return false
     }
 
+    override fun onBackPressed() { //백버튼 누를 시 수행하는 메소
+        if (layout_drawer.isDrawerOpen(GravityCompat.START)) {
+            layout_drawer.closeDrawers()
+        } else {
+            super.onBackPressed() //일반 백버튼 기능 실행(finish 역할)
+
+        }
+    }
 }
