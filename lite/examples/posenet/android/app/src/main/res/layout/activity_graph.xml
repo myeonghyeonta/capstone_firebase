@@ -13,11 +13,17 @@
         android:layout_height="match_parent">
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:background="@drawable/gradation_background"
+            android:id="@+id/linearLayout2"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@color/status_background"
+            android:elevation="10dp"
             android:gravity="center_vertical"
             android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="@+id/linearLayout3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             tools:ignore="MissingConstraints">
 
             <ImageView
@@ -27,10 +33,19 @@
                 android:scaleType="center"
                 android:src="@drawable/ic_baseline_menu_24" />
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/wemakeprice_semibold"
+                android:text="운동기록 그래프"
+                android:layout_marginTop="2dp"
+                android:textColor="@color/black"
+                android:textSize="22sp"/>
+
             <View
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:layout_weight="1"></View>
+                android:layout_weight="1" />
 
             <Button
                 android:id="@+id/btnSignOut"
@@ -49,35 +64,31 @@
 
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:id="@+id/linearLayout3"
+            android:layout_width="0dp"
             android:layout_height="60dp"
-            android:orientation="horizontal"
             android:gravity="center_vertical"
-            tools:ignore="MissingConstraints">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="50dp"
-                android:fontFamily="@font/wemakeprice_semibold"
-                android:text="운동기록그래프"
-                android:textColor="@color/black"
-                android:textSize="25sp" />
-
-
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingConstraints"
+            android:background="@color/status_background">
 
 
         </LinearLayout>
 
+        <com.github.mikephil.charting.charts.BarChart
+            android:id="@+id/barChart"
+            android:layout_width="0dp"
+            android:layout_height="376dp"
+            android:layout_marginTop="100dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/linearLayout2" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-    <com.github.mikephil.charting.charts.BarChart
-        android:id="@+id/barChart"
-        android:layout_width="match_parent"
-        android:layout_height="376dp"/>
-
-
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/naviview"

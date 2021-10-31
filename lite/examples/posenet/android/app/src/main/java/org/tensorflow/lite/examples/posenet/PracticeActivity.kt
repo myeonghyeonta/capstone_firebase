@@ -633,7 +633,7 @@ class PracticeActivity :
 
         canvas.drawText(
                 //이번에 추가해보는 문장 0911
-                "왼 바디 : $estimate_RIGHT_side ",
+                "왼쪽 바디 : $estimate_RIGHT_side ",
                 //테스트를 위한 구문
                 //"왼 바디 : $RIGHT_KneeUp_angle",
                 (15.0f * widthRatio),
@@ -643,7 +643,7 @@ class PracticeActivity :
         canvas.drawText(
                 //테스트를 위한 구문
                 //"오른 바디 : $LEFT_KneeUp_angle",
-                "오른 바디 : $estimate_LEFT_side",
+                "오른쪽 바디 : $estimate_LEFT_side",
                 (15.0f * widthRatio),
                 (90.0f * heightRatio + bottom),
                 paint

@@ -9,38 +9,42 @@
     tools:context=".CountActivity">
 
 
+    <!-- 드롭다운 형식 사용부분
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="match_parent"
+        android:layout_height="50dp" />
+-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:background="@drawable/gradation_background"
+        android:background="@color/status_background"
+        android:elevation="10dp"
         android:gravity="center_vertical"
         android:orientation="vertical"
         tools:ignore="MissingConstraints">
 
 
         <TextView
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="2dp"
             android:fontFamily="@font/wemakeprice_semibold"
             android:text="운동 횟수 설정"
-            android:textColor="@color/whisper"
-            android:textSize="20dp"
-            />
+            android:textColor="@color/black"
+            android:textSize="20sp" />
 
 
     </LinearLayout>
-<!-- 드롭다운 형식 사용부분
-    <Spinner
-        android:id="@+id/spinner"
-        android:layout_width="match_parent"
-        android:layout_height="50dp" />
--->
+
+
     <EditText
         android:id="@+id/exer_count"
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        android:hint="운동 횟수를 입력하세요"
+        android:layout_marginTop="10dp"
+        android:hint="운동 횟수를 입력하세요. (숫자만 입력 ex. 10)"
         android:inputType="numberSigned" />
 
     <Button

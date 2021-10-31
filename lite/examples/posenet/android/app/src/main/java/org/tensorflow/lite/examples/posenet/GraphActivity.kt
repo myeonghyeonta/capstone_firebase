@@ -24,6 +24,10 @@ import kotlinx.android.synthetic.main.activity_mainlogin.*
 import kotlinx.android.synthetic.main.activity_mainlogin.btn_navi
 import kotlinx.android.synthetic.main.activity_mainlogin.layout_drawer
 import kotlinx.android.synthetic.main.activity_mainlogin.naviview
+import kotlinx.android.synthetic.main.activity_mypage.*
+import org.tensorflow.lite.examples.posenet.Extensions.toast
+import kotlinx.android.synthetic.main.activity_logout.btnSignOut
+
 import kotlin.collections.ArrayList
 
 class GraphActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
@@ -40,6 +44,13 @@ class GraphActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
         btn_navi.setOnClickListener {
             layout_drawer.openDrawer(GravityCompat.START) //START : left, END : Right 랑 같은 말
 
+        }
+
+        btnSignOut.setOnClickListener {
+            FirebaseUtils.firebaseAuth.signOut()
+            startActivity(Intent(this, LoginActivity::class.java))
+            toast("로그아웃")
+            finish()
         }
 
        naviview.setNavigationItemSelectedListener(this)
@@ -136,9 +147,9 @@ class GraphActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
                 setDrawLabels(true) // 값 적는거 허용 (0, 50, 100)
                 setDrawGridLines(true) //격자 라인 활용
                 setDrawAxisLine(true) // 축 그리기 설정
-                axisLineColor = ContextCompat.getColor(context, R.color.black) // 축 색깔 설정
-                gridColor = ContextCompat.getColor(context, R.color.black) // 축 아닌 격자 색깔 설정
-                textColor = ContextCompat.getColor(context, R.color.black) // 라벨 텍스트 컬러 설정
+                axisLineColor = ContextCompat.getColor(context, R.color.darkgray) // 축 색깔 설정
+                gridColor = ContextCompat.getColor(context, R.color.darkgray) // 축 아닌 격자 색깔 설정
+                textColor = ContextCompat.getColor(context, R.color.darkgray) // 라벨 텍스트 컬러 설정
                 textSize = 15f //라벨 텍스트 크기
             }
             xAxis.run {
@@ -173,6 +184,11 @@ class GraphActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
 
             R.id.navi_list -> {
                 startActivity(Intent(this, MainloginActivity::class.java))
+
+            }
+
+            R.id.navi_calendar -> {
+                startActivity(Intent(this, MypageActivity::class.java))
 
             }
 
