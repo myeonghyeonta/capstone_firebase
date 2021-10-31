@@ -147,9 +147,9 @@ class GraphActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
                 setDrawLabels(true) // 값 적는거 허용 (0, 50, 100)
                 setDrawGridLines(true) //격자 라인 활용
                 setDrawAxisLine(true) // 축 그리기 설정
-                axisLineColor = ContextCompat.getColor(context, R.color.black) // 축 색깔 설정
-                gridColor = ContextCompat.getColor(context, R.color.black) // 축 아닌 격자 색깔 설정
-                textColor = ContextCompat.getColor(context, R.color.black) // 라벨 텍스트 컬러 설정
+                axisLineColor = ContextCompat.getColor(context, R.color.darkgray) // 축 색깔 설정
+                gridColor = ContextCompat.getColor(context, R.color.darkgray) // 축 아닌 격자 색깔 설정
+                textColor = ContextCompat.getColor(context, R.color.darkgray) // 라벨 텍스트 컬러 설정
                 textSize = 15f //라벨 텍스트 크기
             }
             xAxis.run {

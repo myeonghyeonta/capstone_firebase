@@ -12,14 +12,14 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/status_backgroud" >
+        android:background="@color/status_background" >
 
 
         <LinearLayout
             android:id="@+id/title"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:background="@color/status_backgroud"
+            android:background="@color/status_background"
             android:elevation="10dp"
             android:gravity="center_vertical"
             android:orientation="horizontal"
@@ -68,9 +68,9 @@
             android:id="@+id/calendarView"
             android:background="@color/cardview_dark_background"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="350dp"
             tools:layout_editor_absoluteX="30dp"
-            tools:layout_editor_absoluteY="150dp"
+            tools:layout_editor_absoluteY="155dp"
             android:gravity= "center"
             android:layout_marginTop="30dp"
             app:layout_constraintStart_toStartOf="parent"

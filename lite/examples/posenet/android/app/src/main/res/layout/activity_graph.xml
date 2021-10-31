@@ -16,7 +16,7 @@
             android:id="@+id/linearLayout2"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:background="@color/status_backgroud"
+            android:background="@color/status_background"
             android:elevation="10dp"
             android:gravity="center_vertical"
             android:orientation="horizontal"
@@ -73,7 +73,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="MissingConstraints"
-            android:background="@color/status_backgroud">
+            android:background="@color/status_background">
 
 
         </LinearLayout>
