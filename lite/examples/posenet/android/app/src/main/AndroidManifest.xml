@@ -39,10 +39,6 @@
         <activity
             android:name=".ScoreActivity"
             android:exported="true" />
-        <activity
-            android:name=".CalendarActivity"
-            android:exported="true"
-            android:theme="@style/Theme.AppCompat.NoActionBar"/>
         <activity android:name=".CountActivity" />
         <activity android:name=".UpperbodyActivity" />
         <activity android:name=".AbdominalActivity" />
@@ -57,11 +53,11 @@
 
             <!-- 테스트하는데 불편해서 -->
 
-            <!--<intent-filter>
+            <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>-->
+            </intent-filter>
         </activity>
 
         <activity
@@ -71,13 +67,13 @@
         <activity android:name=".MainloginActivity">
 
             <!-- 테스트하는 동안만 -->
-
+            <!--
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
+            -->
         </activity>
         <activity android:name=".LogoutActivity" />
     </application>
